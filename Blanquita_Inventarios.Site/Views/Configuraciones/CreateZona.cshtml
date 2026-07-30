@@ -1,0 +1,95 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.ZonaVM
+
+@{
+    ViewBag.Title = "Registro de Zona";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Administrador de Zonas
+        </h1>
+        <!-- END PAGE HEADER-->
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.IdConfiguracion, htmlAttributes: new { @id = "hdfIdConfiguracion" })
+            @Html.HiddenFor(model => model.IdZona, htmlAttributes: new { @id = "hdfId" })
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="portlet box dark">
+                        <div class="portlet-title">
+                            <div class="caption">
+
+                            </div>
+                            <div class="actions">
+                                <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body form form-horizontal">
+                            <div class="form-actions ">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <button type="submit" class="btn blue-steel margin-right-10 margin-bottom-5">
+                                            Guardar
+                                            <i class="fa fa-save"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Zonas", "Configuraciones", new {id = Model.IdConfiguracion})';">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Zona</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Zona, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Zona, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                @if (Model.HabilitarMarbeteInicial)
+                                {
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Marbete Inicial</label>
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.MarbeteInicial, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                            @Html.ValidationMessageFor(model => model.MarbeteInicial, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Marbete Inicial</label>
+                                        <div class="col-md-4">
+                                            @Html.HiddenFor(model => model.MarbeteInicial, htmlAttributes: new { @id = "hdfMarneteInicial" })
+                                            <input type="number" class="form-control" value="@Model.MarbeteInicial" readonly />
+                                            @Html.ValidationMessageFor(model => model.MarbeteInicial, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Marbete Final</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.MarbeteFinal, new { htmlAttributes = new { @class = "form-control", @type = "number", @autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.MarbeteFinal, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

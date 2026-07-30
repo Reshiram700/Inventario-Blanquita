@@ -1,0 +1,64 @@
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Blanquita_Inventarios.Entities.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Blanquita_Inventarios.Entities.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Sap.Data.Hana.v4.5.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLite-net.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.core.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Buffers.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Memory.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Numerics.Vectors.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Sap.Data.Hana.v4.5.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Sap.Data.Hana.v4.5.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLite-net.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Buffers.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Memory.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Numerics.Vectors.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.csproj.AssemblyReference.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.csproj.CoreCompileInputs.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquit.1086F100.Up2Date
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.pdb
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Blanquita_Inventarios.Entities.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Blanquita_Inventarios.Entities.pdb
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLite-net.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.core.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Buffers.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Memory.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLite-net.xml
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Buffers.xml
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Memory.xml
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.csproj.AssemblyReference.cache
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquit.1086F100.Up2Date
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.dll
+C:\Users\Alberto Cruz\Documents\Blanquita_Inventarios-ene28\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Blanquita_Inventarios.Entities.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\Blanquita_Inventarios.Entities.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLite-net.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.core.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Buffers.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Memory.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Numerics.Vectors.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\SQLite-net.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Buffers.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Memory.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Numerics.Vectors.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.csproj.CoreCompileInputs.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquit.1086F100.Up2Date
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Entities\obj\Debug\Blanquita_Inventarios.Entities.pdb

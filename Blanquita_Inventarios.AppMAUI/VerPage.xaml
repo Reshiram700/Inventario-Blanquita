@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.AppMAUI.VerPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.AppMAUI.ViewModels"
+             x:DataType="viewmodel:VerVM">
+    <VerticalStackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <ImageButton x:Name="btnBack" Source="icon_back" Command="{Binding RegresarCommand}" WidthRequest="25" HeightRequest="25" Margin="25, 15"/>
+        </StackLayout>
+        <Label Text="CATALOGOS" HorizontalOptions="Center" FontSize="20" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10" Margin="5">
+            <Button x:Name="btnProductos" Text="COSTOS" BackgroundColor="#001968" HorizontalOptions="FillAndExpand" Margin="5"
+                    TextColor="#ffffff" Command="{Binding ProductosCommand}" />
+            <Button x:Name="btnCodigos" Text="PRODUCTOS" BackgroundColor="#001968" HorizontalOptions="FillAndExpand" Margin="5"
+                    TextColor="#ffffff" Command="{Binding CodigosCommand}" />
+        </StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 10"
+                ItemsSource="{Binding GetProductos}" SelectionMode="None">                
+                <CollectionView.ItemTemplate>                    
+                    <DataTemplate x:DataType="viewmodel:ItemDatosCatalogoVM">
+                        <SwipeView>
+                            <Grid Padding="10, 2">
+                                <Frame Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="Codigo" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Codigo}" Grid.Row="0" Grid.Column="1"/>
+
+                                        <Label Text="ItemCode" Grid.Row="1" Grid.Column="0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding ItemCode}" Grid.Row="1" Grid.Column="1"/>
+
+                                        <Label Text="Descripcion" Grid.Row="2" Grid.Column="0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Descripcion}" Grid.Row="2" Grid.Column="1"/>
+
+                                        <Label Text="Uom" Grid.Row="3" Grid.Column="0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Uom}" Grid.Row="3" Grid.Column="1"/>
+
+                                        <Label Text="Precio" Grid.Row="4" Grid.Column="0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Precio}" Grid.Row="4" Grid.Column="1"/>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

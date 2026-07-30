@@ -1,0 +1,455 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Diferencias_AjustesVM
+
+@{
+    ViewBag.Title = "Monitor de Diferencias. Ajuste Conteo 2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<style>
+    .zona-0 {
+        background-color: transparent !important;
+    }
+
+    .zona-1 {
+        background-color: #ffd800 !important;
+    }
+
+
+    .submit-progress-bg {
+        background-color: lightgray;
+        opacity: .5;
+    }
+
+    .submit-progress {
+        position: fixed;
+        top: 50%;
+        left: 45%;
+        height: 6em;
+        padding-top: 2.3em;
+        /* The following rules are the
+    ones most likely to change */
+        width: 20em;
+        /* Set 'margin-left' to a negative number
+    that is 1/2 of 'width' */
+        margin-left: -10em;
+        padding-left: 2.1em;
+        background-color: black;
+        color: white;
+        -webkit-border-radius: 0.4em;
+        -moz-border-radius: 0.4em;
+        border-radius: 0.4em;
+        box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+        -webkit-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+        -moz-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+    }
+
+    .submit-progress {
+        padding-top: 2em;
+        width: 640px;
+    }
+
+        .submit-progress i {
+            margin-right: 0.5em;
+        }
+</style>
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Monitor de Diferencias. Ajuste Conteo 2
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Ajustes", "MonitorDiferencias", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" id="btnRefresh" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Refresh
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" id="btnExcel" class="btn green-jungle margin-bottom-5" onclick="ExportExcel();">
+                                            Excel
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </button>
+                                        <button type="button" id="btnAplicar" class="btn blue-steel margin-bottom-5" onclick="Aplicar_AjustesConteo2(@Model.FiltroIdConfiguracion);">
+                                            Aplicar Cambios
+                                            <i class="fa fa-check-circle"></i>
+                                        </button>
+                                        <button type="button" id="btnRegresar" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Home", "Home")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Inventario</label>
+                                                    @Html.DropDownListFor(model => model.FiltroIdConfiguracion, new SelectList(Model.FiltroInventarios, "Valor", "Texto", Model.FiltroIdConfiguracion),
+                                                        htmlAttributes: new { @class = "form-control edited", @id = "ddlFiltroInventarios" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Buscar</label>
+                                                    @Html.TextBoxFor(m => m.FiltroBusca, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "", @autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">ItmsGrpNam</label>
+                                                    @Html.DropDownListFor(model => model.FiltroValorItmsGrpNam, new SelectList(Model.FiltroItmsGrpNam, "Valor", "Texto", Model.FiltroValorItmsGrpNam),
+                                                        htmlAttributes: new { @class = "form-control edited", @id = "ddlFiltroCategorias" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr class="bg-light headerCustom">                                                        
+                                                        <th>
+                                                            ItmsGrpNam
+                                                        </th>
+                                                        <th>
+                                                            ItemCode
+                                                        </th>
+                                                        <th>
+                                                            ItemName
+                                                        </th>
+                                                        <th>
+                                                            UOM1
+                                                        </th>
+                                                        <th>
+                                                            Onhand
+                                                        </th>
+                                                        <th>
+                                                            Por Procesar
+                                                        </th>
+                                                        <th>
+                                                            Conteo PDA
+                                                        </th>
+                                                        <th style="width: 110px !important;">
+                                                            Zona 1
+                                                        </th>
+                                                        <th style="width: 110px !important;">
+                                                            Zona 2
+                                                        </th>
+                                                        <th style="width: 110px !important;">
+                                                            Zona 3
+                                                        </th>
+                                                        <th style="width: 110px !important;">
+                                                            Zona 4
+                                                        </th>
+                                                        <th>
+                                                            Contado Zonas
+                                                        </th>
+                                                        <th>
+                                                            Total Contado
+                                                        </th>
+                                                        <th>
+                                                            Dif. Contado
+                                                        </th>
+                                                        <th>
+                                                            Dif. Inventario
+                                                        </th>
+                                                        <th>
+                                                            Precio
+                                                        </th>
+                                                        <th>
+                                                            Dif Pesos Neto
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model.Listado != null && Model.Listado.Count > 0)
+                                                    {
+                                                        foreach (var item in Model.Listado)
+                                                        {
+                                                            <tr>                                                                
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ItmsGrpNam)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ItemCode)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ItemName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Uom1)
+                                                                </td>
+                                                                <td>
+                                                                    @(String.Format("{0:#,##0.00}", item.Onhand))
+                                                                    <input id="@("hdfOnhand_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" type="hidden" value="@item.Onhand" />
+                                                                </td>
+                                                                <td>
+                                                                    @(String.Format("{0:#,##0.00}", item.PorProcesar))
+                                                                </td>
+                                                                <td>
+                                                                    @(String.Format("{0:#,##0.00}", item.Contado))
+                                                                    <input id="@("hdfConteoOriginal_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" type="hidden" value="@item.Contado" />
+                                                                </td>
+                                                                <td id="@("celda1_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" class="@("zona-" + item.Modificado1)">
+                                                                    <input type="text" class="form-control ajustev" id="@("valor_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" value="@item.Contado1" onchange="Actualizar_Conteo2(@item.IdConfiguracion, @item.IdDetalle, 1, this.value, @item.Precio);" />
+                                                                </td>
+                                                                <td id="@("celda2_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" class="@("zona-" + item.Modificado2)">
+                                                                    <input type="text" class="form-control ajustev" id="@("valor_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" value="@item.Contado2" onchange="Actualizar_Conteo2(@item.IdConfiguracion, @item.IdDetalle, 2, this.value, @item.Precio);" />
+                                                                </td>
+                                                                <td id="@("celda3_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" class="@("zona-" + item.Modificado3)">
+                                                                    <input type="text" class="form-control ajustev" id="@("valor_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" value="@item.Contado3" onchange="Actualizar_Conteo2(@item.IdConfiguracion, @item.IdDetalle, 3, this.value, @item.Precio);" />
+                                                                </td>
+                                                                <td id="@("celda4_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" class="@("zona-" + item.Modificado4)">
+                                                                    <input type="text" min="0" class="form-control ajustev" id="@("valor_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" value="@item.Contado4" onchange="Actualizar_Conteo2(@item.IdConfiguracion, @item.IdDetalle, 4, this.value, @item.Precio);" />
+                                                                </td>
+                                                                <td>
+                                                                    <label id="@("totalZonas_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())">
+                                                                        @(String.Format("{0:#,##0.00}", item.TotalContadoR))
+                                                                    </label>
+                                                                    <input id="@("hdfTotalZonas_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" type="hidden" value="@item.TotalContadoR" />
+                                                                </td>
+                                                                <td>
+                                                                    <label id="@("totalContadoA_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())">
+                                                                        @(String.Format("{0:#,##0.00}", item.TotalContadoA))
+                                                                    </label>
+                                                                    <input id="@("hdfTotalContadoA_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" type="hidden" value="@item.TotalContadoA" />
+                                                                </td>
+                                                                <td>
+                                                                    <label id="@("difContado_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())">
+                                                                        @(String.Format("{0:#,##0.00}", item.DiferenciaContado))
+                                                                    </label>
+                                                                    <input id="@("hdfDifContado_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" type="hidden" value="@item.DiferenciaContado" />
+                                                                </td>
+                                                                <td>
+                                                                    <label id="@("difInventario_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())">
+                                                                        @(String.Format("{0:#,##0.00}", item.DiferenciaInventario))
+                                                                    </label>
+                                                                    <input id="@("hdfDifInventario_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())" type="hidden" value="@item.DiferenciaInventario" />
+                                                                </td>
+                                                                <td>
+                                                                   $ @(String.Format("{0:#,##0.00}", item.Precio))
+                                                                </td>
+                                                                <td>                                                                    
+                                                                    <label id="@("difPesoNeto_" + item.IdConfiguracion.ToString() + "_" + item.IdDetalle.ToString())">
+                                                                        @(String.Format(new System.Globalization.CultureInfo("es-MX"), "{0:C}", item.DifPesosNeto))
+                                                                    </label>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-progress hidden">
+            <i class="fa fa-2x fa-spinner fa-spin"></i>
+            <label>Espere un momento mientras se procesa la petición...</label>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+        function ExportExcel() {
+            var url = '@Url.Action("ExcelAjustes", "MonitorDiferencias")';
+            $.ajax({
+                type: "POST",
+                url: url,
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (response) {
+                    if (response.ExecutionOK == true) {
+                        window.location.href = "../Documentos/Descargas/" + response.Data;
+                    }
+                    else {
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");
+                    }
+                },
+                error: function (err) {
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                }
+            });
+        }
+
+        function Aplicar_AjustesConteo2(idConfiguracion) {
+            if (idConfiguracion > 0) {
+
+                $("#btnRefresh").attr('disabled', 'disabled');
+                $("#btnExcel").attr('disabled', 'disabled');
+                $("#btnAplicar").attr('disabled', 'disabled');
+                $("#btnRegresar").attr('disabled', 'disabled');
+                $(".submit-progress").removeClass("hidden");
+
+                var data = new FormData();
+                data.append("idConfiguracion", idConfiguracion);
+
+                var url = '@Url.Action("Aplicar_AjustesConteo2", "MonitorDiferencias")';
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: url,
+                    processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                    contentType: false,
+                    success: function (response) {
+                        if (response.ExecutionOK == false) {
+                            $(".submit-progress").removeClass("hidden").addClass("hidden");
+                            $("#btnRefresh").removeAttr('disabled');
+                            $("#btnExcel").removeAttr('disabled');
+                            $("#btnAplicar").removeAttr('disabled');
+                            $("#btnRegresar").removeAttr('disabled');
+
+                            ShowNotificacion("error", "Error", response.Message, "4", "0");
+                        }
+                        else {
+                            $(".submit-progress").removeClass("hidden").addClass("hidden");
+                            $("#btnRefresh").removeAttr('disabled');
+                            $("#btnExcel").removeAttr('disabled');
+                            $("#btnAplicar").removeAttr('disabled');
+                            $("#btnRegresar").removeAttr('disabled');
+
+                            $("#btnRefresh").click();
+                        }
+                    },
+                    error: function (err) {
+                        $(".submit-progress").removeClass("hidden").addClass("hidden");
+                        $("#btnRefresh").removeAttr('disabled');
+                        $("#btnExcel").removeAttr('disabled');
+                        $("#btnAplicar").removeAttr('disabled');
+                        $("#btnRegresar").removeAttr('disabled');
+
+                        ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                    }
+                });
+            }
+        }
+
+        function Actualizar_Conteo2(idConfiguracion, idDetalle, campo, cantidad, precio) {
+
+            if (cantidad < 0) {
+                ShowNotificacion("error", "Error", "La cantidad a modificar no puede ser menor a 0", "4", "0");
+                return;
+            }
+
+            var idInput = "#totalZonas_" + idConfiguracion + "_" + idDetalle;
+            var idCelda = "#celda" + campo + "_" + idConfiguracion + "_" + idDetalle;
+
+            //Campos donde obtendremos los datos
+            var hdfConteoOriginal = "#hdfConteoOriginal_" + idConfiguracion + "_" + idDetalle;
+            var hdfOnhand = "#hdfOnhand_" + idConfiguracion + "_" + idDetalle;
+            var hdfTotalContadoA = "#hdfTotalContadoA_" + idConfiguracion + "_" + idDetalle;
+            var hdfDiferenciaContado = "#hdfDifContado_" + idConfiguracion + "_" + idDetalle;
+            var hdfDiferenciaInventario = "#hdfDifInventario_" + idConfiguracion + "_" + idDetalle;
+
+            //Campos donde reflejaremos el resultado
+            var idTotalContadoA = "#totalContadoA_" + idConfiguracion + "_" + idDetalle;
+            var idDiferenciaContado = "#difContado_" + idConfiguracion + "_" + idDetalle;
+            var idDiferenciaInventario = "#difInventario_" + idConfiguracion + "_" + idDetalle;
+            var idDiferenciaPesoNeto = "#difPesoNeto_" + idConfiguracion + "_" + idDetalle;
+
+            var data = new FormData();
+            data.append("idConfiguracion", idConfiguracion);
+            data.append("idDetalle", idDetalle);
+            data.append("campo", campo);
+            data.append("cantidad", cantidad);
+
+            var url = '@Url.Action("Actualizar_Conteo2", "MonitorDiferencias")';
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: url,
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (response) {
+                    if (response.ExecutionOK == false) {
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");
+                    }
+                    else {
+                        var totalZonas = response.Data;
+
+                        //cambiomos la celda de color
+                        $(idCelda).removeClass("zona-0");
+                        $(idCelda).addClass("zona-1");
+
+                        //asignamos los nuevos valores
+                        var totalContadoA = 0;
+                        if (totalZonas > 0) {
+                            totalContadoA = totalZonas;
+                        }
+                        else {
+                            totalContadoA = $(hdfConteoOriginal).val();
+                        }
+
+                        var formato = new Intl.NumberFormat('es-MX', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        });
+
+
+                        $(idInput).html(formato.format(totalZonas));
+
+                        var difContado = parseFloat($(hdfConteoOriginal).val() - totalZonas).toFixed(2);
+
+                        var difInventario = parseFloat(totalContadoA - $(hdfOnhand).val()).toFixed(2);
+
+                        $(idTotalContadoA).html(formato.format(totalContadoA));
+                        $(hdfTotalContadoA).val(totalContadoA);
+
+                        $(idDiferenciaContado).html(formato.format(difContado));
+                        $(hdfDiferenciaContado).val(difContado);
+
+                        $(idDiferenciaInventario).html(formato.format(difInventario));
+                        $(hdfDiferenciaInventario).val(difInventario);
+
+                        var difPesoNeto = parseFloat(precio * difInventario).toFixed(2);
+                        if (difPesoNeto >= 0) {
+                            $(idDiferenciaPesoNeto).html('$' + formato.format(difPesoNeto));
+                        }
+                        else {
+                            difPesoNeto = difPesoNeto * -1;
+                            $(idDiferenciaPesoNeto).html('-$' + formato.format(difPesoNeto));
+                        }
+                    }
+                },
+                error: function (err) {
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                }
+            });
+        }
+    </script>
+}
+

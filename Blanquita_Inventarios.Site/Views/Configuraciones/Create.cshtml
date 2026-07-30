@@ -1,0 +1,195 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.ConfiguracionVM
+
+@{
+    ViewBag.Title = "Configuración de Servidor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .submit-progress-bg {
+        background-color: lightgray;
+        opacity: .5;
+    }
+
+    .submit-progress {
+        position: fixed;
+        top: 50%;
+        left: 45%;
+        height: 6em;
+        padding-top: 2.3em;
+        /* The following rules are the
+    ones most likely to change */
+        width: 20em;
+        /* Set 'margin-left' to a negative number
+    that is 1/2 of 'width' */
+        margin-left: -10em;
+        padding-left: 2.1em;
+        background-color: black;
+        color: white;
+        -webkit-border-radius: 0.4em;
+        -moz-border-radius: 0.4em;
+        border-radius: 0.4em;
+        box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+        -webkit-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+        -moz-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+    }
+
+    .submit-progress {
+        padding-top: 2em;
+        width: 640px;
+    }
+
+        .submit-progress i {
+            margin-right: 0.5em;
+        }
+</style>
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Registro de Configuración de Servidor de Base de Datos
+        </h1>
+        <!-- END PAGE HEADER-->
+        @using (@Html.BeginForm("Create", "Configuraciones", FormMethod.Post, new { id = "myForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.IdConfiguracion, htmlAttributes: new { @id = "hdfId" })
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="portlet box dark">
+                        <div class="portlet-title">
+                            <div class="caption">
+
+                            </div>
+                            <div class="actions">
+                                <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body form form-horizontal">
+                            <div class="form-actions ">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <button type="submit" class="btn blue-steel margin-right-10 margin-bottom-5" id="btnGuardar">
+                                            Guardar
+                                            <i class="fa fa-save"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" id="btnRegresar" onclick="location.href='@Url.Action("Index", "Configuraciones")';">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Nombre del Inventario</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.NombreInventario, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.NombreInventario, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Servidor (IP)</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Servidor, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Servidor, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Nombre de la Instancia</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.NombreInstancia, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Puerto</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Puerto, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Usuario</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Base de Datos</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.BaseDatos, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.BaseDatos, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Almacén</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Almacen, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Almacen, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-progress hidden">
+                <i class="fa fa-2x fa-spinner fa-spin"></i>
+                <label>Espere un momento mientras se crea la Base de Datos y se procesa la información...</label>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts
+{    
+    <script>
+        $("form").submit(function (event) {
+            event.preventDefault();
+                        
+            $("#btnGuardar").attr('disabled', 'disabled');
+            $("#btnRegresar").attr('disabled', 'disabled');
+            $(".submit-progress").removeClass("hidden");
+
+            $.ajax({
+                type: $('#myForm').attr('method'),
+                url: $('#myForm').attr('action'),
+                data: $('#myForm').serialize(),
+                accept: 'application/json',
+                dataType: "json",
+                error: function (xhr, status, error) {                    
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                    $(".submit-progress").removeClass("hidden").addClass("hidden");
+                    $("#btnGuardar").removeAttr('disabled');
+                    $("#btnRegresar").removeAttr('disabled');
+                },
+                success: function (response) {
+                    if (response.ExecutionOK == true) {
+                        var urlLoad = '@Url.Action("Index", "Configuraciones")';
+                        window.location.href = urlLoad;
+                    }
+                    else {
+                        $(".submit-progress").removeClass("hidden").addClass("hidden");
+                        $("#btnGuardar").removeAttr('disabled');
+                        $("#btnRegresar").removeAttr('disabled');
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");                        
+                    }
+                }
+            });
+        });
+    </script>
+}

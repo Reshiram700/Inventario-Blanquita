@@ -1,0 +1,661 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    int idPerfil = ((Blanquita_Inventarios.Entities.UsuarioSesion)HttpContext.Current.Session["UserAdmin"]).IdPerfil;
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- Header con diseño mejorado -->
+        <div class="row" style="margin-bottom: 25px;">
+            <div class="col-md-12">
+                <div class="page-header" style="border-bottom: 3px solid #1a2a4a; padding-bottom: 15px;">
+                    <h1 class="page-title" style="font-size: 28px; font-weight: 600; color: #1a2a4a; margin: 0;">
+                        <i class="fa fa-th-large" style="color: #1a2a4a; margin-right: 12px;"></i>
+                        Sistema de Toma de Inventarios
+                        <small style="font-size: 14px; font-weight: 400; color: #7f8c8d; margin-left: 15px;">
+                            <i class="fa fa-calendar"></i> @DateTime.Now.ToString("dddd, dd MMMM yyyy")
+                        </small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <link href="~/Content/css/cubeportfolio.css" rel="stylesheet" />
+            <link href="~/Content/css/portfolio.min.css" rel="stylesheet" />
+            <style type="text/css">
+                /* ===== ESTILOS PROFESIONALES - AZUL OSCURO ===== */
+
+                /* Contenedor principal */
+                .cbp-wrapper .cbp-item {
+                    width: 240px !important;
+                    margin-bottom: 20px !important;
+                }
+
+                /* Panel de aplicación */
+                .panelapp {
+                    width: 230px;
+                    height: 170px;
+                    float: left;
+                    border-radius: 16px !important;
+                    margin: 0px 10px 10px 10px;
+                    padding: 0px !important;
+                    position: relative;
+                    overflow: hidden;
+                    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    cursor: pointer;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+                    border: 1px solid rgba(255,255,255,0.1);
+                }
+
+                    .panelapp:hover {
+                        transform: translateY(-8px) scale(1.02);
+                        box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+                    }
+
+                    /* ===== UN SOLO AZUL PARA TODOS ===== */
+                    .panelapp.gradiente-administrador {
+                        background: linear-gradient(145deg, #0a1628 0%, #162d5a 50%, #1e3d7a 100%);
+                    }
+
+                    .panelapp.gradiente-monitor {
+                        background: linear-gradient(145deg, #0a1628 0%, #162d5a 50%, #1e3d7a 100%);
+                    }
+
+                    .panelapp.gradiente-diferencias {
+                        background: linear-gradient(145deg, #0a1628 0%, #162d5a 50%, #1e3d7a 100%);
+                    }
+
+                    .panelapp.gradiente-operaciones {
+                        background: linear-gradient(145deg, #0a1628 0%, #162d5a 50%, #1e3d7a 100%);
+                    }
+
+                    .panelapp.gradiente-default {
+                        background: linear-gradient(145deg, #0a1628 0%, #162d5a 50%, #1e3d7a 100%);
+                    }
+
+                    /* Efecto de brillo superior */
+                    .panelapp::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: 50%;
+                        background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+                        pointer-events: none;
+                        border-radius: 16px 16px 0 0;
+                    }
+
+                    /* Efecto de brillo en hover */
+                    .panelapp::after {
+                        content: '';
+                        position: absolute;
+                        top: -50%;
+                        left: -50%;
+                        width: 200%;
+                        height: 200%;
+                        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+                        opacity: 0;
+                        transition: opacity 0.4s ease;
+                        pointer-events: none;
+                    }
+
+                    .panelapp:hover::after {
+                        opacity: 1;
+                    }
+
+                /* Icono centrado */
+                .panelappic {
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                    margin-top: 28px;
+                    height: 65px !important;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                    .panelappic img {
+                        height: 60px;
+                        width: 60px;
+                        filter: brightness(0) invert(1);
+                        transition: transform 0.3s ease;
+                    }
+
+                .panelapp:hover .panelappic img {
+                    transform: scale(1.1) rotate(-3deg);
+                }
+
+                /* Título del panel */
+                .panelapptitulo {
+                    display: block;
+                    font-size: 0.82em;
+                    font-weight: 500;
+                    margin-top: 6px;
+                    margin-left: auto;
+                    text-align: center;
+                    color: white;
+                    padding: 0px 12px;
+                    line-height: 1.4;
+                    letter-spacing: 0.3px;
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                }
+
+                    .panelapptitulo p {
+                        margin: 0;
+                        font-size: 0.95em;
+                    }
+
+                /* Badge de categoría en la esquina */
+                .panelapp .badge-category {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: rgba(255,255,255,0.15);
+                    color: rgba(255,255,255,0.8);
+                    padding: 2px 12px;
+                    border-radius: 20px;
+                    font-size: 0.55em;
+                    font-weight: 600;
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                    backdrop-filter: blur(5px);
+                    border: 1px solid rgba(255,255,255,0.1);
+                }
+
+                /* Filtros mejorados - Azul oscuro */
+                .cbp-l-filters-button .cbp-filter-item {
+                    background: transparent !important;
+                    color: #1a2a5e !important;
+                    border: 2px solid #d0d8e8 !important;
+                    border-radius: 30px !important;
+                    padding: 8px 22px !important;
+                    margin: 0 6px 10px 0 !important;
+                    font-weight: 600 !important;
+                    font-size: 13px !important;
+                    transition: all 0.3s ease !important;
+                    text-transform: uppercase !important;
+                    letter-spacing: 0.5px !important;
+                }
+
+                    .cbp-l-filters-button .cbp-filter-item:hover {
+                        background: #1a2a5e !important;
+                        color: white !important;
+                        border-color: #1a2a5e !important;
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 20px rgba(26,42,94,0.2);
+                    }
+
+                .cbp-l-filters-button .cbp-filter-item-active {
+                    background: #1a2a5e !important;
+                    color: white !important;
+                    border-color: #1a2a5e !important;
+                    box-shadow: 0 8px 20px rgba(26,42,94,0.25);
+                }
+
+                .cbp-l-filters-button .cbp-filter-counter {
+                    background: #1a2a5e !important;
+                    color: white !important;
+                    border-radius: 30px !important;
+                    padding: 2px 12px !important;
+                    font-size: 11px !important;
+                    margin-left: 6px !important;
+                }
+
+                /* Línea decorativa en la parte inferior del panel */
+                .panelapp .panel-line {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 3px;
+                    background: rgba(255,255,255,0.2);
+                    border-radius: 0 0 16px 16px;
+                }
+
+                /* Responsive */
+                @@media (max-width: 768px) {
+                    .panelapp {
+                        width: 100%;
+                        height: 140px;
+                        margin: 8px 0;
+                    }
+
+                    .cbp-wrapper .cbp-item {
+                        width: 100% !important;
+                    }
+
+                    .panelappic img {
+                        height: 45px;
+                        width: 45px;
+                    }
+
+                    .cbp-l-filters-button .cbp-filter-item {
+                        font-size: 11px !important;
+                        padding: 6px 14px !important;
+                    }
+
+                    .page-title {
+                        font-size: 20px !important;
+                    }
+
+                        .page-title small {
+                            display: block;
+                            margin-left: 0 !important;
+                            margin-top: 5px;
+                        }
+                }
+
+                /* Animación de entrada */
+                .cbp-item {
+                    animation: fadeInUp 0.6s ease forwards;
+                    opacity: 0;
+                }
+
+                    .cbp-item:nth-child(1) {
+                        animation-delay: 0.05s;
+                    }
+
+                    .cbp-item:nth-child(2) {
+                        animation-delay: 0.10s;
+                    }
+
+                    .cbp-item:nth-child(3) {
+                        animation-delay: 0.15s;
+                    }
+
+                    .cbp-item:nth-child(4) {
+                        animation-delay: 0.20s;
+                    }
+
+                    .cbp-item:nth-child(5) {
+                        animation-delay: 0.25s;
+                    }
+
+                    .cbp-item:nth-child(6) {
+                        animation-delay: 0.30s;
+                    }
+
+                    .cbp-item:nth-child(7) {
+                        animation-delay: 0.35s;
+                    }
+
+                    .cbp-item:nth-child(8) {
+                        animation-delay: 0.40s;
+                    }
+
+                    .cbp-item:nth-child(9) {
+                        animation-delay: 0.45s;
+                    }
+
+                    .cbp-item:nth-child(10) {
+                        animation-delay: 0.50s;
+                    }
+
+                    .cbp-item:nth-child(11) {
+                        animation-delay: 0.55s;
+                    }
+
+                    .cbp-item:nth-child(12) {
+                        animation-delay: 0.60s;
+                    }
+
+                @@keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                /* Enlace sin subrayado */
+                .cbp-item a {
+                    text-decoration: none !important;
+                }
+
+                    .cbp-item a:hover {
+                        text-decoration: none !important;
+                    }
+            </style>
+
+            <div class="portfolio-content portfolio-1">
+                <!-- Filtros con diseño moderno -->
+                <div id="js-filters-juicy-projects" class="cbp-l-filters-button" style="margin-bottom: 25px;">
+                    <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
+                        <i class="fa fa-th"></i> Todos
+                        <span class="cbp-filter-counter">12</span>
+                    </div>
+                    <div data-filter=".administrador" class="cbp-filter-item @(idPerfil == 1 || idPerfil == 4 ? "" : "hidden" )">
+                        <i class="fa fa-cog"></i> Administración
+                        <span class="cbp-filter-counter">3</span>
+                    </div>
+                    <div data-filter=".monitor" class="cbp-filter-item @(idPerfil == 3 || idPerfil == 4 ? "" : "hidden" )">
+                        <i class="fa fa-bar-chart"></i> Monitor de Avances
+                        <span class="cbp-filter-counter">3</span>
+                    </div>
+                    <div data-filter=".diferencias" class="cbp-filter-item @(idPerfil == 3 || idPerfil == 4 ? "" : "hidden" )">
+                        <i class="fa fa-arrows-h"></i> Monitor de Diferencias
+                        <span class="cbp-filter-counter">6</span>
+                    </div>
+                    <div data-filter=".operaciones" class="cbp-filter-item @(idPerfil == 3 || idPerfil == 4 ? "" : "hidden" )">
+                        <i class="fa fa-play-circle"></i> Operaciones
+                        <span class="cbp-filter-counter">2</span>
+                    </div>
+                </div>
+
+                <!-- Grid de aplicaciones -->
+                <div id="js-grid-juicy-projects" class="cbp">
+
+                    @if (idPerfil == 1 || idPerfil == 4)
+                    {
+                        <!-- Administración: Usuarios -->
+                        <div class="cbp-item administrador" style="width: auto !important;">
+                            <a href="@Url.Action("Index","Usuarios")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-administrador">
+                                            <span class="badge-category">Admin</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_usuarios.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Administrador de Usuarios</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Administración: Configuraciones -->
+                        <div class="cbp-item administrador" style="width: auto !important;">
+                            <a href="@Url.Action("Index","Configuraciones")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-administrador">
+                                            <span class="badge-category">Admin</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_configuracion.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Administrador de Configuraciones de Servidores</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+
+                    @if (idPerfil == 3 || idPerfil == 4)
+                    {
+                        <!-- Monitor: Avance por Zona -->
+                        <div class="cbp-item monitor" style="width: auto !important;">
+                            <a href="@Url.Action("Index","Monitor")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-monitor">
+                                            <span class="badge-category">Monitor</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_avance.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Avance. Avance por Zona</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Monitor: Avance por Marbete -->
+                        <div class="cbp-item monitor" style="width: auto !important;">
+                            <a href="@Url.Action("Marbetes","Monitor")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-monitor">
+                                            <span class="badge-category">Monitor</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_avance.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Avance. Avance por Marbete</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Monitor: Detalle de Marbete -->
+                        <div class="cbp-item monitor" style="width: auto !important;">
+                            <a href="@Url.Action("Marbete","Monitor")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-monitor">
+                                            <span class="badge-category">Monitor</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_avance.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Avance. Detalle de Marbete</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Diferencias: Capturas -->
+                        <div class="cbp-item diferencias" style="width: auto !important;">
+                            <a href="@Url.Action("Capturas","MonitorDiferencias")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-diferencias">
+                                            <span class="badge-category">Diferencias</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_diferencias.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Diferencias. Capturas</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Diferencias: Costo Cero -->
+                        <div class="cbp-item diferencias" style="width: auto !important;">
+                            <a href="@Url.Action("Costos","MonitorDiferencias")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-diferencias">
+                                            <span class="badge-category">Diferencias</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_diferencias.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Diferencias. Costo Cero Inactivos</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Diferencias: Montos Conteo 1 -->
+                        <div class="cbp-item diferencias" style="width: auto !important;">
+                            <a href="@Url.Action("MontosUno","MonitorDiferencias")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-diferencias">
+                                            <span class="badge-category">Diferencias</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_diferencias.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Diferencias. Montos en Conteo 1</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Diferencias: Montos Conteo 2 -->
+                        <div class="cbp-item diferencias" style="width: auto !important;">
+                            <a href="@Url.Action("MontosDos","MonitorDiferencias")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-diferencias">
+                                            <span class="badge-category">Diferencias</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_diferencias.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Diferencias. Montos en Conteo 2</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Diferencias: Conteo 1 -->
+                        <div class="cbp-item diferencias" style="width: auto !important;">
+                            <a href="@Url.Action("ConteoUno","MonitorDiferencias")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-diferencias">
+                                            <span class="badge-category">Diferencias</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_diferencias.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Diferencias. Diferencias Conteo 1</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Diferencias: Ajuste Conteo 2 -->
+                        <div class="cbp-item diferencias" style="width: auto !important;">
+                            <a href="@Url.Action("Ajustes","MonitorDiferencias")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-diferencias">
+                                            <span class="badge-category">Diferencias</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_ajustes00.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Monitor de Diferencias. Ajuste Conteo 2</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Operaciones: Ajustes SAP -->
+                        <div class="cbp-item operaciones" style="width: auto !important;">
+                            <a href="@Url.Action("Index","Ajustes")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-operaciones">
+                                            <span class="badge-category">Operaciones</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_ajustes.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Ajustes de Entrada y Salida SAP</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Operaciones: PDA -->
+                        <div class="cbp-item operaciones" style="width: auto !important;">
+                            <a href="@Url.Action("Index","Pda")">
+                                <div class="cbp-caption">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <div class="panelapp gradiente-operaciones">
+                                            <span class="badge-category">Operaciones</span>
+                                            <div class="panelappic">
+                                                <center>
+                                                    <img src="~/Content/img/inicio/icon_cantidad.png" style="height: 60px; width: 60px;" />
+                                                </center>
+                                            </div>
+                                            <div class="panelapptitulo">
+                                                <p>Cantidad de Artículos por PDA</p>
+                                            </div>
+                                            <div class="panel-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/jquery.cubeportfolio.min.js"></script>
+    <script src="~/Content/js/portfolio-1.min.js"></script>
+}

@@ -1,0 +1,160 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Diferencias_ReporteZonasVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        * {
+            font-size: 12px;
+        }
+
+        .celda {
+            border-top: 1px solid #ada9a9;
+            border-bottom: 1px solid #ada9a9;
+            padding: 2px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table style="width: auto;">
+                    <tr>
+                        <td colspan="3">
+                            <img src="~/Content/img/logo.png" />
+                        </td>
+                        <td colspan="7" class="text-center">
+                            <p style="margin-top:5px;">
+                                <b><span style="font-size: 24px; letter-spacing: 2px;">Reporte de Diferencias + Monto</span></b>
+                                <br />
+                                <b style="font-size: 18px;">Zona: @Model.Zona</b>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10">
+                            <b>Almacén:&nbsp;&nbsp;</b> @Model.Almacen
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" class="text-right">
+                            <b>Fecha Impresión:&nbsp;&nbsp;</b> @DateTime.Now.ToString("dd/MM/yyyy")
+                        </td>
+                    </tr>
+                    @if (Model.ListaCategorias != null && Model.ListaCategorias.Count > 0)
+                    {
+                        foreach (var categoria in Model.ListaCategorias)
+                        {
+                            <tr>
+                                <td colspan="10">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr style="font-weight: bold; text-align:center;">
+                                <td colspan="10" style="font-size: 14px;">
+                                    @categoria
+                                </td>
+                            </tr>
+                            <tr style="font-weight: bold; text-align:center;">
+                                <td class="celda">
+                                    Marbetes
+                                </td>
+                                <td class="celda">
+                                    Cod. Artículo
+                                </td>
+                                <td style="width: 550px;" class="celda">
+                                    Nombre Artículo
+                                </td>
+                                <td class="celda">
+                                    UOM1
+                                </td>
+                                <td style="width: 100px;" class="celda">
+                                    OnHand
+                                </td>
+                                <td style="width: 100px;" class="celda">
+                                    Contado
+                                </td>
+                                <td class="celda">
+                                    Conteo Final
+                                </td>
+                                <td style="width: 150px;" class="celda">
+                                    Precio
+                                </td>
+                                <td style="width: 150px;" class="celda">
+                                    Varianza Neta UOM
+                                </td>
+                                <td style="width: 150px;" class="celda">
+                                    Varianza Neta $
+                                </td>
+                            </tr>
+                            foreach (var item in Model.Listado.Where(w => w.Categoria == categoria).OrderByDescending(o => o.VNetaMonto).ToList())
+                            {
+                                <tr>
+                                    <td class="celda">@item.Marbetes</td>
+                                    <td class="celda">@item.CodigoArticulo</td>
+                                    <td class="celda">@item.NombreArticulo</td>
+                                    <td class="celda">@item.Uom1</td>
+                                    <td class="celda">@(String.Format("{0:#,##0.00}", item.Onhand))</td>
+                                    <td class="celda">@(String.Format("{0:#,##0.00}", item.Contado))</td>
+                                    <td class="celda"></td>
+                                    <td class="celda">@(String.Format("{0:$ #,##0.00}", item.Precio))</td>
+                                    <td class="celda">@(String.Format("{0:#,##0.00}", item.VNetaPza))</td>
+                                    <td class="celda">@(String.Format("{0:$ #,##0.00}", item.VNetaMonto))</td>
+                                </tr>
+                            }
+                        }
+                    }                   
+                </table>
+                <br /><br /><br /><br /><br />
+                <table style="margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                            Contó (Nombre)
+                        </td>
+                        <td style="width: 50px;">
+                            &nbsp;
+                        </td>
+                        <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                            Supervisó (Nombre)
+                        </td>
+                        <td style="width: 50px;">
+                            &nbsp;
+                        </td>
+                        <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                            Liberó Gerencia (Nombre)
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+                <br /><br /><br />
+                <table style="width: 100%;">
+                    <tr>
+                        <td class="text-right">
+                            <b>Servidor:&nbsp;</b> @Model.Servidor
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

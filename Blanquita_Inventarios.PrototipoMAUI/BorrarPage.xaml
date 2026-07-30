@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.PrototipoMAUI.BorrarPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.PrototipoMAUI.ViewModel"
+             x:DataType="viewmodel:BorrarVM"
+             Title="">
+    <VerticalStackLayout>
+        <Label 
+                Text="BORRAR INFORMACIÓN"                 
+                HorizontalOptions="Center" FontSize="20" />
+        <StackLayout Margin="0, 80, 0, 10">
+            <Button x:Name="btnBorrar" Text="BORRAR" CornerRadius="10"
+                WidthRequest="200" HeightRequest="55" BackgroundColor="#001968"
+                TextColor="#ffffff" Command="{Binding AplicarCommand}" />
+        </StackLayout>        
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,195 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Listado_UsuariosVM
+
+@{
+    ViewBag.Title = "Administrador de Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Administrador de Usuarios
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Index", "Usuarios", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary margin-right-10 margin-bottom-5" onclick="location.href='@Url.Action("Create")'">
+                                            Agregar
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Buscar
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" value="Restablecer" class="btn grey margin-right-10 margin-bottom-5" onclick="location.href='@Url.Action("RestablecerUsuarios")'">
+                                            Restablecer
+                                            <i class="fa fa-undo"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Home", "Home")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Nombre del Usuario</label>
+                                                    @Html.TextBoxFor(m => m.FiltroNombre, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "Nombre del Usuario", @autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Usuario</label>
+                                                    @Html.TextBoxFor(m => m.FiltroUsuario, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "Usuario", @autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Email</label>
+                                                    @Html.TextBoxFor(m => m.FiltroEmail, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "Email", @autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Perfil</label>
+                                                    @Html.DropDownListFor(model => model.FiltroIdPerfil, new SelectList(Model.FiltroPerfiles, "Valor", "Texto", Model.FiltroIdPerfil),
+                                                        htmlAttributes: new { @class = "form-control edited", @id = "ddlFiltroPerfiles" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                            <thead>
+                                                <tr class="bg-light headerCustom">
+                                                    <th>
+                                                        <input name="control" value="Nombre del Usuario"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Usuario"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Email"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Perfil"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th><div style="font-size:14px!important;text-align:center">Acciones</div></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Listado)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Nombre)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Usuario)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Email)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Perfil)
+                                                            </td>
+                                                            <td align="center">
+                                                                <button class="btn btn-xs blue-steel btn-detalles" type="button"
+                                                                        onclick="location.href='@Url.Action("Details","Usuarios", new { id = item.IdUsuario })'">
+                                                                    <i class="fa fa-edit"></i>
+                                                                    &nbsp;Ver Detalles
+                                                                </button>
+                                                                <button class="btn btn-xs red @(item.Principal ? "hidden" : "")" type="button"
+                                                                        onclick="if (!ShowConfirmation('¿Desea eliminar el registro del Usuario <strong>@item.Nombre</strong>?',
+                                                                        '@Url.Action("Delete","Usuarios", new { id = item.IdUsuario })')) return false;">
+                                                                    <i class="fa fa-times"></i>
+                                                                    &nbsp;Eliminar
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: false,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info:false
+            });
+        });
+    </script>
+}
+

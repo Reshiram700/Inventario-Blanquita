@@ -1,0 +1,54 @@
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.BussinesLayer.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.BussinesLayer.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.DataAccess.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.Entities.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\EntityFramework.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLite-net.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLitePCLRaw.core.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Memory.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Numerics.Vectors.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Buffers.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.DataAccess.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.DataAccess.dll.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.Entities.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\EntityFramework.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLite-net.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Memory.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Numerics.Vectors.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Buffers.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.csproj.AssemblyReference.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.csproj.CoreCompileInputs.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquit.4B405DE0.Up2Date
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.BussinesLayer.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.BussinesLayer.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.DataAccess.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.Entities.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\EntityFramework.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLite-net.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLitePCLRaw.core.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Memory.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Numerics.Vectors.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Buffers.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.DataAccess.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.DataAccess.dll.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\Blanquita_Inventarios.Entities.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\EntityFramework.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\SQLite-net.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Memory.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Numerics.Vectors.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\bin\Debug\System.Buffers.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.csproj.CoreCompileInputs.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquit.4B405DE0.Up2Date
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Debug\Blanquita_Inventarios.BussinesLayer.pdb

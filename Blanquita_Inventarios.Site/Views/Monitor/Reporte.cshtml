@@ -1,0 +1,184 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Reporte01VM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <tr>
+                        <td>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <img src="~/Content/img/logo.png" />
+                                    </td>
+                                    <td colspan="2" class="text-center">
+                                        <p style="margin-top:5px;">
+                                            <b><span style="font-size: 24px; letter-spacing: 2px;">Reporte Detalle de Marbete</span></b>
+                                            <br />
+                                            Inventario: @Model.Inventario
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <b>Fecha Impresión:&nbsp;&nbsp;</b> @DateTime.Now.ToString("dd/MM/yyyy")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <b>Almacén:&nbsp;&nbsp;</b> @Model.Almacen
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Marbete:&nbsp;&nbsp;</b> @Model.Marbete
+                                    </td>
+                                    <td>
+                                        <b>Estatus:&nbsp;&nbsp;</b> Cerrado
+                                    </td>
+                                    <td>
+                                        <b>Nombre:&nbsp;&nbsp;</b> @Model.Capturo
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Código barras
+                                        </th>
+                                        <th>
+                                            ItemCode
+                                        </th>
+                                        <th>
+                                            ItemName
+                                        </th>
+                                        <th>
+                                            Contado
+                                        </th>
+                                        <th>
+                                            Unidad Conteo
+                                        </th>
+                                        <th>
+                                            Costo
+                                        </th>
+                                        <th>
+                                            Costo total
+                                        </th>
+                                        <th>
+                                            Corrección
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Listado != null && Model.Listado.Count > 0)
+                                    {
+                                        foreach (var item in Model.Listado)
+                                        {
+                                            <tr>
+                                                <td>@item.Codigo</td>
+                                                <td>@item.ItemCode</td>
+                                                <td>@item.Descripcion</td>
+                                                <td>@(String.Format("{0:#,##0.00}", item.Cantidad))</td>
+                                                <td>@item.Uom</td>
+                                                <td>@(String.Format("{0:$ #,##0.00}", item.Precio))</td>
+                                                <td>@(String.Format("{0:$ #,##0.00}", item.Costo))</td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td colspan="3">
+                                                <b>
+                                                    *No rubricas
+                                                </b>
+                                            </td>
+                                            <td colspan="5" class="text-right">
+                                                <b>
+                                                    *Nombres y apellidos letra legible
+                                                </b>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="8">
+                                                No se encontro información
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="height: 80px;">
+                        &nbsp;
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="margin-left: auto; margin-right: auto;">
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                                        Contó (Nombre)
+                                    </td>
+                                    <td style="width: 50px;">
+                                        &nbsp;
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                                        Supervisó (Nombre)
+                                    </td>
+                                    <td style="width: 50px;">
+                                        &nbsp;
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                                        Liberó Gerencia (Nombre)
+                                    </td>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">
+                            <br />
+                            <b>Servidor:&nbsp;</b> @Model.Servidor
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

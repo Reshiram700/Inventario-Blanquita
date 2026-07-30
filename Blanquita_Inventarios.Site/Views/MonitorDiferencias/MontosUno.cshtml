@@ -1,0 +1,202 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Diferencias_MontosUnoVM
+
+@{
+    ViewBag.Title = "Monitor de Diferencias. Montos en Conteo 1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Diferencias. Montos en Conteo 1
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("MontosUno", "MonitorDiferencias", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Refresh
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" class="btn green-jungle margin-bottom-5" onclick="ExportExcel()">
+                                            Excel
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Home", "Home")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Inventario</label>
+                                                    @Html.DropDownListFor(model => model.FiltroIdConfiguracion, new SelectList(Model.FiltroInventarios, "Valor", "Texto", Model.FiltroIdConfiguracion),
+                                                        htmlAttributes: new { @class = "form-control edited", @id = "ddlFiltroInventarios" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                            <thead>
+                                                <tr class="bg-light headerCustom">
+                                                    <th>
+                                                        <input name="control" value="WhsCode"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="ItmsGrpNam"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Total SAP"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Total Contado"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Total Desviación"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="% Diferencia"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Listado)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.WhsCode)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.ItmsGrpName)
+                                                            </td>
+                                                            <td>
+                                                                @(String.Format("{0:$ #,##0.00}", item.TotalSAP))
+                                                            </td>
+                                                            <td>
+                                                                @(String.Format("{0:$ #,##0.00}", item.TotalContado))
+                                                            </td>
+                                                            <td>
+                                                                @(String.Format("{0:$ #,##0.00}", item.TotalDesviacion))
+                                                            </td>
+                                                            <td>
+                                                                @(String.Format("{0:#,##0.00}", item.PorcentajeDif)) %
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tr>
+                                                <td><b>Total SAP:</b> @(String.Format("{0:$ #,##0.00}", Model.TotalSAP))&nbsp;&nbsp;&nbsp;</td>
+                                                <td><b>Total Contado:</b> @(String.Format("{0:$ #,##0.00}", Model.TotalContado))&nbsp;&nbsp;&nbsp;</td>
+                                                <td><b>Total Desviación:</b> @(String.Format("{0:$ #,##0.00}", Model.TotalDesviacion))&nbsp;&nbsp;&nbsp;</td>
+                                                <td><b>% Diferencia</b> @(String.Format("{0:#,##0.00}", Model.PorcentajeDif)) %</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+        function ExportExcel() {
+            var url = '@Url.Action("ExcelMontosUno", "MonitorDiferencias")';
+            $.ajax({
+                type: "POST",
+                url: url,
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (response) {
+                    if (response.ExecutionOK == true) {
+                        window.location.href = "../Documentos/Descargas/" + response.Data;
+                    }
+                    else {
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");
+                    }
+                },
+                error: function (err) {
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: false,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info: false
+            });
+        });
+    </script>
+}
+

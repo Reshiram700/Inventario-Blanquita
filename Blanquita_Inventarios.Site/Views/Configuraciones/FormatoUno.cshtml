@@ -1,0 +1,121 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.ImpresionMarbetesVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Formato 1</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        * {
+            font-size: 12px;
+        }
+
+        .content-marbete {
+            position: relative;
+            float: left;
+            padding: 5px;
+            width: 320px;
+            border: 1px solid #000000;
+            margin: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            @for (int item = Model.Inicio; item <= Model.Fin; item++)
+            {
+                <div class="content-marbete">
+                    <table style="margin-left: auto; margin-right: auto; width: 100%;">
+                        <tr>
+                            <td rowspan="2" style="border-bottom: 1px solid #000000;">
+                                <img src="~/Content/img/logo.png" height="50"/>
+                            </td>
+                            <td class="text-right" style="width: 120px;">
+                                <b>Almacén: </b> @Model.Almacen
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" style="border-bottom: 1px solid #000000;">
+                                <b>Marbete: </b> @item
+                            </td>
+                        </tr>
+                        <tr>
+                            &nbsp;
+                        </tr>
+                        <tr>
+                            <td style="height: 40px; border: 1px solid #000000; vertical-align:top;">
+                                Área: <br />
+                                @Model.Almacen
+                            </td>
+                            <td style="height: 40px; border: 1px solid #000000; vertical-align:top;">
+                                Departamento:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="height: 60px; border: 1px solid #000000; vertical-align:top;">
+                                Notas:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td>
+                                            <b>Totales de área</b> Piezas
+                                        </td>
+                                        <td style="border-bottom: 1px solid #000000; width: 63%;">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border-bottom: 1px solid #000000; height: 20px">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center" style="height: 20px;">
+                                Imprima el apellido del auditor, primera inicial
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td>
+                                            Verificado por:
+                                        </td>
+                                        <td style="border-bottom: 1px solid #000000; width: 75%;">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <img src="../Documentos/Codigos/@(item).png" height="70" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

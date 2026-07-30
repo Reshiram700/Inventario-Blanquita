@@ -1,0 +1,60 @@
+﻿@model Blanquita_Inventarios.Site.Models.Tabla_ResultadoCapturas
+
+<table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+    <thead>
+        <tr class="bg-light headerCustom">
+            <th>
+                <input name="control" value="Folio"
+                       class="btn headerCustom" />
+            </th>
+            <th>
+                <input name="control" value="Marbete"
+                       class="btn headerCustom" />
+            </th>
+            <th>
+                <input name="control" value="Código de Artículo"
+                       class="btn headerCustom" />
+            </th>
+            <th>
+                <input name="control" value="Descripción del Artículo"
+                       class="btn headerCustom" />
+            </th>
+            <th>
+                <input name="control" value="Conteo Activo"
+                       class="btn headerCustom" />
+            </th>
+            <th>
+                <input name="control" value="Nombre del Marbete"
+                       class="btn headerCustom" />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Listado != null && Model.Listado.Count > 0)
+        {
+            foreach (var item in Model.Listado)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Folio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marbete)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodigoArticulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescripcionArticulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Conteo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreMarbete)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

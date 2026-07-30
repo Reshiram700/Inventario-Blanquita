@@ -1,0 +1,6 @@
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAP\bin\Debug\Blanquita_Inventarios.TestSAP.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAP\bin\Debug\Blanquita_Inventarios.TestSAP.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAP\obj\Debug\Blanquita_Inventarios.TestSAP.csproj.AssemblyReference.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAP\obj\Debug\Blanquita_Inventarios.TestSAP.csproj.CoreCompileInputs.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAP\obj\Debug\Blanquita_Inventarios.TestSAP.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAP\obj\Debug\Blanquita_Inventarios.TestSAP.pdb

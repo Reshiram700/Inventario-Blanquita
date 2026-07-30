@@ -1,0 +1,13 @@
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\bin\Debug\Blanquita_Inventarios.TestDIAPI.exe.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\bin\Debug\Blanquita_Inventarios.TestDIAPI.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\bin\Debug\Blanquita_Inventarios.TestDIAPI.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.csproj.AssemblyReference.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Interop.SAPbobsCOM.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.csproj.ResolveComReference.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.csproj.CoreCompileInputs.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.exe.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.csproj.ResolveComReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Debug\Blanquita_Inventarios.TestDIAPI.csproj.CoreCompileInputs.cache

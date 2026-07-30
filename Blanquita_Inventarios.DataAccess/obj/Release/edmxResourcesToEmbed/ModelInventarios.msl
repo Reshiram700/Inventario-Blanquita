@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InventariosModelStoreContainer" CdmEntityContainer="InventariosEntities">
+    <EntitySetMapping Name="Perfiles">
+      <EntityTypeMapping TypeName="InventariosModel.Perfiles">
+        <MappingFragment StoreEntitySet="Perfiles">
+          <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+          <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="InventariosModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Principal" ColumnName="Principal" />
+          <ScalarProperty Name="FechaEliminado" ColumnName="FechaEliminado" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccionesCodigo">
+      <EntityTypeMapping TypeName="InventariosModel.AccionesCodigo">
+        <MappingFragment StoreEntitySet="AccionesCodigo">
+          <ScalarProperty Name="Accion" ColumnName="Accion" />
+          <ScalarProperty Name="IdAccion" ColumnName="IdAccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Codigos">
+      <EntityTypeMapping TypeName="InventariosModel.Codigos">
+        <MappingFragment StoreEntitySet="Codigos">
+          <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+          <ScalarProperty Name="FechaUtilizo" ColumnName="FechaUtilizo" />
+          <ScalarProperty Name="IdAccion" ColumnName="IdAccion" />
+          <ScalarProperty Name="IdUsuarioUtilizo" ColumnName="IdUsuarioUtilizo" />
+          <ScalarProperty Name="IdUsuarioGenero" ColumnName="IdUsuarioGenero" />
+          <ScalarProperty Name="FechaGeneracion" ColumnName="FechaGeneracion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+          <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstatusCodigo">
+      <EntityTypeMapping TypeName="InventariosModel.EstatusCodigo">
+        <MappingFragment StoreEntitySet="EstatusCodigo">
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marbetes">
+      <EntityTypeMapping TypeName="InventariosModel.Marbetes">
+        <MappingFragment StoreEntitySet="Marbetes">
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="FechaCierre" ColumnName="FechaCierre" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="Capturo" ColumnName="Capturo" />
+          <ScalarProperty Name="Marbete" ColumnName="Marbete" />
+          <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+          <ScalarProperty Name="IdMarbete" ColumnName="IdMarbete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Search_ItmsGrpName" FunctionName="InventariosModel.Store.Search_ItmsGrpName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Search_ItmsGrpName_Result">
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItmsGrpNam" ColumnName="ItmsGrpNam" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Report_SAPBarcodes" FunctionName="InventariosModel.Store.Report_SAPBarcodes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Report_SAPBarcodes_Result">
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="BcdCode" ColumnName="BcdCode" />
+          <ScalarProperty Name="Uomcode" ColumnName="Uomcode" />
+          <ScalarProperty Name="BaseQty" ColumnName="BaseQty" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Report_ItemsByAlmacen" FunctionName="InventariosModel.Store.Report_ItemsByAlmacen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Report_ItemsByAlmacen_Result">
+          <ScalarProperty Name="WhsCode" ColumnName="WhsCode" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_TotalMarbetesByConfiguracion" FunctionName="InventariosModel.Store.Get_TotalMarbetesByConfiguracion" />
+    <EntitySetMapping Name="Zonas">
+      <EntityTypeMapping TypeName="InventariosModel.Zonas">
+        <MappingFragment StoreEntitySet="Zonas">
+          <ScalarProperty Name="MarbetesCreados" ColumnName="MarbetesCreados" />
+          <ScalarProperty Name="FechaEliminado" ColumnName="FechaEliminado" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="MarbeteFinal" ColumnName="MarbeteFinal" />
+          <ScalarProperty Name="MarbeteInicial" ColumnName="MarbeteInicial" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
+          <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+          <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Report_ListadoCategorias" FunctionName="InventariosModel.Store.Report_ListadoCategorias">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Report_ListadoCategorias_Result">
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Configuraciones">
+      <EntityTypeMapping TypeName="InventariosModel.Configuraciones">
+        <MappingFragment StoreEntitySet="Configuraciones">
+          <ScalarProperty Name="FechaAjustes" ColumnName="FechaAjustes" />
+          <ScalarProperty Name="AjustesAplicados" ColumnName="AjustesAplicados" />
+          <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+          <ScalarProperty Name="FechaEliminado" ColumnName="FechaEliminado" />
+          <ScalarProperty Name="FechaUltimoRespaldo" ColumnName="FechaUltimoRespaldo" />
+          <ScalarProperty Name="FechaDeshabilitado" ColumnName="FechaDeshabilitado" />
+          <ScalarProperty Name="Deshabilitado" ColumnName="Deshabilitado" />
+          <ScalarProperty Name="FechaCerrado" ColumnName="FechaCerrado" />
+          <ScalarProperty Name="Cerrado" ColumnName="Cerrado" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Almacen" ColumnName="Almacen" />
+          <ScalarProperty Name="BaseDatos" ColumnName="BaseDatos" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+          <ScalarProperty Name="Instancia" ColumnName="Instancia" />
+          <ScalarProperty Name="ServidorIP" ColumnName="ServidorIP" />
+          <ScalarProperty Name="NombreInventario" ColumnName="NombreInventario" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Report_CostoCeroByInventario" FunctionName="InventariosModel.Store.Report_CostoCeroByInventario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Report_CostoCeroByInventario_Result">
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Search_ItemExistenciaSAP" FunctionName="InventariosModel.Store.Search_ItemExistenciaSAP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Search_ItemExistenciaSAP_Result">
+          <ScalarProperty Name="WhsCode" ColumnName="WhsCode" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="OnHand" ColumnName="OnHand" />
+          <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Report_InformacionSAPxPorProcesar" FunctionName="InventariosModel.Store.Report_InformacionSAPxPorProcesar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Report_InformacionSAPxPorProcesar_Result">
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="OnHand" ColumnName="OnHand" />
+          <ScalarProperty Name="PorProcesar" ColumnName="PorProcesar" />
+          <ScalarProperty Name="Uom" ColumnName="Uom" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="ItmsGrpNam" ColumnName="ItmsGrpNam" />
+          <ScalarProperty Name="UomEntry" ColumnName="UomEntry" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Report_InventarioProcesar" FunctionName="InventariosModel.Store.Report_InventarioProcesar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventariosModel.Report_InventarioProcesar_Result">
+          <ScalarProperty Name="WhsCode" ColumnName="WhsCode" />
+          <ScalarProperty Name="ItmsGrpNam" ColumnName="ItmsGrpNam" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Cant1" ColumnName="Cant1" />
+          <ScalarProperty Name="Cant2" ColumnName="Cant2" />
+          <ScalarProperty Name="TotalSAP" ColumnName="TotalSAP" />
+          <ScalarProperty Name="TotalContado" ColumnName="TotalContado" />
+          <ScalarProperty Name="TotalDesviacion" ColumnName="TotalDesviacion" />
+          <ScalarProperty Name="PorcDif" ColumnName="PorcDif" />
+          <ScalarProperty Name="Uom" ColumnName="Uom" />
+          <ScalarProperty Name="Onhand" ColumnName="Onhand" />
+          <ScalarProperty Name="PorProcesar" ColumnName="PorProcesar" />
+          <ScalarProperty Name="DifPesoNeto" ColumnName="DifPesoNeto" />
+          <ScalarProperty Name="Marbetes" ColumnName="Marbetes" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="VarianzaNeta" ColumnName="VarianzaNeta" />
+          <ScalarProperty Name="VarianzaNetaMonto" ColumnName="VarianzaNetaMonto" />
+          <ScalarProperty Name="TotalContado2" ColumnName="TotalContado2" />
+          <ScalarProperty Name="TotalDesviacion2" ColumnName="TotalDesviacion2" />
+          <ScalarProperty Name="PorcDif2" ColumnName="PorcDif2" />
+          <ScalarProperty Name="Ajustado" ColumnName="Ajustado" />
+          <ScalarProperty Name="UomEntry" ColumnName="UomEntry" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.PrototipoMAUI.CapturarPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.PrototipoMAUI.ViewModel"
+             x:DataType="viewmodel:CapturarVM"
+             Title="">
+    <VerticalStackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label 
+                Text="CAPTURAR MARBETE" HorizontalOptions="Center" FontSize="20" />
+            <Grid Margin="20, 50, 20, 50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Marbete" VerticalTextAlignment="Center" />
+                <Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Código Producto" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="" />
+
+                <Label Grid.Row="2" Grid.Column="0" Text="ItemCode" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Descripción" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="" />
+
+                <Label Grid.Row="4" Grid.Column="0" Text="UOM" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="4" Grid.Column="1" Text="" />
+
+                <Label Grid.Row="4" Grid.Column="2" Text="Cantidad" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="4" Grid.Column="3" Text="" />
+
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="btnGrabar" Text="GRABAR" CornerRadius="10" Margin="5"
+                        BackgroundColor="#389112" HorizontalOptions="FillAndExpand"
+                        TextColor="#ffffff" Command="{Binding GrabarCommand}" />
+
+                <Button x:Name="btnCancelar" Text="CANCELAR" CornerRadius="10" Margin="5"
+                        BackgroundColor="#cc0000" HorizontalOptions="FillAndExpand"
+                        TextColor="#ffffff" Command="{Binding CancelarCommand}" />
+
+                <Button x:Name="btnCerrar" Text="CERRAR" CornerRadius="10" Margin="5"
+                        BackgroundColor="#001968" HorizontalOptions="FillAndExpand"
+                        TextColor="#ffffff" Command="{Binding CerrarCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

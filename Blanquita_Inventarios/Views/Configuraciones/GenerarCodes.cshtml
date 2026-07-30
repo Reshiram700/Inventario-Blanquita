@@ -1,0 +1,156 @@
+﻿@model Blanquita_Inventarios.ViewModels.GenericVM
+
+@{
+    ViewBag.Title = "Generardor de Códigos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Generador de Códigos de Autorización
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary margin-right-10 margin-bottom-5" onclick="location.href='@Url.Action("Generar")'">
+                                        Generar
+                                        <i class="fa fa-plus"></i>
+                                    </button>                                    
+                                    <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Index", "Configuraciones")'">
+                                        Regresar
+                                        <i class="fa fa-chevron-circle-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                        <thead>
+                                            <tr class="bg-light headerCustom">
+                                                <th>
+                                                    <input name="control" value="Código de Autorización"
+                                                           class="btn headerCustom" />
+                                                </th>
+                                                <th>
+                                                    <input name="control" value="Fecha/Hora Generación"
+                                                           class="btn headerCustom" />
+                                                </th>
+                                                <th>
+                                                    <input name="control" value="Usuario Genero"
+                                                           class="btn headerCustom" />
+                                                </th>
+                                                <th>
+                                                    <input name="control" value="Usuario Utilizo"
+                                                           class="btn headerCustom" />
+                                                </th>
+                                                <th>
+                                                    <input name="control" value="Acción en la que se utilizo"
+                                                           class="btn headerCustom" />
+                                                </th>
+                                                <th>
+                                                    <input name="control" value="Estatus"
+                                                           class="btn headerCustom" />
+                                                </th>                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Listado != null && Model.Listado.Count > 0)
+                                            {
+                                                foreach (var item in Model.Listado)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Campo00)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Campo01)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Campo02)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Campo03)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Campo04)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Campo05)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: true,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info: false
+            });
+        });
+    </script>
+}

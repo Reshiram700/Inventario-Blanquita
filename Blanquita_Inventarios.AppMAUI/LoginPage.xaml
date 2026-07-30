@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.AppMAUI.LoginPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.AppMAUI.ViewModels"
+             x:DataType="viewmodel:LoginVM"
+             BackgroundColor="#F4F6FA">
+
+    <!-- ===== ESTILOS ===== -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="22"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="25,20"/>
+                <Setter Property="Margin" Value="20,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="MainButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="16"/>
+                <Setter Property="HeightRequest" Value="55"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- ===== LAYOUT ===== -->
+    <Grid RowDefinitions="0.25*,Auto,0.75*">
+
+        <!-- ===== CONTENIDO CENTRAL ===== -->
+        <StackLayout Grid.Row="1" Spacing="0">
+
+            <!-- LOGO -->
+            <StackLayout Spacing="8" Margin="0,0,0,15">
+                <Image Source="logobq.png"
+                       HorizontalOptions="Center"
+                       WidthRequest="350"
+                       HeightRequest="100"
+                       Aspect="AspectFit"/>
+
+                <Label Text="Sistema de Toma de Inventarios"
+                       TextColor="#001968"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <!-- LOGIN -->
+            <ScrollView>
+                <StackLayout>
+
+                    <Frame Style="{StaticResource CardStyle}"
+                         Margin="20,30,20,0">
+                        <StackLayout Spacing="18">
+
+                            <Label Text="Iniciar sesión"
+                                   FontSize="23"
+                                   FontAttributes="Bold"
+                                   TextColor="#001968"
+                                   HorizontalOptions="Center"/>
+
+                            <!-- Usuario -->
+                            <Frame BackgroundColor="#F9FAFC"
+                                   CornerRadius="12"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   BorderColor="#E5E7EB">
+                                <Entry x:Name="entUsuario"
+                                       Text="{Binding Usuario}"
+                                       Placeholder="Usuario"
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#8A94A6"
+                                       HeightRequest="52"
+                                       FontSize="16"
+                                       Margin="15,0"/>
+                            </Frame>
+
+                            <!-- Contraseña -->
+                            <Frame BackgroundColor="#F9FAFC"
+                                   CornerRadius="12"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   BorderColor="#E5E7EB">
+                                <Entry x:Name="entPassword"
+                                       Text="{Binding Password}"
+                                       Placeholder="Contraseña"
+                                       IsPassword="True"
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#8A94A6"
+                                       HeightRequest="52"
+                                       FontSize="16"
+                                       Margin="15,0"/>
+                            </Frame>
+
+                            <!-- Botón -->
+                            <Button Text="INGRESAR"
+                                    Style="{StaticResource MainButton}"
+                                    Command="{Binding IngresarCommand}"
+                                    Margin="0,15,0,0">
+
+                                <Button.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#0A2A88" Offset="0.0"/>
+                                        <GradientStop Color="#001968" Offset="1.0"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+
+                            </Button>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Versión -->
+                    <Label Text="v 2.1"
+                           TextColor="#9CA3AF"
+                           FontSize="15"
+                           HorizontalOptions="Center"
+                           Margin="0,15"/>
+
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

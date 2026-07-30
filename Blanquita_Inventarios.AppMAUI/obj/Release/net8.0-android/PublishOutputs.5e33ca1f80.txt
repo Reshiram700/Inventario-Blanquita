@@ -1,0 +1,3 @@
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\bin\Release\net8.0-android\publish\com.developmentti.tomainventarios-Signed.apk
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\bin\Release\net8.0-android\publish\com.developmentti.tomainventarios.apk
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\bin\Release\net8.0-android\publish\_Microsoft.Android.Resource.Designer.dll

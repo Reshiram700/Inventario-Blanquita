@@ -1,0 +1,406 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Listado_ConfiguracionesVM
+
+@{
+    ViewBag.Title = "Administración de Configuraciones de Servidores de BD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/others/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Administración de Configuraciones de Servidores de Base de Datos
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Index", "Configuraciones", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary margin-right-10 margin-bottom-5" onclick="location.href='@Url.Action("Create")'">
+                                            Agregar
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Buscar
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" value="Restablecer" class="btn grey margin-right-10 margin-bottom-5" onclick="location.href='@Url.Action("RestablecerConfiguraciones")'">
+                                            Restablecer
+                                            <i class="fa fa-undo"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Home", "Home")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Fecha de Registro</label>
+                                                    @Html.TextBoxFor(m => m.FiltroFechas, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "Fecha de Registro", @autocomplete = "off", @id = "txtFiFechas" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Nombre del Inventario</label>
+                                                    @Html.TextBoxFor(m => m.FiltroInventario, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "Nombre del Inventario", @autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Servidor (IP)</label>
+                                                    @Html.TextBoxFor(m => m.FiltroServidor, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "Servidor (IP)", @autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                            <thead>
+                                                <tr class="bg-light headerCustom">
+                                                    <th>
+                                                        <input name="control" value="ID"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Fecha/Hora Registro"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Nombre del Inventario"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Servidor (IP)"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Nombre Instancia"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Usuario"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Password"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Base de Datos"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Almacén"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th><div style="font-size:14px!important;text-align:center"></div></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Listado)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.IdConfiguracion)
+                                                            </td>
+                                                            <td>
+                                                                @(String.Format("{0:dd/MM/yyyy HH:mm}", item.FechaRegistro))
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.NombreInventario)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Servidor)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.NombreInstancia)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Usuario)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Password)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.BaseDatos)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Almacen)
+                                                            </td>
+                                                            <td align="center">
+                                                                <div class="row" style="width: 800px !important;">
+                                                                    <button class="btn btn-xs blue-steel btn-detalles" type="button"
+                                                                            onclick="location.href='@Url.Action("Details","Configuraciones", new { id = item.IdConfiguracion })'">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        &nbsp;Ver Detalles
+                                                                    </button>
+                                                                    <button class="btn btn-xs yellow-gold btn-detalles" type="button"
+                                                                            onclick="location.href='@Url.Action("Zonas","Configuraciones", new { id = item.IdConfiguracion })'">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        &nbsp;Administrar Zonas
+                                                                    </button>
+                                                                    <button class="btn btn-xs green-jungle btn-detalles" type="button"
+                                                                            onclick="location.href='@Url.Action("Codigos","Configuraciones", new { id = item.IdConfiguracion })'">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        &nbsp;Generar Códigos de Autorización
+                                                                    </button>
+                                                                    <button class="btn btn-xs grey-mint btn-detalles" type="button"
+                                                                            onclick="ModalImpresion(@item.IdConfiguracion);">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        &nbsp;Impresión de Marbetes
+                                                                    </button>
+                                                                    <button class="btn btn-xs green btn-detalles @(item.Cerrado ? "hide" : "")" type="button"
+                                                                            onclick="if (!ShowConfirmation('¿Esta seguro que desea Cerrar el Inventario de la Configuración seleccionada?',
+                                                                            '@Url.Action("CerrarInventario","Configuraciones", new { id = item.IdConfiguracion })')) return false;">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        &nbsp;Cerrar Inventario
+                                                                    </button>
+                                                                    <button class="btn btn-xs grey-steel btn-detalles @(item.Cerrado ? "hide" : "")" type="button"
+                                                                            onclick="if (!ShowConfirmation('¿Esta seguro que desea Deshabilitar el Inventario de la Configuración seleccionada?',
+                                                                            '@Url.Action("DeshabilitarInventario","Configuraciones", new { id = item.IdConfiguracion })')) return false;">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        &nbsp;Deshabilitar Inventario
+                                                                    </button>
+                                                                    <button class="btn btn-xs default btn-detalles @(item.Cerrado ? "hide" : "")" type="button"
+                                                                            onclick="CrarBackup(@item.IdConfiguracion);">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        &nbsp;Respaldar BD Inventario
+                                                                    </button>
+                                                                    <button class="btn btn-xs red @(item.Cerrado ? "hide" : "")" type="button"
+                                                                            onclick="if (!ShowConfirmation('¿Esta seguro que desea eliminar el registro de la Configuración seleccionada?',
+                                                                            '@Url.Action("Delete","Configuraciones", new { id = item.IdConfiguracion })')) return false;">
+                                                                        <i class="fa fa-times"></i>
+                                                                        &nbsp;Eliminar
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div id="impresion" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Impresion de Marbetes</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">                                                    
+                                                    <div class="col-md-8">
+                                                        <input type="hidden" id="hdfIdConfiguracion" value="0" />
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Marbete Inicial</label>
+                                                            <input type="number" class="form-control" id="txtInicial">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Marbete Final</label>
+                                                            <input type="number" class="form-control" id="txtFinal">
+                                                        </div>
+                                                        <br />
+                                                        <button type="button" class="btn btn-primary" onclick="ImprimirFormato(1);">Impresión Formato 1</button>
+                                                        <button type="button" class="btn btn-primary" onclick="ImprimirFormato(2);">Impresión Formato 2</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script src="~/Content/others/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/others/daterangepicker/daterangepicker.js"></script>
+
+    <script>
+        function CrarBackup(idConfiguracion) {
+            var data = new FormData();
+            data.append("idConfiguracion", idConfiguracion);
+
+            var url = '@Url.Action("GenerarBackup", "Configuraciones")';
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: url,
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (response) {
+                    if (response.ExecutionOK == true) {
+                        ShowNotificacion("success", "", "Se genero correctamente el backup de la configuracion", "4", "0");
+                    }
+                    else {
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");
+                    }
+                },
+                error: function (err) {
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                }
+            });
+        }
+
+        function ModalImpresion(idConfiguracion) {
+            $('#hdfIdConfiguracion').val(idConfiguracion);
+            $('#txtInicial').val("0");
+            $('#txtFinal').val("0");
+            $('#impresion').modal('show');
+        }
+
+        function ImprimirFormato(formato) {
+            var idConfiguracion = $('#hdfIdConfiguracion').val();
+            var inicio = $('#txtInicial').val();
+            var fin = $('#txtFinal').val();
+
+            var data = new FormData();
+            data.append("idConfiguracion", idConfiguracion);
+            data.append("inicio", inicio);
+            data.append("fin", fin);
+
+            var url = '@Url.Action("ProcesarFormato", "Configuraciones")';
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: url,
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (response) {
+                    if (response.ExecutionOK == true) {
+
+                        var urlFormato = '';
+
+                        if (formato == 1) {
+                            urlFormato = '@Url.Action("FormatoUno", "Configuraciones")';
+                        }
+
+                        if (formato == 2) {
+                            urlFormato = '@Url.Action("FormatoDos", "Configuraciones")';
+                        }
+
+                        window.location.href = urlFormato;
+                    }
+                    else {
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");
+                    }
+                },
+                error: function (err) {
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: false,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info: false,
+            });
+
+            $('input[id*="txtFiFecha"]').daterangepicker({
+                locale: {
+                    cancelLabel: "Limpiar",
+                    format: "DD/MM/YYYY",
+                    separator: " - ",
+                    applyLabel: "APLICAR",
+                    cancelLabel: "CANCELAR",
+                    fromLabel: "De",
+                    toLabel: "A",
+                    customRangeLabel: "Personalizar...",
+                    weekLabel: "W",
+                    daysOfWeek: [
+                        "Do",
+                        "Lu",
+                        "Ma",
+                        "Mi",
+                        "Ju",
+                        "Vi",
+                        "Sa"
+                    ],
+                    monthNames: [
+                        "Enero",
+                        "Febrero",
+                        "Marzo",
+                        "Abril",
+                        "Mayo",
+                        "Junio",
+                        "Julio",
+                        "Agosto",
+                        "Septiembre",
+                        "Octubre",
+                        "Noviembre",
+                        "Diciembre"
+                    ],
+                    firstDay: 1
+                }
+            });
+        });
+    </script>
+}

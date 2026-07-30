@@ -1,0 +1,116 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.ConfiguracionVM
+
+@{
+    ViewBag.Title = "Información de Configuración de Servidor de Base de Datos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Información de Configuración de Servidor de Base de Datos
+        </h1>
+        <!-- END PAGE HEADER-->
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.IdConfiguracion, htmlAttributes: new { @id = "hdfId" })
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="portlet box dark">
+                        <div class="portlet-title">
+                            <div class="caption">
+
+                            </div>
+                            <div class="actions">
+                                <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body form form-horizontal">
+                            <div class="form-actions ">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <button type="submit" class="btn blue-steel margin-right-10 margin-bottom-5">
+                                            Guardar
+                                            <i class="fa fa-save"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Index", "Configuraciones")';">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Nombre del Inventario</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.NombreInventario, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.NombreInventario, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Fecha de Registro</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.FechaRegistro, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Servidor (IP)</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Servidor, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Nombre de la Instancia</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.NombreInstancia, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Puerto</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Puerto, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Usuario</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Base de Datos</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.BaseDatos, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.BaseDatos, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Almacén</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Almacen, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Almacen, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

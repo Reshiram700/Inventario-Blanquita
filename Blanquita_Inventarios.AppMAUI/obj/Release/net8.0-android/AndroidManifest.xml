@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Una herramienta generó este código.
+    Se generó desde C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\Platforms\Android\AndroidManifest.xml
+    Los cambios realizados en este archivo pueden generar un comportamiento incorrecto y se perderán si
+    se regenera el contenido.
+    -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" package="com.developmentti.tomainventarios" android:versionName="1.0">
+  <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+  <application android:allowBackup="true" android:icon="@mipmap/icon_tomainventario" android:supportsRtl="true" android:usesCleartextTraffic="true" android:label="Toma Inventarios" android:name="crc64b5ccbc262ef8fa5a.MainApplication" android:extractNativeLibs="true">
+    <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="crc64ba438d8f48cf7e75.IntermediateActivity" />
+    <receiver android:enabled="true" android:exported="false" android:label="Essentials Energy Saver Broadcast Receiver" android:name="crc640a8d9a12ddbf2cf2.EnergySaverBroadcastReceiver" />
+    <activity android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:launchMode="singleTop" android:theme="@style/Maui.SplashTheme" android:name="crc64b5ccbc262ef8fa5a.MainActivity" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="1999999999" android:authorities="com.developmentti.tomainventarios.mono.MonoRuntimeProvider.__mono_init__" />
+  </application>
+</manifest>

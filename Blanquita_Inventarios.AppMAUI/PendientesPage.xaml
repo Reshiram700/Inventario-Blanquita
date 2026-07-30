@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.AppMAUI.PendientesPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.AppMAUI.ViewModels"
+             x:DataType="viewmodel:PendientesVM">
+
+    <!-- ===== ESTILOS ===== -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <!-- Tarjeta -->
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="16"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="12"/>
+                <Setter Property="Margin" Value="10,5"/>
+                <Setter Property="BorderColor" Value="#DDDDDD"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <!-- Botón -->
+            <Style x:Key="MainButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="14"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- Título -->
+            <Style x:Key="TitleLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="#001968"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- ===== LAYOUT CORREGIDO ===== -->
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
+
+        <!-- HEADER -->
+        <StackLayout Grid.Row="0">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <ImageButton x:Name="btnBack"
+                             Source="icon_back"
+                             Command="{Binding RegresarCommand}"
+                             WidthRequest="25"
+                             HeightRequest="25"
+                             Margin="25,15,0,0"/>
+            </StackLayout>
+
+            <Label Text="v 2.1"
+                   TextColor="#e48e2c"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   HorizontalOptions="End"
+                   Margin="10,0"/>
+
+            <Label Text="MARBETES PENDIENTES POR ENVIAR"
+                   Style="{StaticResource TitleLabel}"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,10,0,0"/>
+        </StackLayout>
+
+        <!-- RESUMEN -->
+        <Frame Grid.Row="1" Style="{StaticResource CardStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Productos Pendientes por Enviar"
+                       FontAttributes="Bold"/>
+
+                <Label Grid.Column="1"
+                       Text="{Binding Articulos}"/>
+            </Grid>
+        </Frame>
+
+        <!-- BOTÓN ENVIAR TODOS -->
+        <StackLayout Grid.Row="2"
+                     HorizontalOptions="Center"
+                     Margin="0,10">
+
+            <Button x:Name="btnDescargarAll"
+                    Text="ENVIAR TODOS LOS MARBETES"
+                    Style="{StaticResource MainButton}"
+                    Command="{Binding DescargarCommand}"
+                    IsEnabled="{Binding PermiteDescargar}">
+
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#0A2A88" Offset="0"/>
+                        <GradientStop Color="#001968" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+
+            </Button>
+
+        </StackLayout>
+
+        <!-- LISTA (ahora sí scrollea correctamente) -->
+        <CollectionView Grid.Row="3"
+                        Margin="0,10"
+                        ItemsSource="{Binding GetMarbetes}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewmodel:ItemMarbeteVM">
+                    <SwipeView>
+
+                        <Frame Style="{StaticResource CardStyle}">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Núm. Marbete:"
+                                       Grid.Row="0" Grid.Column="0"
+                                       FontAttributes="Bold"/>
+
+                                <Label Text="{Binding Marbete}"
+                                       Grid.Row="0" Grid.Column="1"/>
+
+                                <Label Text="Estatus:"
+                                       Grid.Row="1" Grid.Column="0"
+                                       FontAttributes="Bold"/>
+
+                                <Label Text="{Binding Estatus}"
+                                       Grid.Row="1" Grid.Column="1"/>
+
+                                <Label Text="Total Productos:"
+                                       Grid.Row="2" Grid.Column="0"
+                                       FontAttributes="Bold"/>
+
+                                <Label Text="{Binding CantidadProductos}"
+                                       Grid.Row="2" Grid.Column="1"/>
+
+                                <Button x:Name="btnDescargar"
+                                        Text="ENVIAR"
+                                        Style="{StaticResource MainButton}"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Grid.RowSpan="2"
+                                        Margin="5,0,0,0"
+                                        IsVisible="{Binding Visible}"
+                                        IsEnabled="{Binding PermiteDescargar}"
+                                        Command="{Binding DescargarCommand}">
+
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#0A2A88" Offset="0"/>
+                                            <GradientStop Color="#001968" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+
+                                </Button>
+
+                            </Grid>
+
+                        </Frame>
+
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

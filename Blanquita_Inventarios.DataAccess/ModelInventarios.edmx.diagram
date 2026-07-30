@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0821d19ee7e44f5886e8399517551cd5" Name="Diagram1">
+        <EntityTypeShape EntityType="InventariosModel.Perfiles" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="InventariosModel.Usuarios" Width="1.5" PointX="5.625" PointY="6" />
+        <AssociationConnector Association="InventariosModel.FK_Usuarios_Perfiles" />
+        <EntityTypeShape EntityType="InventariosModel.AccionesCodigo" Width="1.5" PointX="7.875" PointY="9.375" />
+        <EntityTypeShape EntityType="InventariosModel.Codigos" Width="1.5" PointX="7.875" PointY="4.875" />
+        <EntityTypeShape EntityType="InventariosModel.EstatusCodigo" Width="1.5" PointX="7.75" PointY="2.25" />
+        <AssociationConnector Association="InventariosModel.FK_Codigos_AccionesCodigo" />
+        <AssociationConnector Association="InventariosModel.FK_Codigos_EstatusCodigo" />
+        <AssociationConnector Association="InventariosModel.FK_Codigos_Usuarios" />
+        <AssociationConnector Association="InventariosModel.FK_Codigos_Usuarios1" />
+        <EntityTypeShape EntityType="InventariosModel.Marbetes" Width="1.5" PointX="5.25" PointY="2.375" />
+        <EntityTypeShape EntityType="InventariosModel.Zonas" Width="1.5" PointX="3" PointY="2.75" />
+        <AssociationConnector Association="InventariosModel.FK_Marbetes_Zonas" />
+        <EntityTypeShape EntityType="InventariosModel.Configuraciones" Width="1.5" PointX="0.75" PointY="3" />
+        <AssociationConnector Association="InventariosModel.FK_Codigos_Configuraciones" />
+        <AssociationConnector Association="InventariosModel.FK_Zonas_Configuraciones" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

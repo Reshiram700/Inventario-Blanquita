@@ -1,0 +1,310 @@
+﻿@model Blanquita_Inventarios.ViewModels.GenericVM
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Detalle de Marbete
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Detalle", "Monitor", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary margin-right-10 margin-bottom-5" onclick="ModalDetalle();">
+                                            Agregar
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Refresh
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" class="btn blue-steel margin-bottom-5" onclick="location.href='@Url.Action("Reporte", "Monitor")'">
+                                            Reporte 1
+                                            <i class="fa fa-file-text-o"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Index", "Monitor")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Nombre del Inventario General</label>
+                                                    <select id="ddlFiltroPerfil" class="form-control">
+                                                        <option>- Seleccione -</option>
+                                                        <option>Inventario Central</option>
+                                                        <option selected>Inventario de Prueba</option>
+                                                        <option>Inventario Estacion Norte</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Marbete</label>
+                                                    <input type="text" id="txtFiltroEmail" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <table style="margin-left: 20px;">
+                                                <tr>
+                                                    <td rowspan="2"><img src="~/Content/img/logo.png" /></td>
+                                                    <td rowspan="2">
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td colspan="3">
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Nombre del Inventario:</b> Inventario de Prueba
+                                                    </td>
+                                                    <td>
+                                                        &nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td>
+                                                        <b>Almacén:</b> Almacén 1
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                            <thead>
+                                                <tr class="bg-light headerCustom">
+                                                    <th>
+                                                        <input name="control" value="Folio"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Almacén"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Marbete"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Código de Barras"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="ItemCode"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="ItemName"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Count1"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="UOM"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="TimeCont1"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Nombre"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th><div style="font-size:14px!important;text-align:center">Acciones</div></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Listado)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo00)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo01)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo02)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo03)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo04)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo05)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo06)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo07)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo08)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo09)
+                                                            </td>
+                                                            <td align="center">
+                                                                <button class="btn btn-xs green-jungle btn-detalles" type="button">
+                                                                    <i class="fa fa-edit"></i>
+                                                                    &nbsp;Actualizar
+                                                                </button>  
+                                                                <button class="btn btn-xs red" type="button"
+                                                                        onclick="if (!ShowConfirmation('¿Desea eliminar el registro?',
+        '@Url.Action("Delete","Usuarios", new { id = item.Numero00 })')) return false;">
+                                                                    <i class="fa fa-times"></i>
+                                                                    &nbsp;Eliminar
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div id="detalle" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Impresion de Marbetes</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Almacén</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" value="Almacén 1" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Marbete</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" value="1" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Código del Producto</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">ItemCode</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">ItemName</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">UOM</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Cantidad</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" value="0">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">TimeCont1</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Nombre</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" value="Luis Perez" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+        function ModalDetalle() {
+            $('#detalle').modal('show');
+        }
+
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: true,
+                searching: false,
+                ordering: true,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+            });
+        });
+    </script>
+}
+

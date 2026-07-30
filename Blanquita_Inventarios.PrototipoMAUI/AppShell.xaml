@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Blanquita_Inventarios.PrototipoMAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Blanquita_Inventarios.PrototipoMAUI"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Blanquita_Inventarios.PrototipoMAUI">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:Login}"
+        Route="Login" />
+
+</Shell>

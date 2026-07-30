@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.AppMAUI.MainPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.AppMAUI.ViewModels"
+             x:DataType="viewmodel:MainVM">
+
+    <!-- ================= ESTILOS ================= -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Estilo base para tarjetas -->
+            <Style x:Key="MenuCard" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="8"/>
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="HeightRequest" Value="{OnPlatform Android=120, iOS=110, WinUI=110}"/>
+                <Setter Property="WidthRequest" Value="{OnPlatform Android=150, iOS=140, WinUI=140}"/>
+            </Style>
+
+            <!-- Estilo para botones dentro de las tarjetas -->
+            <Style x:Key="MenuImageButton" TargetType="ImageButton">
+                <Setter Property="WidthRequest" Value="{OnPlatform Android=50, iOS=45, WinUI=45}"/>
+                <Setter Property="HeightRequest" Value="{OnPlatform Android=50, iOS=45, WinUI=45}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+
+            <!-- Estilo para etiquetas dentro de las tarjetas -->
+            <Style x:Key="MenuLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="{OnPlatform Android=11, iOS=10, WinUI=10}"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+
+            <!-- Estilo para los números de secuencia -->
+            <Style x:Key="SequenceNumber" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- ================= CONTENIDO ================= -->
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+
+            <!-- BOTÓN SALIR (arriba derecha) -->
+            <Grid VerticalOptions="Start" Margin="0,10,20,0">
+                <ImageButton x:Name="btnSalir"
+                             Source="icon_logout"
+                             Command="{Binding SalirCommand}"
+                             WidthRequest="{OnPlatform Android=30, iOS=25, WinUI=25}"
+                             HeightRequest="{OnPlatform Android=30, iOS=25, WinUI=25}"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             BackgroundColor="Transparent"/>
+            </Grid>
+
+            <!-- HEADER -->
+            <StackLayout Margin="0" Spacing="2" VerticalOptions="Start">
+
+                <!-- Versión -->
+                <Label Text="v 2.1"
+                       TextColor="#e48e2c"
+                       FontSize="{OnPlatform Android=12, iOS=11, WinUI=11}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="End"
+                       Margin="0,0,10,0"/>
+
+                <!-- LOGO (más pequeño) -->
+                <Image Source="logobq.png"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       WidthRequest="{OnPlatform Android=250, iOS=180, WinUI=180}"
+                       HeightRequest="{OnPlatform Android=60, iOS=50, WinUI=50}"
+                       Margin="0,6"/>
+
+                <!-- NOMBRE DEL SISTEMA -->
+                <Label Text="SISTEMA DE INVENTARIOS"
+                       HorizontalOptions="Center"
+                       FontSize="{OnPlatform Android=14, iOS=13, WinUI=13}"
+                       FontAttributes="Bold"
+                       TextColor="#001968"
+                       Margin="0,2,0,0"/>
+
+                <!-- USUARIO + CATÁLOGO ACTUAL -->
+                <Grid Margin="20,10"
+                ColumnDefinitions="*,*">
+
+                    <!-- IZQUIERDA - USUARIO -->
+                    <StackLayout Grid.Column="0" Spacing="2">
+                        <Label Text="Nombre de PDA"
+               FontSize="{OnPlatform Android=15, iOS=11, WinUI=11}"
+               TextColor="#6B7280"/>
+
+                        <Label Text="{Binding NombrePDA}"
+               FontSize="{OnPlatform Android=16, iOS=13, WinUI=13}"
+               FontAttributes="Bold"
+               TextColor="#001968"/>
+                    </StackLayout>
+
+                    <!-- DERECHA - CATÁLOGO ACTUAL -->
+                    <StackLayout Grid.Column="1"
+                 Spacing="2"
+                 HorizontalOptions="End">
+
+                        <Label Text="Catálogo Actual"
+               FontSize="{OnPlatform Android=15, iOS=11, WinUI=11}"
+               TextColor="#6B7280"
+               HorizontalTextAlignment="End"/>
+
+                        <Label Text="{Binding CatalogoActual}"
+               FontSize="{OnPlatform Android=16, iOS=13, WinUI=13}"
+               FontAttributes="Bold"
+               TextColor="#001968"
+               HorizontalTextAlignment="End"/>
+                    </StackLayout>
+
+                </Grid>
+
+
+            </StackLayout>
+
+            <!-- PROGRESO DE DESCARGA (visible solo durante la descarga) -->
+            <StackLayout IsVisible="{Binding IsDownloading}" 
+                         Margin="10,5"
+                         Spacing="3">
+                <ProgressBar Progress="{Binding DownloadProgress}"
+                             ProgressColor="#307f0d"
+                             HeightRequest="{OnPlatform Android=15, iOS=12, WinUI=12}"
+                             Margin="5,0"/>
+                <Label Text="{Binding DownloadProgressText}"
+                       HorizontalOptions="Center"
+                       FontSize="{OnPlatform Android=12, iOS=11, WinUI=11}"
+                       TextColor="#307f0d"
+                       FontAttributes="Bold"/>
+                <Label Text="{Binding DownloadProgress, StringFormat='{0:P0}'}"
+                       HorizontalOptions="Center"
+                       FontSize="{OnPlatform Android=10, iOS=9, WinUI=9}"
+                       TextColor="#307f0d"/>
+            </StackLayout>
+
+            <!-- MENÚ - Grid 3x2 para PDA -->
+            <Grid VerticalOptions="StartAndExpand"
+                  HorizontalOptions="Center"
+                  RowSpacing="3"
+                  ColumnSpacing="3"
+                  Margin="8,5"
+                  RowDefinitions="{OnPlatform 
+                    Android='auto, auto, auto, auto', 
+                    iOS='auto, auto, auto, auto', 
+                    WinUI='auto, auto, auto, auto'}"
+                  ColumnDefinitions="{OnPlatform 
+                    Android='*, *', 
+                    iOS='*, *', 
+                    WinUI='*, *'}">
+
+                <!-- Fila 1 -->
+                <!-- NOMBRE PDA -->
+                <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource MenuCard}">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF9A3C" Offset="0"/>
+                            <GradientStop Color="#EC851A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <AbsoluteLayout>
+                        <StackLayout Spacing="3" VerticalOptions="Center"
+                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     AbsoluteLayout.LayoutFlags="All">
+                            <ImageButton Source="icon_config"
+                                         Style="{StaticResource MenuImageButton}"
+                                         Command="{Binding ParametrizacionCommand}"/>
+
+                            <Label Text="NOMBRE PDA"
+                                   Style="{StaticResource MenuLabel}"
+                                   FontSize="16"/>
+                        </StackLayout>
+                        <!-- Número de secuencia 1 -->
+                        <Label Text="1"
+                               FontSize="23"
+                               Style="{StaticResource SequenceNumber}"
+                               AbsoluteLayout.LayoutBounds="0,0"
+                               AbsoluteLayout.LayoutFlags="None"/>
+                    </AbsoluteLayout>
+                </Frame>
+
+                <!-- ASIGNAR INVENTARIO -->
+                <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource MenuCard}">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF9A3C" Offset="0"/>
+                            <GradientStop Color="#EC851A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <AbsoluteLayout>
+                        <StackLayout Spacing="3" VerticalOptions="Center"
+                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     AbsoluteLayout.LayoutFlags="All">
+                            <ImageButton Source="icon_config02"
+                                         Style="{StaticResource MenuImageButton}"
+                                         Command="{Binding ConfiguracionCommand}"/>
+
+                            <Label Text="ASIGNAR INVENTARIO"
+                                   Style="{StaticResource MenuLabel}"
+                                   FontSize="15"/>
+                        </StackLayout>
+                        <!-- Número de secuencia 2 -->
+                        <Label Text="2"
+                               FontSize="23"
+                               Style="{StaticResource SequenceNumber}"
+                               AbsoluteLayout.LayoutBounds="0,0"
+                               AbsoluteLayout.LayoutFlags="None"/>
+                    </AbsoluteLayout>
+                </Frame>
+
+                <!-- Fila 2 -->
+                <!-- TRAER CATÁLOGOS -->
+                <Frame Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuCard}">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{Binding ColorCatalogos}" Offset="0"/>
+                            <GradientStop Color="{Binding ColorCatalogos}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <AbsoluteLayout>
+                        <StackLayout Spacing="3" VerticalOptions="Center"
+                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     AbsoluteLayout.LayoutFlags="All">
+                            <ImageButton Source="icon_catalogos"
+                                         Style="{StaticResource MenuImageButton}"
+                                         Command="{Binding CatalogosCommand}"/>
+
+                            <Label Text="TRAER CATÁLOGOS"
+                                   Style="{StaticResource MenuLabel}"
+                                   FontSize="15"/>
+                        </StackLayout>
+                        <!-- Número de secuencia 3 -->
+                        <Label Text="3"
+                               FontSize="23"
+                               Style="{StaticResource SequenceNumber}"
+                               AbsoluteLayout.LayoutBounds="0,0"
+                               AbsoluteLayout.LayoutFlags="None"/>
+                    </AbsoluteLayout>
+                </Frame>
+
+                <!-- CAPTURAR MARBETE -->
+                <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource MenuCard}">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF9A3C" Offset="0"/>
+                            <GradientStop Color="#EC851A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <AbsoluteLayout>
+                        <StackLayout Spacing="3" VerticalOptions="Center"
+                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     AbsoluteLayout.LayoutFlags="All">
+                            <ImageButton Source="icon_capturar"
+                                         Style="{StaticResource MenuImageButton}"
+                                         Command="{Binding CapturarCommand}"/>
+
+                            <Label Text="CAPTURAR MARBETE"
+                                   Style="{StaticResource MenuLabel}"
+                                   FontSize="15"/>
+                        </StackLayout>
+                        <!-- Número de secuencia 4 -->
+                        <Label Text="4"
+                               FontSize="23"
+                               Style="{StaticResource SequenceNumber}"
+                               AbsoluteLayout.LayoutBounds="0,0"
+                               AbsoluteLayout.LayoutFlags="None"/>
+                    </AbsoluteLayout>
+                </Frame>
+
+                <!-- Fila 3 -->
+                <!-- MARBETES CAPTURADOS -->
+                <Frame Grid.Row="2" Grid.Column="0" Style="{StaticResource MenuCard}">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF9A3C" Offset="0"/>
+                            <GradientStop Color="#EC851A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <AbsoluteLayout>
+                        <StackLayout Spacing="3" VerticalOptions="Center"
+                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     AbsoluteLayout.LayoutFlags="All">
+                            <ImageButton Source="icon_capturados"
+                                         Style="{StaticResource MenuImageButton}"
+                                         Command="{Binding CapturadosCommand}"/>
+
+                            <Label Text="MARBETES CAPTURADOS"
+                                   Style="{StaticResource MenuLabel}"
+                                   FontSize="15"/>
+                        </StackLayout>
+                        <!-- Número de secuencia 5 -->
+                        <Label Text="5"
+                               FontSize="23"
+                               Style="{StaticResource SequenceNumber}"
+                               AbsoluteLayout.LayoutBounds="0,0"
+                               AbsoluteLayout.LayoutFlags="None"/>
+                    </AbsoluteLayout>
+                </Frame>
+
+                <!-- MARBETES PENDIENTES -->
+                <Frame Grid.Row="2" Grid.Column="1" Style="{StaticResource MenuCard}">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF9A3C" Offset="0"/>
+                            <GradientStop Color="#EC851A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <AbsoluteLayout>
+                        <StackLayout Spacing="3" VerticalOptions="Center"
+                                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     AbsoluteLayout.LayoutFlags="All">
+                            <ImageButton Source="icon_pendientes"
+                                         Style="{StaticResource MenuImageButton}"
+                                         Command="{Binding PendientesCommand}"/>
+
+                            <Label Text="MARBETES PENDIENTES"
+                                   Style="{StaticResource MenuLabel}"
+                                   FontSize="15"/>
+                        </StackLayout>
+                        <!-- Número de secuencia 6 -->
+                        <Label Text="6"
+                               FontSize="23"
+                               Style="{StaticResource SequenceNumber}"
+                               AbsoluteLayout.LayoutBounds="0,0"
+                               AbsoluteLayout.LayoutFlags="None"/>
+                    </AbsoluteLayout>
+                </Frame>
+
+                <!-- Fila 4 - LIMPIAR INFORMACIÓN (ocupa 2 columnas) -->
+                <Frame Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                       Style="{StaticResource MenuCard}"
+                       IsVisible="{Binding VisibleBorrar}"
+                       HeightRequest="{OnPlatform Android=100, iOS=90, WinUI=90}"
+                       HorizontalOptions="Center">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#FF9A3C" Offset="0"/>
+                            <GradientStop Color="#EC851A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <StackLayout Spacing="3" VerticalOptions="Center">
+                        <ImageButton Source="icon_borrar"
+                                     Style="{StaticResource MenuImageButton}"
+                                     Command="{Binding BorrarCommand}"/>
+
+                        <Label Text="LIMPIAR INFORMACIÓN"
+                               Style="{StaticResource MenuLabel}"/>
+                    </StackLayout>
+                </Frame>
+
+            </Grid>
+
+            <!-- ESPACIO INFERIOR -->
+            <BoxView HeightRequest="10" Color="Transparent"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,108 @@
+﻿@model Blanquita_Inventarios.ViewModels.GenericVM
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Sistema de Toma de Inventarios</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/Content/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/login.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <style>
+        html {
+            background-color: #26344b !important;
+            text-align: center;
+        }
+
+        .login {
+            background-color: transparent !important;
+        }
+
+            .login .copyright {
+                color: #1e2c3e !important;
+            }
+
+        .copyright {
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+<body class="login">
+    <div class="logo">
+
+    </div>
+    <div class="content">
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, htmlAttributes: new { @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form">
+                <h3 class="form-title" style="color:black;">Iniciar Sesión</h3>
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button>
+                    <span>Ingresa un usuario y contraseña válidos. </span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="control-label visible-ie8 visible-ie9">Usuario</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="control-label visible-ie8 visible-ie9">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Entrar al sitio" class="btn blue-soft uppercase" />
+                    <br /><br />
+                    <button type="button" class="btn btn-link"
+                            onclick="location.href='@Url.Action("OlvidastePassword","Home")'">
+                        ¿Olvidaste tu Password?
+                    </button>
+                    <br />
+                    <button type="button" class="btn btn-link"
+                            onclick="location.href='@Url.Action("ActualizarPassword","Home")'">
+                        Actualizar Password
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="copyright">
+        Copyright © @Html.Label(DateTime.Now.Year.ToString()) | Todos los derechos reservados
+    </div>
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/Content/js/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src=".~/Content/js/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/app.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/login.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/toastr.min.js"></script>
+    <script src="~/Content/js/ui-toastr.js"></script>
+    <script src="~/Content/js/Notifications.js"></script>
+    <!-- Añadirlo después de la librería toastr -->
+</body>
+</html>

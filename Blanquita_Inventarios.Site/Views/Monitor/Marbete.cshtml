@@ -1,0 +1,476 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Avance_DetalleMarbeteVM
+
+@{
+    ViewBag.Title = "Detalle de Marbete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Detalle de Marbete
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Marbete", "Monitor", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary margin-right-10 margin-bottom-5" onclick="Modal_Agregar(@Model.FiltroIdConfiguracion, @Model.FiltroMarbete);">
+                                            Agregar
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Refresh
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" class="btn blue-steel margin-bottom-5" onclick="location.href='@Url.Action("Reporte", "Monitor", new { idConfiguracion = Model.FiltroIdConfiguracion, marbete = Model.FiltroMarbete })'">
+                                            Reporte 1
+                                            <i class="fa fa-file-text-o"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Index", "Monitor")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Nombre del Inventario General</label>
+                                                    @Html.DropDownListFor(model => model.FiltroIdConfiguracion, new SelectList(Model.FiltroInventarios, "Valor", "Texto", Model.FiltroIdConfiguracion),
+                                                        htmlAttributes: new { @class = "form-control edited", @id = "ddlFiltroInventarios" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Marbete</label>
+                                                    @Html.TextBoxFor(m => m.FiltroMarbete, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "Marbete", @autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+
+                                                <div class="row">
+                                                    <table style="margin-left: 20px;">
+                                                        <tr>
+                                                            <td rowspan="2"><img src="~/Content/img/logo.png" /></td>
+                                                            <td rowspan="2">
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            </td>
+                                                            <td colspan="3">
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <b>Nombre del Inventario:</b> @Model.Avance.Inventario
+                                                            </td>
+                                                            <td>
+                                                                &nbsp;&nbsp;&nbsp;
+                                                            </td>
+                                                            <td>
+                                                                <b>Almacén:</b> @Model.Avance.Almacen
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    @Html.HiddenFor(model => model.Avance.IdConfiguracion, htmlAttributes: new { @id = "hdfIdConfiguracion" })
+                                                </div>
+
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr class="bg-light headerCustom">
+                                                            <th style="text-align: center;">
+                                                                Folio
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                Almacén
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                Marbete
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                Código de Barras
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                ItemCode
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                ItemName
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                Count1
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                UOM
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                TimeCont1
+                                                            </th>
+                                                            <th style="text-align: center;">
+                                                                Nombre
+                                                            </th>
+                                                            <th style="text-align: center;">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model.Avance.Listado != null && Model.Avance.Listado.Count > 0)
+                                                        {
+                                                            foreach (var item in Model.Avance.Listado)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.Folio)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.Almacen)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.Marbete)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.CodigoBarras)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.ItemCode)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.ItemName)
+                                                                    </td>
+                                                                    <td>
+                                                                        @(String.Format("{0:#,##0.00}", item.Cantidad))
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.UOM)
+                                                                    </td>
+                                                                    <td>
+                                                                        @(String.Format("{0:dd/MM/yyyy HH:mm}", item.TimeCount1))
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                                                    </td>
+                                                                    <td align="center">
+                                                                        <button class="btn btn-xs green-jungle btn-detalles" type="button" onclick="Modal_Actualizar(@item.IdConfiguracion, @item.Folio, @item.Cantidad, @item.Marbete)">
+                                                                            <i class="fa fa-edit"></i>
+                                                                            &nbsp;Actualizar
+                                                                        </button>
+                                                                        <button class="btn btn-xs red" type="button"
+                                                                                onclick="if (!ShowConfirmation('¿Desea eliminar el detalle seleccionado?',
+                                                                            '@Url.Action("Delete_DetalleMarbete","Monitor", new { idConfiguracion = item.IdConfiguracion, idDetalle = item.Folio, marbete = item.Marbete })')) return false;">
+                                                                            <i class="fa fa-times"></i>
+                                                                            &nbsp;Eliminar
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="detalle" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Información del Producto</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" id="hdfIdConfiguracionRegistrar" value="0" />
+                                                <input type="hidden" id="hdfMarbete" value="0" />
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Almacén</label>
+                                                    <input type="text" class="form-control" id="txtAlmacen" value="@Model.Avance.Almacen" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Marbete</label>
+                                                    <input type="text" class="form-control" id="txtMarbete" value="@Model.Avance.Marbete" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Código del Producto</label>
+                                                    <input type="text" class="form-control" id="txtCodigoProducto">
+                                                    <button type="button" class="btn btn-default" onclick="Busca_Producto();">Buscar</button>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">ItemCode</label>
+                                                    <input type="text" class="form-control" id="txtItemCode" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">ItemName</label>
+                                                    <input type="text" class="form-control" id="txtItemName" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">UOM</label>
+                                                    <input type="text" class="form-control" id="txtUom" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Cantidad</label>
+                                                    <input type="number" class="form-control" id="txtCantidad" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary" onclick="Guardar_Producto();">Guardar</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+
+
+                                <div id="modalActualizar" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Actualizar Cantidad</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" id="hdfIdConfiguracionActualizar" value="0" />
+                                                <input type="hidden" id="hdfIdDetalle" value="0" />        
+                                                <input type="hidden" id="hdfMarbeteActualizar" value="0" />
+                                                <div class="form-group">
+                                                    <label>Cantidad</label>
+                                                    <input type="number" class="form-control" id="txtCantidadActualizar" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary" onclick="Actualizar_Cantidad();">Guardar</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+        function Modal_Agregar(idConfiguracion, marbete) {
+            if (idConfiguracion > 0 && marbete > 0) {
+                $("#hdfIdConfiguracionRegistrar").val(idConfiguracion);
+                $("#hdfMarbete").val(marbete);
+                $('#detalle').modal('show');
+            }
+            else {
+                ShowNotificacion("error", "Error", "Ingrese un Inventario y Marbete", "4", "0");
+            }
+        }
+
+        function Busca_Producto() {
+            var codigo = $("#txtCodigoProducto").val();
+            if (codigo != '') {
+
+                var idConfiguracion = $("#hdfIdConfiguracionRegistrar").val();
+
+                var data = new FormData();
+                data.append("idConfiguracion", idConfiguracion);
+                data.append("codigo", codigo);
+
+                var url = '@Url.Action("Buscar_ProductoByCodigo", "Monitor")';
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: url,
+                    processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                    contentType: false,
+                    success: function (response) {
+                        if (response.ExecutionOK == true) {
+                            $("#txtItemCode").val(response.Data.ItemCode);
+                            $("#txtItemName").val(response.Data.Descripcion);
+                            $("#txtUom").val(response.Data.Uom);
+                        }
+                        else {
+                            ShowNotificacion("error", "Error", response.Message, "4", "0");
+
+                            $("#txtItemCode").val("");
+                            $("#txtItemName").val("");
+                            $("#txtUom").val("");
+                            $("#txtCantidad").val("0");
+                        }
+                    },
+                    error: function (err) {
+                        ShowNotificacion("error", "Error", err.statusText, "4", "0");
+
+                        $("#txtItemCode").val("");
+                        $("#txtItemName").val("");
+                        $("#txtUom").val("");
+                        $("#txtCantidad").val("0");
+                    }
+                });
+            }
+            else {
+                $("#txtItemCode").val("");
+                $("#txtItemName").val("");
+                $("#txtUom").val("");
+                $("#txtCantidad").val("0");
+            }
+        }
+
+        function Guardar_Producto() {
+            var codigo = $("#txtCodigoProducto").val();
+            var cantidad = $("#txtCantidad").val();
+            var marbete = $("#hdfMarbete").val();
+
+            if (codigo != '' && cantidad > 0) {
+
+                var idConfiguracion = $("#hdfIdConfiguracionRegistrar").val();
+
+                var data = new FormData();
+                data.append("idConfiguracion", idConfiguracion);
+                data.append("codigo", codigo);
+                data.append("cantidad", cantidad);
+                data.append("marbete", marbete);
+
+                var url = '@Url.Action("Guardar_Producto", "Monitor")';
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: url,
+                    processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                    contentType: false,
+                    success: function (response) {
+                        if (response.ExecutionOK == true) {
+                             var urlLoad = '@Url.Action("Marbete", "Monitor")';
+                             window.location.href = urlLoad;
+                        }
+                        else {
+                            ShowNotificacion("error", "Error", response.Message, "4", "0");
+                        }
+                    },
+                    error: function (err) {
+                        ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                    }
+                });
+            }
+            else {
+                $("#txtItemCode").val("");
+                $("#txtItemName").val("");
+                $("#txtUom").val("");
+                $("#txtCantidad").val("0");
+            }
+        }
+
+        function Modal_Actualizar(idConfiguracion, idDetalle, cantidad, marbete) {
+            $("#hdfIdConfiguracionActualizar").val(idConfiguracion);
+            $("#hdfMarbeteActualizar").val(marbete);
+            $("#hdfIdDetalle").val(idDetalle);
+            $("#txtCantidadActualizar").val(cantidad);
+            $('#modalActualizar').modal('show');
+        }
+
+        function Actualizar_Cantidad() {            
+            var cantidad = $("#txtCantidadActualizar").val();
+            var idDetalle = $("#hdfIdDetalle").val();
+            var marbete = $("#hdfMarbeteActualizar").val();
+
+            if (cantidad > 0) {
+
+                var idConfiguracion = $("#hdfIdConfiguracionActualizar").val();
+
+                var data = new FormData();
+                data.append("idConfiguracion", idConfiguracion);                
+                data.append("cantidad", cantidad);
+                data.append("idDetalle", idDetalle);
+                data.append("marbete", marbete);
+
+                var url = '@Url.Action("Actualizar_CantidadProducto", "Monitor")';
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: url,
+                    processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                    contentType: false,
+                    success: function (response) {
+                        if (response.ExecutionOK == true) {
+                             var urlLoad = '@Url.Action("Marbete", "Monitor")';
+                             window.location.href = urlLoad;
+                        }
+                        else {
+                            ShowNotificacion("error", "Error", response.Message, "4", "0");
+                        }
+                    },
+                    error: function (err) {
+                        ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                    }
+                });
+            }
+            else {
+                $("#txtItemCode").val("");
+                $("#txtItemName").val("");
+                $("#txtUom").val("");
+                $("#txtCantidad").val("0");
+            }
+        }
+
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: false,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info: false,
+            });
+        });
+    </script>
+}
+

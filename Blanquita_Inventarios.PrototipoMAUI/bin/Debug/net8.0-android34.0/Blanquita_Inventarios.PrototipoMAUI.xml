@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blanquita_Inventarios.PrototipoMAUI</name>
+    </assembly>
+    <members>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.BorrarVM">
+            <inheritdoc/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.BorrarVM.aplicarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.BorrarVM.AplicarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.BorrarVM.AplicarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.BorrarVM.Aplicar"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturadosVM">
+            <inheritdoc/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturadosVM.Listado">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturadosVM.listado"/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturadosVM.GetMarbetes">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturadosVM.getMarbetes"/>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.grabarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.GrabarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.GrabarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.Grabar"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.cancelarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.CancelarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.CancelarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.Cancelar"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.cerrarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.CerrarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.CerrarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CapturarVM.Cerrar"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.marbetesCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.MarbetesCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.MarbetesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.Marbetes"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.articulosCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.ArticulosCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.ArticulosCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.CatalogosVM.Articulos"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ConfiguracionVM">
+            <inheritdoc/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ConfiguracionVM.seleccionarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ConfiguracionVM.SeleccionarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ConfiguracionVM.SeleccionarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ConfiguracionVM.Seleccionar"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.Marbete">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.marbete"/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.Estatus">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.estatus"/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.Visible">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.visible"/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.abrirCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.AbrirCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.AbrirCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.Abrir"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.descargarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.DescargarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.DescargarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ItemMarbeteVM.Descargar"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.Usuario">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.usuario"/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.Password">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.password"/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.ingresarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.IngresarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.IngresarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.LoginVM.Ingresar"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.ingresarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.IngresarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.IngresarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Ingresar"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.parametrizacionCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.ParametrizacionCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.ParametrizacionCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Parametrizacion"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.configuracionCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.ConfiguracionCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.ConfiguracionCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Configuracion"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.catalogosCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.CatalogosCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.CatalogosCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Catalogos"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.capturarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.CapturarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.CapturarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Capturar"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.capturadosCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.CapturadosCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.CapturadosCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Capturados"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.pendientesCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.PendientesCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.PendientesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Pendientes"/>.</summary>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.borrarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.BorrarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.BorrarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.MainVM.Borrar"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ParametrizacionVM">
+            <inheritdoc/>
+        </member>
+        <member name="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ParametrizacionVM.actualizarCommand">
+            <summary>The backing field for <see cref="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ParametrizacionVM.ActualizarCommand"/>.</summary>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ParametrizacionVM.ActualizarCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Blanquita_Inventarios.PrototipoMAUI.ViewModel.ParametrizacionVM.Actualizar"/>.</summary>
+        </member>
+        <member name="T:Blanquita_Inventarios.PrototipoMAUI.ViewModel.PendientesVM">
+            <inheritdoc/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.PendientesVM.Listado">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.PendientesVM.listado"/>
+        </member>
+        <member name="P:Blanquita_Inventarios.PrototipoMAUI.ViewModel.PendientesVM.GetMarbetes">
+            <inheritdoc cref="F:Blanquita_Inventarios.PrototipoMAUI.ViewModel.PendientesVM.getMarbetes"/>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_DatePicker.TextColorTo(Microsoft.Maui.Controls.DatePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Editor.TextColorTo(Microsoft.Maui.Controls.Editor,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Entry.TextColorTo(Microsoft.Maui.Controls.Entry,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_InputView.TextColorTo(Microsoft.Maui.Controls.InputView,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Label.TextColorTo(Microsoft.Maui.Controls.Label,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Picker.TextColorTo(Microsoft.Maui.Controls.Picker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_RadioButton.TextColorTo(Microsoft.Maui.Controls.RadioButton,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_SearchBar.TextColorTo(Microsoft.Maui.Controls.SearchBar,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_TimePicker.TextColorTo(Microsoft.Maui.Controls.TimePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Listado">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Listado" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.GetMarbetes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "GetMarbetes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Marbete">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Marbete" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Estatus">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Estatus" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Visible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Visible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Usuario">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Usuario" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Password">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Password" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Listado">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Listado" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.GetMarbetes">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "GetMarbetes" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Marbete">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Marbete" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Estatus">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Estatus" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Visible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Visible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Usuario">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Usuario" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Password">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Password" generated properties.</summary>
+        </member>
+    </members>
+</doc>

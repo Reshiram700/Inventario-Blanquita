@@ -1,0 +1,132 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.ImpresionMarbetesVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Formato 2</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <tr>
+                        <td>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <img src="~/Content/img/logo.png" />
+                                    </td>
+                                    <td colspan="2" class="text-center">
+                                        <p style="margin-top:5px;">
+                                            <b><span style="font-size: 24px; letter-spacing: 2px;">Maderera y Ferretera Blanquita S.A. de C.V.</span></b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        Lista de Marbetes
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Encargado Marbeteo:&nbsp;&nbsp;</b>
+                                    </td>
+                                    <td colspan="2" style="border-bottom: 1px solid #000000;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        Almacén
+                                    </th>
+                                    <th>
+                                        Marbete
+                                    </th>
+                                    <th>
+                                        Zona
+                                    </th>
+                                    <th>
+                                        Comentarios 1
+                                    </th>
+                                    <th>
+                                        Comentario 2
+                                    </th>
+                                </tr>
+
+                                @for (int item = Model.Inicio; item <= Model.Fin; item++)
+                                {
+                                    <tr>
+                                        <td>@Model.Almacen</td>
+                                        <td>@item</td>
+                                        <td>
+                                            <table style="width: 200px;">
+                                                <tr>
+                                                    <td style="border-bottom: 1px solid #000000;">
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table style="width: 350px;">
+                                                <tr>
+                                                    <td style="border-bottom: 1px solid #000000;">
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table style="width: 350px;">
+                                                <tr>
+                                                    <td style="border-bottom: 1px solid #000000;">
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

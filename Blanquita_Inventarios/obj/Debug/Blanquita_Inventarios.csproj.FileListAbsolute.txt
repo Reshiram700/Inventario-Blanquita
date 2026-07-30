@@ -1,0 +1,158 @@
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Blanquita_Inventarios.dll.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Blanquita_Inventarios.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Blanquita_Inventarios.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csc.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csc.exe.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csc.rsp
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csi.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csi.exe.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csi.rsp
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.AppContext.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Collections.Immutable.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Console.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Globalization.Calendars.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.Compression.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.FileSystem.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Net.Http.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Net.Sockets.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Reflection.Metadata.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.ValueTuple.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.XPath.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\vbc.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\vbc.exe.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\vbc.rsp
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\VBCSCompiler.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\VBCSCompiler.exe.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Antlr3.Runtime.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Microsoft.Web.Infrastructure.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Newtonsoft.Json.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Helpers.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Mvc.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Optimization.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Razor.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Deployment.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Razor.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\WebGrease.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Helpers.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Mvc.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Optimization.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Razor.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Deployment.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Razor.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Newtonsoft.Json.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Antlr3.Runtime.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.csproj.AssemblyReference.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.csproj.CoreCompileInputs.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquit.58EC5424.Up2Date
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Blanquita_Inventarios.dll.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Blanquita_Inventarios.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Blanquita_Inventarios.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csc.exe
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csc.exe.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csc.rsp
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csi.exe
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csi.exe.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\csi.rsp
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.AppContext.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Collections.Immutable.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Console.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Globalization.Calendars.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.Compression.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.FileSystem.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Net.Http.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Net.Sockets.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Reflection.Metadata.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.ValueTuple.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.XPath.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\vbc.exe
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\vbc.exe.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\vbc.rsp
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\VBCSCompiler.exe
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\roslyn\VBCSCompiler.exe.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Antlr3.Runtime.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Microsoft.Web.Infrastructure.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Newtonsoft.Json.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Helpers.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Mvc.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Optimization.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Razor.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Deployment.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Razor.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\WebGrease.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Helpers.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Mvc.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Optimization.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.Razor.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Deployment.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\System.Web.WebPages.Razor.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Newtonsoft.Json.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Antlr3.Runtime.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.csproj.CoreCompileInputs.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquit.58EC5424.Up2Date
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios\obj\Debug\Blanquita_Inventarios.pdb

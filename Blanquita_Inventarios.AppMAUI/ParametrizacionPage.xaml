@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.AppMAUI.ParametrizacionPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.AppMAUI.ViewModels"
+             x:DataType="viewmodel:ParametrizacionVM"
+             BackgroundColor="#F4F6FA">
+
+    <!-- ===== ESTILOS ===== -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <!-- Tarjeta moderna -->
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="22"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="25"/>
+                <Setter Property="Margin" Value="25,40,25,0"/>
+                <Setter Property="BorderColor" Value="#E5E7EB"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Spacing="0">
+
+        <!-- HEADER -->
+        <Grid Padding="25,25,25,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Botón regresar -->
+            <ImageButton Grid.Column="0"
+                         Source="icon_back"
+                         Command="{Binding RegresarCommand}"
+                         WidthRequest="24"
+                         HeightRequest="24"
+                         BackgroundColor="Transparent"/>
+
+            <!-- Título -->
+            <Label Grid.Column="1"
+                   Text="NOMBRE PDA"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="25"
+                   FontAttributes="Bold"
+                   TextColor="#001968"/>
+
+            <!-- Versión -->
+            <Label Grid.Column="2"
+                   Text="v 2.1"
+                   VerticalOptions="Center"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   TextColor="#E48E2C"/>
+        </Grid>
+
+        <!-- Subtítulo -->
+        <Label Text="Información del equipo actual"
+               FontSize="13"
+               TextColor="#6B7280"
+               HorizontalOptions="Center"
+               Margin="0,5,0,0"/>
+
+        <!-- TARJETA -->
+        <Frame Style="{StaticResource CardStyle}">
+
+            <VerticalStackLayout Spacing="18">
+
+                <Label Text="Nombre configurado de dispositivo"
+                       FontSize="14"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       TextColor="#374151"/>
+
+                <!-- Campo informativo -->
+                <Frame CornerRadius="14"
+                       Padding="15"
+                       BackgroundColor="#EEF1F7"
+                       BorderColor="#D1D5DB"
+                       HasShadow="False">
+
+                    <Label Text="{Binding NombrePDA}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#111827"/>
+                </Frame>
+
+                
+
+            </VerticalStackLayout>
+
+        </Frame>
+
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,224 @@
+﻿@model Blanquita_Inventarios.ViewModels.GenericVM
+
+@{
+    ViewBag.Title = "Diferencias. Ajustes Conteo 2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Diferencias. Ajustes Conteo 2
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Ajustes", "MonitorDiferencias", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Refresh
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" class="btn green-jungle margin-bottom-5" onclick="">
+                                            Excel
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </button>
+                                        <button type="button" class="btn blue-steel margin-bottom-5" onclick="">
+                                            Actualizar el Conteo del Inventario
+                                            <i class="fa fa fa-file-text-o"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Home", "Home")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Inventario</label>
+                                                    <select id="ddlFiltroPerfil" class="form-control">
+                                                        <option>- Seleccione -</option>
+                                                        <option>Inventario Central</option>
+                                                        <option selected>Inventario de Prueba</option>
+                                                        <option>Inventario Estacion Norte</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Buscar</label>
+                                                    <input type="text" id="txtFiltroUsuario" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>ItmsGrpNam</label>
+                                                    <select id="ddlFiltroPerfil" class="form-control">
+                                                        <option selected>- Seleccione -</option>
+                                                        <option>A001</option>
+                                                        <option>A002</option>
+                                                        <option>A003</option>
+                                                        <option>A004</option>
+                                                        <option>A005</option>
+                                                        <option>A006</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                            <thead>
+                                                <tr class="bg-light headerCustom">
+                                                    <th>
+                                                        <input name="control" value="WhsCode"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="ItmsGrpNam"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="ItemCode"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="ItemName"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="UOM1"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Onhand"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Por Procesar"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Contado"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Dif. Pesos Neto"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Listado)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo00)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo01)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo02)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo03)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo04)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo05)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo06)
+                                                            </td>
+                                                            <td>
+                                                                <input id="txtConteo_@item.Numero00" type="number" readonly value="@item.Campo07" class="form-control" />
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo08)
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: true,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info: false
+            });
+        });
+    </script>
+}
+
+

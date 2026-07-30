@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Blanquita_Inventarios.AppMAUI\\Blanquita_Inventarios.AppMAUI.csproj",
+        "Action": "Start",
+        "DebugTarget": "Samsung SM-G988N (Android 9.0 - API 28)"
+      },
+      {
+        "Path": "Blanquita_Inventarios.WebApi\\Blanquita_Inventarios.WebApi.csproj",
+        "Action": "Start",
+        "DebugTarget": "Web Server (Google Chrome)"
+      }
+    ]
+  }
+]

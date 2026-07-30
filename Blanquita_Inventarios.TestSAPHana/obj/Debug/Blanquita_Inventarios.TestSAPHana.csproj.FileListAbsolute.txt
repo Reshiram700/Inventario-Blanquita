@@ -1,0 +1,20 @@
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Blanquita_Inventarios.TestSAPHana.exe.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Blanquita_Inventarios.TestSAPHana.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Blanquita_Inventarios.TestSAPHana.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.csproj.AssemblyReference.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.csproj.CoreCompileInputs.cache
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.exe
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Sap.Data.Hana.v4.5.dll
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Sap.Data.Hana.v4.5.pdb
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Sap.Data.Hana.v4.5.xml
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquit.160CA597.Up2Date
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Blanquita_Inventarios.TestSAPHana.exe.config
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Blanquita_Inventarios.TestSAPHana.exe
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\bin\Debug\Blanquita_Inventarios.TestSAPHana.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.csproj.CoreCompileInputs.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquit.160CA597.Up2Date
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.exe
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Debug\Blanquita_Inventarios.TestSAPHana.pdb

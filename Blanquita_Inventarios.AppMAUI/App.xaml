@@ -1,0 +1,17 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Blanquita_Inventarios.AppMAUI"
+             x:Class="Blanquita_Inventarios.AppMAUI.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Url de la API -->
+            <x:String x:Key="UrlAPI">http://10.10.11.71:81</x:String>
+            <!--<x:String x:Key="UrlAPI">http://192.168.1.189/InventariosWebApi</x:String>-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

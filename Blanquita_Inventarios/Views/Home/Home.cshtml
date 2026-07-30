@@ -1,0 +1,322 @@
+﻿@model Blanquita_Inventarios.ViewModels.GenericVM
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <h1 class="page-title">
+            Sistema de Toma de Inventarios
+        </h1>
+        <div>
+            <link href="~/Content/css/cubeportfolio.css" rel="stylesheet" />
+            <link href="~/Content/css/portfolio.min.css" rel="stylesheet" />
+            <style type="text/css">
+                .cbp-wrapper .cbp-item {
+                    width: 260px !important;
+                }
+
+                .panelapp {
+                    width: 250px;
+                    height: 160px;
+                    float: left;
+                    border: 1px solid #E6E6E6;
+                    border-radius: 10px !important;
+                    margin: 10px 10px 10px 10px;
+                    padding: 0px !important;
+                }
+
+                .gradiente2 {
+                    background-color: #26344b;
+                }
+
+                .panelappic {
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                    margin-top: 35px;
+                    height: 65px !important;
+                }
+
+                .panelapptitulo {
+                    display: block;
+                    font-size: 0.9em;
+                    margin-left: auto;
+                    margin-left: auto;
+                    text-align: center;
+                    color: white;
+                }
+            </style>
+
+            <div class="portfolio-content portfolio-1">
+                <div id="js-filters-juicy-projects" class="cbp-l-filters-button">
+                    <div data-filter="*" class="cbp-filter-item-active cbp-filter-item btn dark btn-outline uppercase">
+                        Todos
+                        <div class="cbp-filter-counter">12</div>
+                    </div>
+                    <div data-filter=".administrador" class="cbp-filter-item btn dark btn-outline uppercase">
+                        ADMINISTRACIÓN
+                        <div class="cbp-filter-counter">3</div>
+                    </div>
+                    <div data-filter=".monitor" class="cbp-filter-item btn dark btn-outline uppercase">
+                        MONITOR DE AVANCES
+                        <div class="cbp-filter-counter">1</div>
+                    </div>
+                    <div data-filter=".diferencias" class="cbp-filter-item btn dark btn-outline uppercase">
+                        MONITOR DE DIFERENCIAS
+                        <div class="cbp-filter-counter">6</div>
+                    </div>
+                    <div data-filter=".operaciones" class="cbp-filter-item btn dark btn-outline uppercase">
+                        OPERACIONES
+                        <div class="cbp-filter-counter">2</div>
+                    </div>
+                </div>
+
+                <div id="js-grid-juicy-projects" class="cbp">
+
+                    <div class="cbp-item administrador" style="width: auto !important;">
+                        <a href="@Url.Action("Index","Usuarios")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Administrador de Usuarios
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item administrador" style="width: auto !important;">
+                        <a href="@Url.Action("Index","Configuraciones")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Administrador de Configuraciones de Servidores
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>                
+
+                    <div class="cbp-item monitor" style="width: auto !important;">
+                        <a href="@Url.Action("Index","Monitor")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Monitor de Avance. Avance por Zona
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item diferencias" style="width: auto !important;">
+                        <a href="@Url.Action("Capturas","MonitorDiferencias")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Monitor de Diferencias. Capturas
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item diferencias" style="width: auto !important;">
+                        <a href="@Url.Action("Costos","MonitorDiferencias")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Monitor de Diferencias. Costo Cero Inactivos
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item diferencias" style="width: auto !important;">
+                        <a href="@Url.Action("MontosUno","MonitorDiferencias")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Monitor de Diferencias. Montos en Conteo 1
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item diferencias" style="width: auto !important;">
+                        <a href="@Url.Action("MontosDos","MonitorDiferencias")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Monitor de Diferencias. Montos en Conteo 2
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item diferencias" style="width: auto !important;">
+                        <a href="@Url.Action("ConteoUno","MonitorDiferencias")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Monitor de Diferencias. Diferencias Conteo 1
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item diferencias" style="width: auto !important;">
+                        <a href="@Url.Action("Ajustes","MonitorDiferencias")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Monitor de Diferencias. Ajuste Conteo 2
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item operaciones" style="width: auto !important;">
+                        <a href="@Url.Action("Index","Ajustes")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Ajustes de Entrada y Salida SAP
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item operaciones" style="width: auto !important;">
+                        <a href="@Url.Action("Index","Pda")">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <div class="panelapp gradiente2">
+                                        <div class="panelappic">
+                                            <center>
+                                                <img src="~/Content/img/inicio/consulta_nombre.png" style="height: 60px; width: 60px;" />
+                                            </center>
+                                        </div>
+                                        <div class="panelapptitulo">
+                                            <p>
+                                                Cantidad de Artículos por PDA
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/jquery.cubeportfolio.min.js"></script>
+    <script src="~/Content/js/portfolio-1.min.js"></script>
+}

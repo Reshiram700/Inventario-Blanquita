@@ -1,0 +1,308 @@
+﻿@model Blanquita_Inventarios.ViewModels.GenericVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <tr>
+                        <td>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <img src="~/Content/img/logo.png" />
+                                    </td>
+                                    <td colspan="2" class="text-center">
+                                        <p style="margin-top:5px;">
+                                            <b><span style="font-size: 24px; letter-spacing: 2px;">Reporte de Diferencias + Monto</span></b>
+                                            <br />
+                                            <b>02-PLOMERIA</b>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <b>Almacén:&nbsp;&nbsp;</b> Almacén 1
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right">
+                                        <b>Fecha Impresión:&nbsp;&nbsp;</b> @DateTime.Now.ToString("dd/MM/yyyy")
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table">
+                                <tr>
+                                    <td colspan="10" style="background-color: #edeaea;">
+                                        <b>Zona Centro</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Marbetes
+                                    </th>
+                                    <th>
+                                        Cod. Artículo
+                                    </th>
+                                    <th>
+                                        Nombre Artículo
+                                    </th>
+                                    <th>
+                                        UOM1
+                                    </th>
+                                    <th>
+                                        OnHand
+                                    </th>
+                                    <th>
+                                        Contado
+                                    </th>
+                                    <th>
+                                        Conteo Final
+                                    </th>
+                                    <th>
+                                        Precio
+                                    </th>
+                                    <th>
+                                        Varianza Neta UOM
+                                    </th>
+                                    <th>
+                                        Varianza Neta $
+                                    </th>
+                                </tr>
+                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                {
+                                    foreach (var item in Model.Listado)
+                                    {
+                                        <tr>
+                                            <td>@item.Campo00</td>
+                                            <td>@item.Campo01</td>
+                                            <td>@item.Campo02</td>
+                                            <td>@item.Campo04</td>
+                                            <td>@item.Campo03</td>
+                                            <td>@item.Campo08</td>
+                                            <td>@item.Campo09</td>
+                                            <td>@item.Campo05</td>
+                                            <td>@item.Campo07</td>
+                                            <td>@item.Campo06</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="10">
+                                            No se encontro información
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="10" style="background-color: #edeaea;">
+                                        <b>Zona Norte</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Marbetes
+                                    </th>
+                                    <th>
+                                        Cod. Artículo
+                                    </th>
+                                    <th>
+                                        Nombre Artículo
+                                    </th>
+                                    <th>
+                                        UOM1
+                                    </th>
+                                    <th>
+                                        OnHand
+                                    </th>
+                                    <th>
+                                        Contado
+                                    </th>
+                                    <th>
+                                        Conteo Final
+                                    </th>
+                                    <th>
+                                        Precio
+                                    </th>
+                                    <th>
+                                        Varianza Neta UOM
+                                    </th>
+                                    <th>
+                                        Varianza Neta $
+                                    </th>
+                                </tr>
+                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                {
+                                    foreach (var item in Model.Listado)
+                                    {
+                                        <tr>
+                                            <td>@item.Campo00</td>
+                                            <td>@item.Campo01</td>
+                                            <td>@item.Campo02</td>
+                                            <td>@item.Campo04</td>
+                                            <td>@item.Campo03</td>
+                                            <td>@item.Campo08</td>
+                                            <td>@item.Campo09</td>
+                                            <td>@item.Campo05</td>
+                                            <td>@item.Campo07</td>
+                                            <td>@item.Campo06</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="10">
+                                            No se encontro información
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="10" style="background-color: #edeaea;">
+                                        <b>Zona Sur</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Marbetes
+                                    </th>
+                                    <th>
+                                        Cod. Artículo
+                                    </th>
+                                    <th>
+                                        Nombre Artículo
+                                    </th>
+                                    <th>
+                                        UOM1
+                                    </th>
+                                    <th>
+                                        OnHand
+                                    </th>
+                                    <th>
+                                        Contado
+                                    </th>
+                                    <th>
+                                        Conteo Final
+                                    </th>
+                                    <th>
+                                        Precio
+                                    </th>
+                                    <th>
+                                        Varianza Neta UOM
+                                    </th>
+                                    <th>
+                                        Varianza Neta $
+                                    </th>
+                                </tr>
+                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                {
+                                    foreach (var item in Model.Listado)
+                                    {
+                                        <tr>
+                                            <td>@item.Campo00</td>
+                                            <td>@item.Campo01</td>
+                                            <td>@item.Campo02</td>
+                                            <td>@item.Campo04</td>
+                                            <td>@item.Campo03</td>
+                                            <td>@item.Campo08</td>
+                                            <td>@item.Campo09</td>
+                                            <td>@item.Campo05</td>
+                                            <td>@item.Campo07</td>
+                                            <td>@item.Campo06</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="10">
+                                            No se encontro información
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5">
+                                        <b>
+                                            *No rubricas
+                                        </b>
+                                    </td>
+                                    <td colspan="5" class="text-right">
+                                        <b>
+                                            *Nombres y apellidos letra legible
+                                        </b>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="height: 80px;">
+                        &nbsp;
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="margin-left: auto; margin-right: auto;">
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                                        Contó (Nombre)
+                                    </td>
+                                    <td style="width: 50px;">
+                                        &nbsp;
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                                        Supervisó (Nombre)
+                                    </td>
+                                    <td style="width: 50px;">
+                                        &nbsp;
+                                    </td>
+                                    <td style="border-top: 1px solid #000000; width: 250px; text-align: center;">
+                                        Liberó Gerencia (Nombre)
+                                    </td>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">
+                            <br />
+                            <b>Servidor:&nbsp;</b>172.698.6.25
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

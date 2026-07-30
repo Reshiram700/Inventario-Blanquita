@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.PrototipoMAUI.ConfiguracionPage"
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.PrototipoMAUI.ViewModel"
+             x:DataType="viewmodel:ConfiguracionVM"
+             Title="">
+    <VerticalStackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label 
+                Text="CONFIGURACIÓN"                 
+                HorizontalOptions="Center" FontSize="20" />
+            <Grid Margin="20, 50, 20, 50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Inventario" />                
+                <Picker x:Name="pkInventario" Grid.Row="0" Grid.Column="1"
+                    Title="Selecciona un Inventario">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Inventario Central</x:String>
+                            <x:String>Inventario de Pruebas</x:String>
+                            <x:String>Inventario 20250301</x:String>
+                            <x:String>Inventario Planta Norte</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
+            <StackLayout>
+                <Button x:Name="btnSeleccionar" Text="SELECCIONAR" CornerRadius="10"
+                    WidthRequest="200" HeightRequest="55" BackgroundColor="#001968"
+                    TextColor="#ffffff" Command="{Binding SeleccionarCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

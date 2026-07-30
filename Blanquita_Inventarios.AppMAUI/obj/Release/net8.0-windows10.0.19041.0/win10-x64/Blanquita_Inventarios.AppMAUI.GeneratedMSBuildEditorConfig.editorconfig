@@ -1,0 +1,103 @@
+is_global = true
+build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
+build_property._MvvmToolkitIsUsingWindowsRuntimePack = true
+build_property.CsWinRTComponent = 
+build_property.CsWinRTAotOptimizerEnabled = true
+build_property.CsWinRTAotOptimizerEnabled = true
+build_property.CsWinRTAotWarningLevel = 
+build_property.CsWinRTAotWarningLevel = 
+build_property.TargetFramework = net8.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.17763.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Blanquita_Inventarios.AppMAUI
+build_property.ProjectDir = C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTAotExportsEnabled = 
+build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptIn = 
+build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptOut = 
+build_property.CsWinRTCcwLookupTableGeneratorEnabled = true
+build_property.CsWinRTMergeReferencedActivationFactories = 
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/BarcodePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.BarcodePage.xaml
+build_metadata.AdditionalFiles.TargetPath = BarcodePage.xaml
+build_metadata.AdditionalFiles.RelativePath = BarcodePage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/CapturadosPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.CapturadosPage.xaml
+build_metadata.AdditionalFiles.TargetPath = CapturadosPage.xaml
+build_metadata.AdditionalFiles.RelativePath = CapturadosPage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/CapturarPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.CapturarPage.xaml
+build_metadata.AdditionalFiles.TargetPath = CapturarPage.xaml
+build_metadata.AdditionalFiles.RelativePath = CapturarPage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/ConfiguracionPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.ConfiguracionPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ConfiguracionPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ConfiguracionPage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = LoginPage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/ParametrizacionPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.ParametrizacionPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ParametrizacionPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ParametrizacionPage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/PendientesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.PendientesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = PendientesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = PendientesPage.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Apps VS/Blanquita_Inventarios/Blanquita_Inventarios.AppMAUI/VerPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Blanquita_Inventarios.AppMAUI.VerPage.xaml
+build_metadata.AdditionalFiles.TargetPath = VerPage.xaml
+build_metadata.AdditionalFiles.RelativePath = VerPage.xaml

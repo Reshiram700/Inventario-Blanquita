@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InventariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccionesCodigo">
+          <Key>
+            <PropertyRef Name="IdAccion" />
+          </Key>
+          <Property Name="IdAccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Codigos">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdConfiguracion" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="FechaGeneracion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuarioGenero" Type="int" Nullable="false" />
+          <Property Name="IdUsuarioUtilizo" Type="int" />
+          <Property Name="IdAccion" Type="int" />
+          <Property Name="FechaUtilizo" Type="datetime" />
+          <Property Name="IdEstatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Configuraciones">
+          <Key>
+            <PropertyRef Name="IdConfiguracion" />
+          </Key>
+          <Property Name="IdConfiguracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="NombreInventario" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ServidorIP" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Instancia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Puerto" Type="varchar" MaxLength="10" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BaseDatos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Almacen" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Cerrado" Type="bit" Nullable="false" />
+          <Property Name="FechaCerrado" Type="datetime" />
+          <Property Name="Deshabilitado" Type="bit" Nullable="false" />
+          <Property Name="FechaDeshabilitado" Type="datetime" />
+          <Property Name="FechaUltimoRespaldo" Type="datetime" />
+          <Property Name="FechaEliminado" Type="datetime" />
+          <Property Name="Procesado" Type="bit" Nullable="false" />
+          <Property Name="AjustesAplicados" Type="bit" Nullable="false" />
+          <Property Name="FechaAjustes" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EstatusCodigo">
+          <Key>
+            <PropertyRef Name="IdEstatus" />
+          </Key>
+          <Property Name="IdEstatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estatus" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Marbetes">
+          <Key>
+            <PropertyRef Name="IdMarbete" />
+          </Key>
+          <Property Name="IdMarbete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdZona" Type="int" Nullable="false" />
+          <Property Name="Marbete" Type="int" Nullable="false" />
+          <Property Name="Capturo" Type="varchar" MaxLength="50" />
+          <Property Name="FechaInicio" Type="datetime" />
+          <Property Name="FechaCierre" Type="datetime" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Perfil" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdPerfil" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="FechaEliminado" Type="datetime" />
+          <Property Name="Principal" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zonas">
+          <Key>
+            <PropertyRef Name="IdZona" />
+          </Key>
+          <Property Name="IdZona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdConfiguracion" Type="int" Nullable="false" />
+          <Property Name="Zona" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="MarbeteInicial" Type="int" Nullable="false" />
+          <Property Name="MarbeteFinal" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="FechaEliminado" Type="datetime" />
+          <Property Name="MarbetesCreados" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Codigos_AccionesCodigo">
+          <End Role="AccionesCodigo" Type="Self.AccionesCodigo" Multiplicity="0..1" />
+          <End Role="Codigos" Type="Self.Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccionesCodigo">
+              <PropertyRef Name="IdAccion" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codigos_Configuraciones">
+          <End Role="Configuraciones" Type="Self.Configuraciones" Multiplicity="1" />
+          <End Role="Codigos" Type="Self.Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuraciones">
+              <PropertyRef Name="IdConfiguracion" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdConfiguracion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codigos_EstatusCodigo">
+          <End Role="EstatusCodigo" Type="Self.EstatusCodigo" Multiplicity="1" />
+          <End Role="Codigos" Type="Self.Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusCodigo">
+              <PropertyRef Name="IdEstatus" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codigos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Codigos" Type="Self.Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdUsuarioGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codigos_Usuarios1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Codigos" Type="Self.Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdUsuarioUtilizo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marbetes_Zonas">
+          <End Role="Zonas" Type="Self.Zonas" Multiplicity="1" />
+          <End Role="Marbetes" Type="Self.Marbetes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zonas">
+              <PropertyRef Name="IdZona" />
+            </Principal>
+            <Dependent Role="Marbetes">
+              <PropertyRef Name="IdZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Perfiles">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zonas_Configuraciones">
+          <End Role="Configuraciones" Type="Self.Configuraciones" Multiplicity="1" />
+          <End Role="Zonas" Type="Self.Zonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuraciones">
+              <PropertyRef Name="IdConfiguracion" />
+            </Principal>
+            <Dependent Role="Zonas">
+              <PropertyRef Name="IdConfiguracion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Get_TotalMarbetesByConfiguracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdConfiguracion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Report_CostoCeroByInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhsCode" Type="varchar" Mode="In" />
+          <Parameter Name="XmlStr" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="Report_InformacionSAPxPorProcesar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhsCode" Type="varchar" Mode="In" />
+          <Parameter Name="XmlStr" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Report_InventarioProcesar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhsCode" Type="varchar" Mode="In" />
+          <Parameter Name="XmlStr" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Report_ItemsByAlmacen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhsCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Report_ListadoCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TextoInicio" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Report_SAPBarcodes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Search_ItemExistenciaSAP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ItemCode" Type="varchar" Mode="In" />
+          <Parameter Name="WhsCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Search_ItmsGrpName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ItemCode" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="InventariosModelStoreContainer">
+          <EntitySet Name="AccionesCodigo" EntityType="Self.AccionesCodigo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Codigos" EntityType="Self.Codigos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuraciones" EntityType="Self.Configuraciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstatusCodigo" EntityType="Self.EstatusCodigo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marbetes" EntityType="Self.Marbetes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zonas" EntityType="Self.Zonas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Codigos_AccionesCodigo" Association="Self.FK_Codigos_AccionesCodigo">
+            <End Role="AccionesCodigo" EntitySet="AccionesCodigo" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codigos_Configuraciones" Association="Self.FK_Codigos_Configuraciones">
+            <End Role="Configuraciones" EntitySet="Configuraciones" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codigos_EstatusCodigo" Association="Self.FK_Codigos_EstatusCodigo">
+            <End Role="EstatusCodigo" EntitySet="EstatusCodigo" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codigos_Usuarios" Association="Self.FK_Codigos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codigos_Usuarios1" Association="Self.FK_Codigos_Usuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marbetes_Zonas" Association="Self.FK_Marbetes_Zonas">
+            <End Role="Zonas" EntitySet="Zonas" />
+            <End Role="Marbetes" EntitySet="Marbetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Perfiles" Association="Self.FK_Usuarios_Perfiles">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zonas_Configuraciones" Association="Self.FK_Zonas_Configuraciones">
+            <End Role="Configuraciones" EntitySet="Configuraciones" />
+            <End Role="Zonas" EntitySet="Zonas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="InventariosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Perfiles" EntityType="InventariosModel.Perfiles" />
+          <EntitySet Name="Usuarios" EntityType="InventariosModel.Usuarios" />
+          <AssociationSet Name="FK_Usuarios_Perfiles" Association="InventariosModel.FK_Usuarios_Perfiles">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <EntitySet Name="AccionesCodigo" EntityType="InventariosModel.AccionesCodigo" />
+          <EntitySet Name="Codigos" EntityType="InventariosModel.Codigos" />
+          <EntitySet Name="EstatusCodigo" EntityType="InventariosModel.EstatusCodigo" />
+          <AssociationSet Name="FK_Codigos_AccionesCodigo" Association="InventariosModel.FK_Codigos_AccionesCodigo">
+            <End Role="AccionesCodigo" EntitySet="AccionesCodigo" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codigos_EstatusCodigo" Association="InventariosModel.FK_Codigos_EstatusCodigo">
+            <End Role="EstatusCodigo" EntitySet="EstatusCodigo" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codigos_Usuarios" Association="InventariosModel.FK_Codigos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codigos_Usuarios1" Association="InventariosModel.FK_Codigos_Usuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <EntitySet Name="Marbetes" EntityType="InventariosModel.Marbetes" />
+          <FunctionImport Name="Search_ItmsGrpName" ReturnType="Collection(InventariosModel.Search_ItmsGrpName_Result)">
+          <Parameter Name="ItemCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Report_SAPBarcodes" ReturnType="Collection(InventariosModel.Report_SAPBarcodes_Result)" />
+          <FunctionImport Name="Report_ItemsByAlmacen" ReturnType="Collection(InventariosModel.Report_ItemsByAlmacen_Result)">
+          <Parameter Name="WhsCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_TotalMarbetesByConfiguracion" ReturnType="Collection(Int32)">
+          <Parameter Name="IdConfiguracion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Zonas" EntityType="InventariosModel.Zonas" />
+          <AssociationSet Name="FK_Marbetes_Zonas" Association="InventariosModel.FK_Marbetes_Zonas">
+            <End Role="Zonas" EntitySet="Zonas" />
+            <End Role="Marbetes" EntitySet="Marbetes" />
+          </AssociationSet>
+          <FunctionImport Name="Report_ListadoCategorias" ReturnType="Collection(InventariosModel.Report_ListadoCategorias_Result)">
+          <Parameter Name="TextoInicio" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Configuraciones" EntityType="InventariosModel.Configuraciones" />
+          <AssociationSet Name="FK_Codigos_Configuraciones" Association="InventariosModel.FK_Codigos_Configuraciones">
+            <End Role="Configuraciones" EntitySet="Configuraciones" />
+            <End Role="Codigos" EntitySet="Codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zonas_Configuraciones" Association="InventariosModel.FK_Zonas_Configuraciones">
+            <End Role="Configuraciones" EntitySet="Configuraciones" />
+            <End Role="Zonas" EntitySet="Zonas" />
+          </AssociationSet>
+          <FunctionImport Name="Report_CostoCeroByInventario" ReturnType="Collection(InventariosModel.Report_CostoCeroByInventario_Result)">
+            <Parameter Name="WhsCode" Mode="In" Type="String" />
+            <Parameter Name="XmlStr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Search_ItemExistenciaSAP" ReturnType="Collection(InventariosModel.Search_ItemExistenciaSAP_Result)">
+            <Parameter Name="ItemCode" Mode="In" Type="String" />
+            <Parameter Name="WhsCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Report_InformacionSAPxPorProcesar" ReturnType="Collection(InventariosModel.Report_InformacionSAPxPorProcesar_Result)">
+            <Parameter Name="WhsCode" Mode="In" Type="String" />
+            <Parameter Name="XmlStr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Report_InventarioProcesar" ReturnType="Collection(InventariosModel.Report_InventarioProcesar_Result)">
+            <Parameter Name="WhsCode" Mode="In" Type="String" />
+            <Parameter Name="XmlStr" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Perfil" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="InventariosModel.FK_Usuarios_Perfiles" FromRole="Perfiles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaEliminado" Type="DateTime" Precision="3" />
+          <Property Name="Principal" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Perfiles" Relationship="InventariosModel.FK_Usuarios_Perfiles" FromRole="Usuarios" ToRole="Perfiles" />
+          <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_Usuarios" FromRole="Usuarios" ToRole="Codigos" />
+          <NavigationProperty Name="Codigos1" Relationship="InventariosModel.FK_Codigos_Usuarios1" FromRole="Usuarios" ToRole="Codigos" />
+        </EntityType>
+        <Association Name="FK_Usuarios_Perfiles">
+          <End Type="InventariosModel.Perfiles" Role="Perfiles" Multiplicity="1" />
+          <End Type="InventariosModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccionesCodigo">
+          <Key>
+            <PropertyRef Name="IdAccion" />
+          </Key>
+          <Property Name="IdAccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_AccionesCodigo" FromRole="AccionesCodigo" ToRole="Codigos" />
+        </EntityType>
+        <EntityType Name="Codigos">
+          <Key>
+            <PropertyRef Name="IdCodigo" />
+          </Key>
+          <Property Name="IdCodigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdConfiguracion" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuarioGenero" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuarioUtilizo" Type="Int32" />
+          <Property Name="IdAccion" Type="Int32" />
+          <Property Name="FechaUtilizo" Type="DateTime" Precision="3" />
+          <Property Name="IdEstatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccionesCodigo" Relationship="InventariosModel.FK_Codigos_AccionesCodigo" FromRole="Codigos" ToRole="AccionesCodigo" />
+          <NavigationProperty Name="EstatusCodigo" Relationship="InventariosModel.FK_Codigos_EstatusCodigo" FromRole="Codigos" ToRole="EstatusCodigo" />
+          <NavigationProperty Name="Usuarios" Relationship="InventariosModel.FK_Codigos_Usuarios" FromRole="Codigos" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios1" Relationship="InventariosModel.FK_Codigos_Usuarios1" FromRole="Codigos" ToRole="Usuarios" />
+          <NavigationProperty Name="Configuraciones" Relationship="InventariosModel.FK_Codigos_Configuraciones" FromRole="Codigos" ToRole="Configuraciones" />
+        </EntityType>
+        <EntityType Name="EstatusCodigo">
+          <Key>
+            <PropertyRef Name="IdEstatus" />
+          </Key>
+          <Property Name="IdEstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_EstatusCodigo" FromRole="EstatusCodigo" ToRole="Codigos" />
+        </EntityType>
+        <Association Name="FK_Codigos_AccionesCodigo">
+          <End Type="InventariosModel.AccionesCodigo" Role="AccionesCodigo" Multiplicity="0..1" />
+          <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccionesCodigo">
+              <PropertyRef Name="IdAccion" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codigos_EstatusCodigo">
+          <End Type="InventariosModel.EstatusCodigo" Role="EstatusCodigo" Multiplicity="1" />
+          <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusCodigo">
+              <PropertyRef Name="IdEstatus" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codigos_Usuarios">
+          <End Type="InventariosModel.Usuarios" Role="Usuarios" Multiplicity="1" />
+          <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdUsuarioGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codigos_Usuarios1">
+          <End Type="InventariosModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdUsuarioUtilizo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Marbetes">
+          <Key>
+            <PropertyRef Name="IdMarbete" />
+          </Key>
+          <Property Name="IdMarbete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdZona" Type="Int32" Nullable="false" />
+          <Property Name="Marbete" Type="Int32" Nullable="false" />
+          <Property Name="Capturo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaCierre" Type="DateTime" Precision="3" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zonas" Relationship="InventariosModel.FK_Marbetes_Zonas" FromRole="Marbetes" ToRole="Zonas" />
+        </EntityType>
+        <ComplexType Name="Search_ItmsGrpName_Result">
+          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ItmsGrpNam" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="Report_SAPBarcodes_Result">
+          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="BcdCode" Nullable="false" MaxLength="254" />
+          <Property Type="String" Name="Uomcode" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="BaseQty" Nullable="true" Precision="21" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="Report_ItemsByAlmacen_Result">
+          <Property Type="String" Name="WhsCode" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="AvgPrice" Nullable="true" Precision="21" Scale="6" />
+        </ComplexType>
+        <EntityType Name="Zonas">
+          <Key>
+            <PropertyRef Name="IdZona" />
+          </Key>
+          <Property Name="IdZona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdConfiguracion" Type="Int32" Nullable="false" />
+          <Property Name="Zona" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MarbeteInicial" Type="Int32" Nullable="false" />
+          <Property Name="MarbeteFinal" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaEliminado" Type="DateTime" Precision="3" />
+          <Property Name="MarbetesCreados" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Marbetes" Relationship="InventariosModel.FK_Marbetes_Zonas" FromRole="Zonas" ToRole="Marbetes" />
+          <NavigationProperty Name="Configuraciones" Relationship="InventariosModel.FK_Zonas_Configuraciones" FromRole="Zonas" ToRole="Configuraciones" />
+        </EntityType>
+        <Association Name="FK_Marbetes_Zonas">
+          <End Type="InventariosModel.Zonas" Role="Zonas" Multiplicity="1" />
+          <End Type="InventariosModel.Marbetes" Role="Marbetes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zonas">
+              <PropertyRef Name="IdZona" />
+            </Principal>
+            <Dependent Role="Marbetes">
+              <PropertyRef Name="IdZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Report_ListadoCategorias_Result">
+          <Property Type="String" Name="Valor" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Texto" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Configuraciones">
+          <Key>
+            <PropertyRef Name="IdConfiguracion" />
+          </Key>
+          <Property Name="IdConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NombreInventario" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ServidorIP" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Instancia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Puerto" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BaseDatos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Almacen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Cerrado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCerrado" Type="DateTime" Precision="3" />
+          <Property Name="Deshabilitado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaDeshabilitado" Type="DateTime" Precision="3" />
+          <Property Name="FechaUltimoRespaldo" Type="DateTime" Precision="3" />
+          <Property Name="FechaEliminado" Type="DateTime" Precision="3" />
+          <Property Name="Procesado" Type="Boolean" Nullable="false" />
+          <Property Name="AjustesAplicados" Type="Boolean" Nullable="false" />
+          <Property Name="FechaAjustes" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_Configuraciones" FromRole="Configuraciones" ToRole="Codigos" />
+          <NavigationProperty Name="Zonas" Relationship="InventariosModel.FK_Zonas_Configuraciones" FromRole="Configuraciones" ToRole="Zonas" />
+        </EntityType>
+        <Association Name="FK_Codigos_Configuraciones">
+          <End Type="InventariosModel.Configuraciones" Role="Configuraciones" Multiplicity="1" />
+          <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuraciones">
+              <PropertyRef Name="IdConfiguracion" />
+            </Principal>
+            <Dependent Role="Codigos">
+              <PropertyRef Name="IdConfiguracion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zonas_Configuraciones">
+          <End Type="InventariosModel.Configuraciones" Role="Configuraciones" Multiplicity="1" />
+          <End Type="InventariosModel.Zonas" Role="Zonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Configuraciones">
+              <PropertyRef Name="IdConfiguracion" />
+            </Principal>
+            <Dependent Role="Zonas">
+              <PropertyRef Name="IdConfiguracion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Report_CostoCeroByInventario_Result">
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Estatus" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="Search_ItemExistenciaSAP_Result">
+          <Property Type="String" Name="WhsCode" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="OnHand" Nullable="true" Precision="21" Scale="6" />
+          <Property Type="Decimal" Name="AvgPrice" Nullable="true" Precision="21" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="Report_InformacionSAPxPorProcesar_Result">
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="OnHand" Nullable="true" Precision="21" Scale="6" />
+          <Property Type="Decimal" Name="PorProcesar" Nullable="true" Precision="21" Scale="6" />
+          <Property Type="String" Name="Uom" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="21" Scale="6" />
+          <Property Type="String" Name="ItmsGrpNam" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="UomEntry" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Report_InventarioProcesar_Result">
+          <Property Type="String" Name="WhsCode" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="ItmsGrpNam" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Cant1" Nullable="false" />
+          <Property Type="Int32" Name="Cant2" Nullable="false" />
+          <Property Type="Decimal" Name="TotalSAP" Nullable="true" Precision="38" Scale="7" />
+          <Property Type="Int32" Name="TotalContado" Nullable="false" />
+          <Property Type="Decimal" Name="TotalDesviacion" Nullable="true" Precision="38" Scale="7" />
+          <Property Type="Decimal" Name="PorcDif" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="String" Name="Uom" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="Onhand" Nullable="true" Precision="21" Scale="6" />
+          <Property Type="Decimal" Name="PorProcesar" Nullable="false" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="DifPesoNeto" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="String" Name="Marbetes" Nullable="false" MaxLength="1" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="21" Scale="6" />
+          <Property Type="Decimal" Name="VarianzaNeta" Nullable="true" Precision="21" Scale="6" />
+          <Property Type="Decimal" Name="VarianzaNetaMonto" Nullable="true" Precision="38" Scale="7" />
+          <Property Type="Int32" Name="TotalContado2" Nullable="false" />
+          <Property Type="Decimal" Name="TotalDesviacion2" Nullable="true" Precision="38" Scale="7" />
+          <Property Type="Decimal" Name="PorcDif2" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Int32" Name="Ajustado" Nullable="false" />
+          <Property Type="Int32" Name="UomEntry" Nullable="true" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InventariosModelStoreContainer" CdmEntityContainer="InventariosEntities">
+          <EntitySetMapping Name="Perfiles">
+            <EntityTypeMapping TypeName="InventariosModel.Perfiles">
+              <MappingFragment StoreEntitySet="Perfiles">
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="InventariosModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Principal" ColumnName="Principal" />
+                <ScalarProperty Name="FechaEliminado" ColumnName="FechaEliminado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccionesCodigo">
+            <EntityTypeMapping TypeName="InventariosModel.AccionesCodigo">
+              <MappingFragment StoreEntitySet="AccionesCodigo">
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="IdAccion" ColumnName="IdAccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Codigos">
+            <EntityTypeMapping TypeName="InventariosModel.Codigos">
+              <MappingFragment StoreEntitySet="Codigos">
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="FechaUtilizo" ColumnName="FechaUtilizo" />
+                <ScalarProperty Name="IdAccion" ColumnName="IdAccion" />
+                <ScalarProperty Name="IdUsuarioUtilizo" ColumnName="IdUsuarioUtilizo" />
+                <ScalarProperty Name="IdUsuarioGenero" ColumnName="IdUsuarioGenero" />
+                <ScalarProperty Name="FechaGeneracion" ColumnName="FechaGeneracion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+                <ScalarProperty Name="IdCodigo" ColumnName="IdCodigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstatusCodigo">
+            <EntityTypeMapping TypeName="InventariosModel.EstatusCodigo">
+              <MappingFragment StoreEntitySet="EstatusCodigo">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marbetes">
+            <EntityTypeMapping TypeName="InventariosModel.Marbetes">
+              <MappingFragment StoreEntitySet="Marbetes">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="FechaCierre" ColumnName="FechaCierre" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Capturo" ColumnName="Capturo" />
+                <ScalarProperty Name="Marbete" ColumnName="Marbete" />
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="IdMarbete" ColumnName="IdMarbete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Search_ItmsGrpName" FunctionName="InventariosModel.Store.Search_ItmsGrpName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Search_ItmsGrpName_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItmsGrpNam" ColumnName="ItmsGrpNam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Report_SAPBarcodes" FunctionName="InventariosModel.Store.Report_SAPBarcodes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Report_SAPBarcodes_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="BcdCode" ColumnName="BcdCode" />
+                <ScalarProperty Name="Uomcode" ColumnName="Uomcode" />
+                <ScalarProperty Name="BaseQty" ColumnName="BaseQty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Report_ItemsByAlmacen" FunctionName="InventariosModel.Store.Report_ItemsByAlmacen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Report_ItemsByAlmacen_Result">
+                <ScalarProperty Name="WhsCode" ColumnName="WhsCode" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_TotalMarbetesByConfiguracion" FunctionName="InventariosModel.Store.Get_TotalMarbetesByConfiguracion" />
+          <EntitySetMapping Name="Zonas">
+            <EntityTypeMapping TypeName="InventariosModel.Zonas">
+              <MappingFragment StoreEntitySet="Zonas">
+                <ScalarProperty Name="MarbetesCreados" ColumnName="MarbetesCreados" />
+                <ScalarProperty Name="FechaEliminado" ColumnName="FechaEliminado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="MarbeteFinal" ColumnName="MarbeteFinal" />
+                <ScalarProperty Name="MarbeteInicial" ColumnName="MarbeteInicial" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Report_ListadoCategorias" FunctionName="InventariosModel.Store.Report_ListadoCategorias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Report_ListadoCategorias_Result">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Configuraciones">
+            <EntityTypeMapping TypeName="InventariosModel.Configuraciones">
+              <MappingFragment StoreEntitySet="Configuraciones">
+                <ScalarProperty Name="FechaAjustes" ColumnName="FechaAjustes" />
+                <ScalarProperty Name="AjustesAplicados" ColumnName="AjustesAplicados" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="FechaEliminado" ColumnName="FechaEliminado" />
+                <ScalarProperty Name="FechaUltimoRespaldo" ColumnName="FechaUltimoRespaldo" />
+                <ScalarProperty Name="FechaDeshabilitado" ColumnName="FechaDeshabilitado" />
+                <ScalarProperty Name="Deshabilitado" ColumnName="Deshabilitado" />
+                <ScalarProperty Name="FechaCerrado" ColumnName="FechaCerrado" />
+                <ScalarProperty Name="Cerrado" ColumnName="Cerrado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Almacen" ColumnName="Almacen" />
+                <ScalarProperty Name="BaseDatos" ColumnName="BaseDatos" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+                <ScalarProperty Name="Instancia" ColumnName="Instancia" />
+                <ScalarProperty Name="ServidorIP" ColumnName="ServidorIP" />
+                <ScalarProperty Name="NombreInventario" ColumnName="NombreInventario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Report_CostoCeroByInventario" FunctionName="InventariosModel.Store.Report_CostoCeroByInventario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Report_CostoCeroByInventario_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_ItemExistenciaSAP" FunctionName="InventariosModel.Store.Search_ItemExistenciaSAP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Search_ItemExistenciaSAP_Result">
+                <ScalarProperty Name="WhsCode" ColumnName="WhsCode" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="OnHand" ColumnName="OnHand" />
+                <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Report_InformacionSAPxPorProcesar" FunctionName="InventariosModel.Store.Report_InformacionSAPxPorProcesar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Report_InformacionSAPxPorProcesar_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="OnHand" ColumnName="OnHand" />
+                <ScalarProperty Name="PorProcesar" ColumnName="PorProcesar" />
+                <ScalarProperty Name="Uom" ColumnName="Uom" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="ItmsGrpNam" ColumnName="ItmsGrpNam" />
+                <ScalarProperty Name="UomEntry" ColumnName="UomEntry" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Report_InventarioProcesar" FunctionName="InventariosModel.Store.Report_InventarioProcesar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventariosModel.Report_InventarioProcesar_Result">
+                <ScalarProperty Name="WhsCode" ColumnName="WhsCode" />
+                <ScalarProperty Name="ItmsGrpNam" ColumnName="ItmsGrpNam" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Cant1" ColumnName="Cant1" />
+                <ScalarProperty Name="Cant2" ColumnName="Cant2" />
+                <ScalarProperty Name="TotalSAP" ColumnName="TotalSAP" />
+                <ScalarProperty Name="TotalContado" ColumnName="TotalContado" />
+                <ScalarProperty Name="TotalDesviacion" ColumnName="TotalDesviacion" />
+                <ScalarProperty Name="PorcDif" ColumnName="PorcDif" />
+                <ScalarProperty Name="Uom" ColumnName="Uom" />
+                <ScalarProperty Name="Onhand" ColumnName="Onhand" />
+                <ScalarProperty Name="PorProcesar" ColumnName="PorProcesar" />
+                <ScalarProperty Name="DifPesoNeto" ColumnName="DifPesoNeto" />
+                <ScalarProperty Name="Marbetes" ColumnName="Marbetes" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="VarianzaNeta" ColumnName="VarianzaNeta" />
+                <ScalarProperty Name="VarianzaNetaMonto" ColumnName="VarianzaNetaMonto" />
+                <ScalarProperty Name="TotalContado2" ColumnName="TotalContado2" />
+                <ScalarProperty Name="TotalDesviacion2" ColumnName="TotalDesviacion2" />
+                <ScalarProperty Name="PorcDif2" ColumnName="PorcDif2" />
+                <ScalarProperty Name="Ajustado" ColumnName="Ajustado" />
+                <ScalarProperty Name="UomEntry" ColumnName="UomEntry" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

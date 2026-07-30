@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios", "Blanquita_Inventarios\Blanquita_Inventarios.csproj", "{616D7942-9C68-4D9B-A811-0E6DAFF4E275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.PrototipoMAUI", "Blanquita_Inventarios.PrototipoMAUI\Blanquita_Inventarios.PrototipoMAUI.csproj", "{C286A150-B0A6-46F2-B1C7-529464FA216D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.Site", "Blanquita_Inventarios.Site\Blanquita_Inventarios.Site.csproj", "{648571B1-8FF5-4518-8ADD-08827A414AA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.BussinesLayer", "Blanquita_Inventarios.BussinesLayer\Blanquita_Inventarios.BussinesLayer.csproj", "{6B6CA8A4-79B5-4DE9-A557-8A5E3473CE62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.DataAccess", "Blanquita_Inventarios.DataAccess\Blanquita_Inventarios.DataAccess.csproj", "{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.Entities", "Blanquita_Inventarios.Entities\Blanquita_Inventarios.Entities.csproj", "{005607CA-73EB-4AB9-9115-3FF6FF4C8A13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.AppMAUI", "Blanquita_Inventarios.AppMAUI\Blanquita_Inventarios.AppMAUI.csproj", "{38665779-723D-4D77-B6A3-CB631A3DBC52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.WebApi", "Blanquita_Inventarios.WebApi\Blanquita_Inventarios.WebApi.csproj", "{F036DBFC-7818-43F3-8546-0924E7692B62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.TestSAPHana", "Blanquita_Inventarios.TestSAPHana\Blanquita_Inventarios.TestSAPHana.csproj", "{479F800E-4758-45C7-8099-21FE24A25B01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blanquita_Inventarios.TestDIAPI", "Blanquita_Inventarios.TestDIAPI\Blanquita_Inventarios.TestDIAPI.csproj", "{6C194C4A-AB1B-47DC-903E-0DCF43AA0102}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{616D7942-9C68-4D9B-A811-0E6DAFF4E275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{616D7942-9C68-4D9B-A811-0E6DAFF4E275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{616D7942-9C68-4D9B-A811-0E6DAFF4E275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{616D7942-9C68-4D9B-A811-0E6DAFF4E275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C286A150-B0A6-46F2-B1C7-529464FA216D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C286A150-B0A6-46F2-B1C7-529464FA216D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C286A150-B0A6-46F2-B1C7-529464FA216D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C286A150-B0A6-46F2-B1C7-529464FA216D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C286A150-B0A6-46F2-B1C7-529464FA216D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C286A150-B0A6-46F2-B1C7-529464FA216D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{648571B1-8FF5-4518-8ADD-08827A414AA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{648571B1-8FF5-4518-8ADD-08827A414AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{648571B1-8FF5-4518-8ADD-08827A414AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{648571B1-8FF5-4518-8ADD-08827A414AA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B6CA8A4-79B5-4DE9-A557-8A5E3473CE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B6CA8A4-79B5-4DE9-A557-8A5E3473CE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B6CA8A4-79B5-4DE9-A557-8A5E3473CE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B6CA8A4-79B5-4DE9-A557-8A5E3473CE62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{005607CA-73EB-4AB9-9115-3FF6FF4C8A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{005607CA-73EB-4AB9-9115-3FF6FF4C8A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{005607CA-73EB-4AB9-9115-3FF6FF4C8A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{005607CA-73EB-4AB9-9115-3FF6FF4C8A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38665779-723D-4D77-B6A3-CB631A3DBC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38665779-723D-4D77-B6A3-CB631A3DBC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38665779-723D-4D77-B6A3-CB631A3DBC52}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{38665779-723D-4D77-B6A3-CB631A3DBC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38665779-723D-4D77-B6A3-CB631A3DBC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38665779-723D-4D77-B6A3-CB631A3DBC52}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F036DBFC-7818-43F3-8546-0924E7692B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F036DBFC-7818-43F3-8546-0924E7692B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F036DBFC-7818-43F3-8546-0924E7692B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F036DBFC-7818-43F3-8546-0924E7692B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{479F800E-4758-45C7-8099-21FE24A25B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479F800E-4758-45C7-8099-21FE24A25B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479F800E-4758-45C7-8099-21FE24A25B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479F800E-4758-45C7-8099-21FE24A25B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C194C4A-AB1B-47DC-903E-0DCF43AA0102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C194C4A-AB1B-47DC-903E-0DCF43AA0102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C194C4A-AB1B-47DC-903E-0DCF43AA0102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C194C4A-AB1B-47DC-903E-0DCF43AA0102}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

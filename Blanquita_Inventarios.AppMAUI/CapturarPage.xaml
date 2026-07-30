@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Blanquita_Inventarios.AppMAUI.CapturarPage"             
+             xmlns:viewmodel="clr-namespace:Blanquita_Inventarios.AppMAUI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodel:CapturarVM">
+    <ScrollView>
+        <VerticalStackLayout>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Label Text="v 2.1" TextColor="#e48e2c" FontSize="14" FontAttributes="Bold" HorizontalOptions="End" Margin="10, 0"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <ImageButton x:Name="btnBack" Source="icon_back" Command="{Binding RegresarCommand}" WidthRequest="25" HeightRequest="25" Margin="25, 5, 25, 5" HorizontalOptions="Start" />
+                    <Label Text="CAPTURAR MARBETE" HorizontalOptions="Center" FontSize="20" VerticalTextAlignment="Center" Margin="0, 5, 0, 0"/>
+                </StackLayout>
+
+                <Grid Margin="20, 0, 20, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- MARBETE -->
+                    <Label Grid.Row="0" Grid.Column="0" Text="Marbete:" VerticalTextAlignment="Center" Margin="0, 0, 10, 0" FontAttributes="Bold"/>
+                    <Entry x:Name="entMarbete" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Marbete}" Keyboard="Numeric" FontSize="20" IsReadOnly="{Binding EnabledMarbete}" >
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="Completed"
+                                Command="{Binding BuscarMarbeteCommand}"
+                                CommandParameter="{Reference entCodigo}"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <ImageButton Grid.Row="0" Grid.Column="5" x:Name="btnBuscarMarbete" CornerRadius="10" Margin="5" Source="icon_search" HeightRequest="33" WidthRequest="55"
+                                BackgroundColor="#d4d4d4" HorizontalOptions="Center" Command="{Binding BuscarMarbeteCommand}" CommandParameter="{Reference entCodigo}" IsEnabled="{Binding BtnEnabled}" />
+
+                    <!-- CODIGO -->
+                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Código de Barras:" VerticalTextAlignment="Center" Margin="0, 0, 10, 0" FontAttributes="Bold"/>
+                    <Entry x:Name="entCodigo" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding CodigoProducto}" IsEnabled="{Binding HabilitarCaptura}">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="Completed"
+                                Command="{Binding BuscarCodigoTextCommand}"
+                                CommandParameter="{Reference entCantidad}"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <ImageButton Grid.Row="1" Grid.Column="5" x:Name="btnBuscar" CornerRadius="10" Margin="5" Source="icon_search" HeightRequest="33" WidthRequest="55" IsEnabled="{Binding HabilitarCaptura}"
+                                BackgroundColor="#d4d4d4" HorizontalOptions="Center" Command="{Binding BuscarCodigoCommand}" CommandParameter="{Reference entCantidad}" />
+
+                    <!-- DESCRIPCION COMBINADA -->
+                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Descripción:" VerticalTextAlignment="Center" Margin="0, 5, 10, 0" FontAttributes="Bold"/>
+                    <Label Grid.Row="2"
+                           Grid.Column="2"
+                           Grid.ColumnSpan="4"
+                           Text="{Binding Descripcion}"
+                           LineBreakMode="WordWrap"
+                           MaxLines="3"
+                           VerticalOptions="Start"
+                           Margin="0,5,0,10"/>
+
+
+                    <!-- UOM Y CANTIDAD -->
+                    <Label Grid.Row="3" Grid.Column="0" Text="UOM:" VerticalTextAlignment="Center"  Margin="0, 0, 10, 0" FontAttributes="Bold"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding Uom}" FontSize="20" VerticalOptions="Center" />
+                    <Label Grid.Row="3" Grid.Column="2" Text="Cantidad" VerticalTextAlignment="Center" Margin="0, 0, 15, 0" FontAttributes="Bold"/>
+                    <Entry x:Name="entCantidad" 
+                           Grid.Row="3" 
+                           Grid.Column="3" 
+                           Grid.ColumnSpan="3" 
+                           Text="{Binding Cantidad}" 
+                           Keyboard="Numeric"
+                           MaxLength="6"
+                           FontSize="26" 
+                           IsEnabled="{Binding HabilitarCaptura}"
+                           Placeholder="0"
+                           ClearButtonVisibility="WhileEditing">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="Completed"
+                                Command="{Binding EjecutaGrabarCommand}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal">
+
+                    <!-- CERRAR -->
+                    <Button x:Name="btnCerrar"
+            Text=" CERRAR"
+            ImageSource="close.png"
+            ContentLayout="Left,1"
+            CornerRadius="10"
+            Margin="2"
+            BackgroundColor="#001968"
+            HorizontalOptions="FillAndExpand"
+            TextColor="#ffffff"
+            Command="{Binding CerrarCommand}"
+            CommandParameter="{Reference entMarbete}"/>
+
+                    <!-- CANCELAR -->
+                    <Button x:Name="btnCancelar"
+            Text=" CANCELAR"
+            ImageSource="cancel.png"
+            ContentLayout="Left,1"
+            CornerRadius="10"
+            Margin="2"
+            BackgroundColor="#cc0000"
+            HorizontalOptions="FillAndExpand"
+            TextColor="#ffffff"
+            Command="{Binding CancelarCommand}"
+            CommandParameter="{Reference entMarbete}"/>
+
+                    <!-- GRABAR -->
+                    <Button x:Name="btnGrabar"
+            Text=" GRABAR"
+            ImageSource="save.png"
+            ContentLayout="Left,1"
+            CornerRadius="10"
+            Margin="2"
+            BackgroundColor="#389112"
+            HorizontalOptions="FillAndExpand"
+            IsEnabled="{Binding EnabledGrabar}"
+            TextColor="#ffffff"
+            Command="{Binding GrabarCommand}"
+            CommandParameter="{Reference entCodigo}"/>
+
+                </StackLayout>
+
+
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

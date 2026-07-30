@@ -1,0 +1,249 @@
+﻿@model Blanquita_Inventarios.Site.ViewModels.Diferencias_CapturasVM
+
+@{
+    ViewBag.Title = "Monitor de Diferencias. Capturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<style>
+    .submit-progress-bg {
+        background-color: lightgray;
+        opacity: .5;
+    }
+
+    .submit-progress {
+        position: fixed;
+        top: 50%;
+        left: 45%;
+        height: 6em;
+        padding-top: 2.3em;
+        /* The following rules are the
+    ones most likely to change */
+        width: 20em;
+        /* Set 'margin-left' to a negative number
+    that is 1/2 of 'width' */
+        margin-left: -10em;
+        padding-left: 2.1em;
+        background-color: black;
+        color: white;
+        -webkit-border-radius: 0.4em;
+        -moz-border-radius: 0.4em;
+        border-radius: 0.4em;
+        box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+        -webkit-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+        -moz-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
+    }
+
+    .submit-progress {
+        padding-top: 2em;
+        width: 640px;
+    }
+
+        .submit-progress i {
+            margin-right: 0.5em;
+        }
+</style>
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Diferencias. Capturas
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Capturas", "MonitorDiferencias", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" id="btnProcesar" class="btn btn-success margin-right-10 margin-bottom-5" onclick="Procesar()">
+                                            Procesar
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" id="btnExcel" class="btn green-jungle margin-bottom-5" onclick="ExportExcel()">
+                                            Excel
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </button>
+                                        <button type="button" id="btnRegresar" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Home", "Home")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Inventario</label>
+                                                    @Html.DropDownListFor(model => model.FiltroIdConfiguracion, new SelectList(Model.FiltroInventarios, "Valor", "Texto", Model.FiltroIdConfiguracion),
+                                                        htmlAttributes: new { @class = "form-control edited", @id = "ddlFiltroInventarios" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Marbete</label>
+                                                    @Html.TextBoxFor(m => m.FiltroMarbete, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "", @autocomplete = "off", @id = "txtFiltroMarbete" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Conteo</label>
+                                                    @Html.DropDownListFor(model => model.FiltroIdConteo, new SelectList(Model.FiltroConteos, "Valor", "Texto", Model.FiltroIdConteo),
+                                                        htmlAttributes: new { @class = "form-control edited", @id = "ddlFiltroConteos" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input form-md-floating-label has-info" style="margin-bottom: 0px !important; padding-top: 0px!important;">
+                                                    <label style="font-size: small;">Código de Artículo (ItemCode)</label>
+                                                    @Html.TextBoxFor(m => m.FiltroCodigoArticulo, htmlAttributes: new { @class = "form-control form-control-solid placeholder-no-fix", @placeholder = "", @autocomplete = "off", @id = "txtFiltroCodigo" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="tabla-capturas">
+                                            @Html.Partial("Vista_ListadoCapturas", Model.ResultadoCapturas)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-progress hidden">
+            <i class="fa fa-2x fa-spinner fa-spin"></i>
+            <label>Espere un momento mientras se procesa la petición...</label>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script>
+
+        function Procesar() {
+            $("#btnProcesar").attr('disabled', 'disabled');
+            $("#btnExcel").attr('disabled', 'disabled');
+            $("#btnRegresar").attr('disabled', 'disabled');
+            $(".submit-progress").removeClass("hidden");
+
+            var idConfiguracion = $("#ddlFiltroInventarios").val();
+            var marbete = $("#txtFiltroMarbete").val();
+            var idConteo = $("#ddlFiltroConteos").val();
+            var codigoArticulo = $("#txtFiltroCodigo").val();
+
+            var data = new FormData();
+            data.append("idConfiguracion", idConfiguracion);
+            data.append("marbete", marbete);
+            data.append("idConteo", idConteo);
+            data.append("codigoArticulo", codigoArticulo);
+
+             var url = '@Url.Action("Procesa_Capturas", "MonitorDiferencias")';
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (partialView) {
+                    $("#tabla-capturas").html(partialView);
+
+                    $(".submit-progress").removeClass("hidden").addClass("hidden");
+                    $("#btnProcesar").removeAttr('disabled');
+                    $("#btnExcel").removeAttr('disabled');
+                    $("#btnRegresar").removeAttr('disabled');
+
+                    ShowNotificacion("success", "Información", "Se realizo el proceso de diferencias correctamente.", "4", "0");
+                },
+                error: function (x, status, error) {
+                    $(".submit-progress").removeClass("hidden").addClass("hidden");
+                    $("#btnProcesar").removeAttr('disabled');
+                    $("#btnExcel").removeAttr('disabled');
+                    $("#btnRegresar").removeAttr('disabled');
+
+                    ShowNotificacion("error", "Error", error, "4", "0");                    
+                }
+            });
+        }
+
+        function ExportExcel() {
+            var url = '@Url.Action("ExcelCapturas", "MonitorDiferencias")';
+            $.ajax({
+                type: "POST",
+                url: url,
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (response) {
+                    if (response.ExecutionOK == true) {
+                        window.location.href = "../Documentos/Descargas/" + response.Data;
+                    }
+                    else {
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");
+                    }
+                },
+                error: function (err) {
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: false,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info: false
+            });
+        });
+    </script>
+}

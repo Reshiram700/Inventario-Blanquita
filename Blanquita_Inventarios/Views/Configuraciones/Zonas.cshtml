@@ -1,0 +1,238 @@
+﻿@model Blanquita_Inventarios.ViewModels.GenericVM
+
+@{
+    ViewBag.Title = "Zonas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
+
+<link href="~/Content/others/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h1 class="page-title">
+            Administrador de Zonas
+        </h1>
+        <!-- END PAGE HEADER-->
+        <div class="row widget-row">
+            <div class="col-md-12">
+                <div class="portlet box dark">
+                    <div class="portlet-title">
+                        <div class="caption">
+
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            @using (@Html.BeginForm("Zonas", "Configuraciones", FormMethod.Post, new { id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary margin-right-10 margin-bottom-5" onclick="location.href='@Url.Action("CreateZona")'">
+                                            Agregar
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-success margin-right-10 margin-bottom-5">
+                                            Buscar
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button type="button" value="Restablecer" class="btn grey margin-right-10 margin-bottom-5" onclick="location.href='@Url.Action("RestablecerZonas")'">
+                                            Restablecer
+                                            <i class="fa fa-undo"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default margin-bottom-5" onclick="location.href='@Url.Action("Index", "Configuraciones")'">
+                                            Regresar
+                                            <i class="fa fa-chevron-circle-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Fecha de Registro</label>
+                                                    @Html.TextBoxFor(x => Model.Campo00, htmlAttributes: new { @class = "form-control edited", @autocomplete = "off", @id = "txtFiFecha" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Zona</label>
+                                                    <input type="text" id="txtFiltroUsuario" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                            <thead>
+                                                <tr class="bg-light headerCustom">
+                                                    <th>
+                                                        <input name="control" value="ID"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Fecha/Hora Registro"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Zona"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Marbete Inicial"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Marbete Final"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th><div style="font-size:14px!important;text-align:center"></div></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Listado != null && Model.Listado.Count > 0)
+                                                {
+                                                    foreach (var item in Model.Listado)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Numero00)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo00)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo01)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo02)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Campo03)
+                                                            </td>
+                                                            <td align="center">
+
+                                                                <button class="btn btn-xs green-jungle btn-detalles" type="button"
+                                                                        onclick="location.href='@Url.Action("CreateMarbetes","Configuraciones", new { id = item.Numero00 })'">
+                                                                    <i class="fa fa-edit"></i>
+                                                                    &nbsp;Crear Marbetes
+                                                                </button>
+                                                                <button class="btn btn-xs green-jungle btn-detalles" type="button"
+                                                                        onclick="location.href='@Url.Action("DeleteMarbetes","Configuraciones", new { id = item.Numero00 })'">
+                                                                    <i class="fa fa-edit"></i>
+                                                                    &nbsp;Borrar Marbetes
+                                                                </button>
+                                                                <button class="btn btn-xs red" type="button"
+                                                                        onclick="if (!ShowConfirmation('¿Desea eliminar el registro la Zona <strong>@item.Campo00</strong>?',
+                                                                        '@Url.Action("DeleteZona","Configuraciones", new { id = item.Numero00 })')) return false;">
+                                                                    <i class="fa fa-times"></i>
+                                                                    &nbsp;Eliminar
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/js/datatables.js"></script>
+    <script src="~/Content/js/datatables.min.js"></script>
+    <script src="~/Content/js/datatables.bootstrap.js"></script>
+
+    <script src="~/Content/others/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/others/daterangepicker/daterangepicker.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.tabla-datos tr td').dblclick(function () {
+                var control = ($(this).parent().find('td:last > .btn-detalles'));
+                control.click();
+            });
+
+            $(".dataTable-simple").DataTable({
+                paging: false,
+                searching: false,
+                ordering: true,
+                responsive: false,
+                language: {
+                    "emptyTable": "Sin información",
+                    "infoEmpty": "No se encontro información",
+                    "lengthMenu": "_MENU_ registros por p&#225;gina",
+                    "zeroRecords": "Sin información",
+                    "info": "Registros del <b>_START_</b> al <b>_END_</b> de un total de <b>_TOTAL_</b>",
+                },
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "Todos"] // change per page values here
+                ],
+                lengthChange: false, //Oculta el listado de elementos por pagina
+                // set the initial value
+                pageLength: 25,
+                info: false
+            });
+
+            $('input[id*="txtFiFecha"]').daterangepicker({
+                locale: {
+                    cancelLabel: "Limpiar",
+                    format: "DD/MM/YYYY",
+                    separator: " - ",
+                    applyLabel: "APLICAR",
+                    cancelLabel: "CANCELAR",
+                    fromLabel: "De",
+                    toLabel: "A",
+                    customRangeLabel: "Personalizar...",
+                    weekLabel: "W",
+                    daysOfWeek: [
+                        "Do",
+                        "Lu",
+                        "Ma",
+                        "Mi",
+                        "Ju",
+                        "Vi",
+                        "Sa"
+                    ],
+                    monthNames: [
+                        "Enero",
+                        "Febrero",
+                        "Marzo",
+                        "Abril",
+                        "Mayo",
+                        "Junio",
+                        "Julio",
+                        "Agosto",
+                        "Septiembre",
+                        "Octubre",
+                        "Noviembre",
+                        "Diciembre"
+                    ],
+                    firstDay: 1
+                }
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InventariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="InventariosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Perfiles" EntityType="InventariosModel.Perfiles" />
+    <EntitySet Name="Usuarios" EntityType="InventariosModel.Usuarios" />
+    <AssociationSet Name="FK_Usuarios_Perfiles" Association="InventariosModel.FK_Usuarios_Perfiles">
+      <End Role="Perfiles" EntitySet="Perfiles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <EntitySet Name="AccionesCodigo" EntityType="InventariosModel.AccionesCodigo" />
+    <EntitySet Name="Codigos" EntityType="InventariosModel.Codigos" />
+    <EntitySet Name="EstatusCodigo" EntityType="InventariosModel.EstatusCodigo" />
+    <AssociationSet Name="FK_Codigos_AccionesCodigo" Association="InventariosModel.FK_Codigos_AccionesCodigo">
+      <End Role="AccionesCodigo" EntitySet="AccionesCodigo" />
+      <End Role="Codigos" EntitySet="Codigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Codigos_EstatusCodigo" Association="InventariosModel.FK_Codigos_EstatusCodigo">
+      <End Role="EstatusCodigo" EntitySet="EstatusCodigo" />
+      <End Role="Codigos" EntitySet="Codigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Codigos_Usuarios" Association="InventariosModel.FK_Codigos_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Codigos" EntitySet="Codigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Codigos_Usuarios1" Association="InventariosModel.FK_Codigos_Usuarios1">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Codigos" EntitySet="Codigos" />
+    </AssociationSet>
+    <EntitySet Name="Marbetes" EntityType="InventariosModel.Marbetes" />
+    <FunctionImport Name="Search_ItmsGrpName" ReturnType="Collection(InventariosModel.Search_ItmsGrpName_Result)">
+      <Parameter Name="ItemCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Report_SAPBarcodes" ReturnType="Collection(InventariosModel.Report_SAPBarcodes_Result)" />
+    <FunctionImport Name="Report_ItemsByAlmacen" ReturnType="Collection(InventariosModel.Report_ItemsByAlmacen_Result)">
+      <Parameter Name="WhsCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_TotalMarbetesByConfiguracion" ReturnType="Collection(Int32)">
+      <Parameter Name="IdConfiguracion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Zonas" EntityType="InventariosModel.Zonas" />
+    <AssociationSet Name="FK_Marbetes_Zonas" Association="InventariosModel.FK_Marbetes_Zonas">
+      <End Role="Zonas" EntitySet="Zonas" />
+      <End Role="Marbetes" EntitySet="Marbetes" />
+    </AssociationSet>
+    <FunctionImport Name="Report_ListadoCategorias" ReturnType="Collection(InventariosModel.Report_ListadoCategorias_Result)">
+      <Parameter Name="TextoInicio" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Configuraciones" EntityType="InventariosModel.Configuraciones" />
+    <AssociationSet Name="FK_Codigos_Configuraciones" Association="InventariosModel.FK_Codigos_Configuraciones">
+      <End Role="Configuraciones" EntitySet="Configuraciones" />
+      <End Role="Codigos" EntitySet="Codigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zonas_Configuraciones" Association="InventariosModel.FK_Zonas_Configuraciones">
+      <End Role="Configuraciones" EntitySet="Configuraciones" />
+      <End Role="Zonas" EntitySet="Zonas" />
+    </AssociationSet>
+    <FunctionImport Name="Report_CostoCeroByInventario" ReturnType="Collection(InventariosModel.Report_CostoCeroByInventario_Result)">
+      <Parameter Name="WhsCode" Mode="In" Type="String" />
+      <Parameter Name="XmlStr" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Search_ItemExistenciaSAP" ReturnType="Collection(InventariosModel.Search_ItemExistenciaSAP_Result)">
+      <Parameter Name="ItemCode" Mode="In" Type="String" />
+      <Parameter Name="WhsCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Report_InformacionSAPxPorProcesar" ReturnType="Collection(InventariosModel.Report_InformacionSAPxPorProcesar_Result)">
+      <Parameter Name="WhsCode" Mode="In" Type="String" />
+      <Parameter Name="XmlStr" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Report_InventarioProcesar" ReturnType="Collection(InventariosModel.Report_InventarioProcesar_Result)">
+      <Parameter Name="WhsCode" Mode="In" Type="String" />
+      <Parameter Name="XmlStr" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Perfiles">
+    <Key>
+      <PropertyRef Name="IdPerfil" />
+    </Key>
+    <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Perfil" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Usuarios" Relationship="InventariosModel.FK_Usuarios_Perfiles" FromRole="Perfiles" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdPerfil" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaEliminado" Type="DateTime" Precision="3" />
+    <Property Name="Principal" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Perfiles" Relationship="InventariosModel.FK_Usuarios_Perfiles" FromRole="Usuarios" ToRole="Perfiles" />
+    <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_Usuarios" FromRole="Usuarios" ToRole="Codigos" />
+    <NavigationProperty Name="Codigos1" Relationship="InventariosModel.FK_Codigos_Usuarios1" FromRole="Usuarios" ToRole="Codigos" />
+  </EntityType>
+  <Association Name="FK_Usuarios_Perfiles">
+    <End Type="InventariosModel.Perfiles" Role="Perfiles" Multiplicity="1" />
+    <End Type="InventariosModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfiles">
+        <PropertyRef Name="IdPerfil" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="IdPerfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AccionesCodigo">
+    <Key>
+      <PropertyRef Name="IdAccion" />
+    </Key>
+    <Property Name="IdAccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Accion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_AccionesCodigo" FromRole="AccionesCodigo" ToRole="Codigos" />
+  </EntityType>
+  <EntityType Name="Codigos">
+    <Key>
+      <PropertyRef Name="IdCodigo" />
+    </Key>
+    <Property Name="IdCodigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdConfiguracion" Type="Int32" Nullable="false" />
+    <Property Name="Codigo" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdUsuarioGenero" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuarioUtilizo" Type="Int32" />
+    <Property Name="IdAccion" Type="Int32" />
+    <Property Name="FechaUtilizo" Type="DateTime" Precision="3" />
+    <Property Name="IdEstatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AccionesCodigo" Relationship="InventariosModel.FK_Codigos_AccionesCodigo" FromRole="Codigos" ToRole="AccionesCodigo" />
+    <NavigationProperty Name="EstatusCodigo" Relationship="InventariosModel.FK_Codigos_EstatusCodigo" FromRole="Codigos" ToRole="EstatusCodigo" />
+    <NavigationProperty Name="Usuarios" Relationship="InventariosModel.FK_Codigos_Usuarios" FromRole="Codigos" ToRole="Usuarios" />
+    <NavigationProperty Name="Usuarios1" Relationship="InventariosModel.FK_Codigos_Usuarios1" FromRole="Codigos" ToRole="Usuarios" />
+    <NavigationProperty Name="Configuraciones" Relationship="InventariosModel.FK_Codigos_Configuraciones" FromRole="Codigos" ToRole="Configuraciones" />
+  </EntityType>
+  <EntityType Name="EstatusCodigo">
+    <Key>
+      <PropertyRef Name="IdEstatus" />
+    </Key>
+    <Property Name="IdEstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_EstatusCodigo" FromRole="EstatusCodigo" ToRole="Codigos" />
+  </EntityType>
+  <Association Name="FK_Codigos_AccionesCodigo">
+    <End Type="InventariosModel.AccionesCodigo" Role="AccionesCodigo" Multiplicity="0..1" />
+    <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccionesCodigo">
+        <PropertyRef Name="IdAccion" />
+      </Principal>
+      <Dependent Role="Codigos">
+        <PropertyRef Name="IdAccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Codigos_EstatusCodigo">
+    <End Type="InventariosModel.EstatusCodigo" Role="EstatusCodigo" Multiplicity="1" />
+    <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstatusCodigo">
+        <PropertyRef Name="IdEstatus" />
+      </Principal>
+      <Dependent Role="Codigos">
+        <PropertyRef Name="IdEstatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Codigos_Usuarios">
+    <End Type="InventariosModel.Usuarios" Role="Usuarios" Multiplicity="1" />
+    <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Codigos">
+        <PropertyRef Name="IdUsuarioGenero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Codigos_Usuarios1">
+    <End Type="InventariosModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+    <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Codigos">
+        <PropertyRef Name="IdUsuarioUtilizo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Marbetes">
+    <Key>
+      <PropertyRef Name="IdMarbete" />
+    </Key>
+    <Property Name="IdMarbete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdZona" Type="Int32" Nullable="false" />
+    <Property Name="Marbete" Type="Int32" Nullable="false" />
+    <Property Name="Capturo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+    <Property Name="FechaCierre" Type="DateTime" Precision="3" />
+    <Property Name="Estatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Zonas" Relationship="InventariosModel.FK_Marbetes_Zonas" FromRole="Marbetes" ToRole="Zonas" />
+  </EntityType>
+  <ComplexType Name="Search_ItmsGrpName_Result">
+    <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ItemName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ItmsGrpNam" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="Report_SAPBarcodes_Result">
+    <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="BcdCode" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Uomcode" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="BaseQty" Nullable="true" Precision="21" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="Report_ItemsByAlmacen_Result">
+    <Property Type="String" Name="WhsCode" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="AvgPrice" Nullable="true" Precision="21" Scale="6" />
+  </ComplexType>
+  <EntityType Name="Zonas">
+    <Key>
+      <PropertyRef Name="IdZona" />
+    </Key>
+    <Property Name="IdZona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdConfiguracion" Type="Int32" Nullable="false" />
+    <Property Name="Zona" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="MarbeteInicial" Type="Int32" Nullable="false" />
+    <Property Name="MarbeteFinal" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaEliminado" Type="DateTime" Precision="3" />
+    <Property Name="MarbetesCreados" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Marbetes" Relationship="InventariosModel.FK_Marbetes_Zonas" FromRole="Zonas" ToRole="Marbetes" />
+    <NavigationProperty Name="Configuraciones" Relationship="InventariosModel.FK_Zonas_Configuraciones" FromRole="Zonas" ToRole="Configuraciones" />
+  </EntityType>
+  <Association Name="FK_Marbetes_Zonas">
+    <End Type="InventariosModel.Zonas" Role="Zonas" Multiplicity="1" />
+    <End Type="InventariosModel.Marbetes" Role="Marbetes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zonas">
+        <PropertyRef Name="IdZona" />
+      </Principal>
+      <Dependent Role="Marbetes">
+        <PropertyRef Name="IdZona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Report_ListadoCategorias_Result">
+    <Property Type="String" Name="Valor" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Texto" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="Configuraciones">
+    <Key>
+      <PropertyRef Name="IdConfiguracion" />
+    </Key>
+    <Property Name="IdConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NombreInventario" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ServidorIP" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Instancia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Puerto" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BaseDatos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Almacen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="Cerrado" Type="Boolean" Nullable="false" />
+    <Property Name="FechaCerrado" Type="DateTime" Precision="3" />
+    <Property Name="Deshabilitado" Type="Boolean" Nullable="false" />
+    <Property Name="FechaDeshabilitado" Type="DateTime" Precision="3" />
+    <Property Name="FechaUltimoRespaldo" Type="DateTime" Precision="3" />
+    <Property Name="FechaEliminado" Type="DateTime" Precision="3" />
+    <Property Name="Procesado" Type="Boolean" Nullable="false" />
+    <Property Name="AjustesAplicados" Type="Boolean" Nullable="false" />
+    <Property Name="FechaAjustes" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Codigos" Relationship="InventariosModel.FK_Codigos_Configuraciones" FromRole="Configuraciones" ToRole="Codigos" />
+    <NavigationProperty Name="Zonas" Relationship="InventariosModel.FK_Zonas_Configuraciones" FromRole="Configuraciones" ToRole="Zonas" />
+  </EntityType>
+  <Association Name="FK_Codigos_Configuraciones">
+    <End Type="InventariosModel.Configuraciones" Role="Configuraciones" Multiplicity="1" />
+    <End Type="InventariosModel.Codigos" Role="Codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Configuraciones">
+        <PropertyRef Name="IdConfiguracion" />
+      </Principal>
+      <Dependent Role="Codigos">
+        <PropertyRef Name="IdConfiguracion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zonas_Configuraciones">
+    <End Type="InventariosModel.Configuraciones" Role="Configuraciones" Multiplicity="1" />
+    <End Type="InventariosModel.Zonas" Role="Zonas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Configuraciones">
+        <PropertyRef Name="IdConfiguracion" />
+      </Principal>
+      <Dependent Role="Zonas">
+        <PropertyRef Name="IdConfiguracion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Report_CostoCeroByInventario_Result">
+    <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Estatus" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="Search_ItemExistenciaSAP_Result">
+    <Property Type="String" Name="WhsCode" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="OnHand" Nullable="true" Precision="21" Scale="6" />
+    <Property Type="Decimal" Name="AvgPrice" Nullable="true" Precision="21" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="Report_InformacionSAPxPorProcesar_Result">
+    <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="OnHand" Nullable="true" Precision="21" Scale="6" />
+    <Property Type="Decimal" Name="PorProcesar" Nullable="true" Precision="21" Scale="6" />
+    <Property Type="String" Name="Uom" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Precio" Nullable="true" Precision="21" Scale="6" />
+    <Property Type="String" Name="ItmsGrpNam" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="UomEntry" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Report_InventarioProcesar_Result">
+    <Property Type="String" Name="WhsCode" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="ItmsGrpNam" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Cant1" Nullable="false" />
+    <Property Type="Int32" Name="Cant2" Nullable="false" />
+    <Property Type="Decimal" Name="TotalSAP" Nullable="true" Precision="38" Scale="7" />
+    <Property Type="Int32" Name="TotalContado" Nullable="false" />
+    <Property Type="Decimal" Name="TotalDesviacion" Nullable="true" Precision="38" Scale="7" />
+    <Property Type="Decimal" Name="PorcDif" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="String" Name="Uom" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Onhand" Nullable="true" Precision="21" Scale="6" />
+    <Property Type="Decimal" Name="PorProcesar" Nullable="false" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="DifPesoNeto" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="String" Name="Marbetes" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="Precio" Nullable="true" Precision="21" Scale="6" />
+    <Property Type="Decimal" Name="VarianzaNeta" Nullable="true" Precision="21" Scale="6" />
+    <Property Type="Decimal" Name="VarianzaNetaMonto" Nullable="true" Precision="38" Scale="7" />
+    <Property Type="Int32" Name="TotalContado2" Nullable="false" />
+    <Property Type="Decimal" Name="TotalDesviacion2" Nullable="true" Precision="38" Scale="7" />
+    <Property Type="Decimal" Name="PorcDif2" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Int32" Name="Ajustado" Nullable="false" />
+    <Property Type="Int32" Name="UomEntry" Nullable="true" />
+  </ComplexType>
+</Schema>
