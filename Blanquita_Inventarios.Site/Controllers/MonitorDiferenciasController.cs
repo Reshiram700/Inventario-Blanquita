@@ -103,51 +103,46 @@ namespace Blanquita_Inventarios.Site.Controllers
         [HttpPost]
         public ActionResult ExcelCapturas()
         {
-            var response = new DBResponse<string>();
-
             try
             {
                 List<Listado_DiferenciasCapturas> listado = (List<Listado_DiferenciasCapturas>)Session["DiferenciasCapturas_Capturas"];
 
-                if (listado != null && listado.Count > 0)
+                if (listado == null || listado.Count == 0)
                 {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Folio");
-                    dt.Columns.Add("Marbete");
-                    dt.Columns.Add("CodigoArticulo");
-                    dt.Columns.Add("DescripcionArticulo");
-                    dt.Columns.Add("ConteoActivo");
-                    dt.Columns.Add("NombreMarbete");
+                    return Json(new { success = false, message = "No hay datos para exportar" });
+                }
 
-                    foreach (var item in listado)
-                    {
-                        DataRow row = dt.NewRow();
-                        row[0] = item.Folio;
-                        row[1] = item.Marbete;
-                        row[2] = item.CodigoArticulo;
-                        row[3] = item.DescripcionArticulo;
-                        row[4] = item.Conteo;
-                        row[5] = item.NombreMarbete;
-                        dt.Rows.Add(row);
-                    }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Folio");
+                dt.Columns.Add("Marbete");
+                dt.Columns.Add("CodigoArticulo");
+                dt.Columns.Add("DescripcionArticulo");
+                dt.Columns.Add("ConteoActivo");
+                dt.Columns.Add("NombreMarbete");
 
-                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasCapturas.xls";
-                    response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias de Capturas", nombreArchivo);
-                    response.ExecutionOK = true;
+                foreach (var item in listado)
+                {
+                    DataRow row = dt.NewRow();
+                    row[0] = item.Folio;
+                    row[1] = item.Marbete;
+                    row[2] = item.CodigoArticulo;
+                    row[3] = item.DescripcionArticulo;
+                    row[4] = item.Conteo;
+                    row[5] = item.NombreMarbete;
+                    dt.Rows.Add(row);
+                }
 
-                    if (response.ExecutionOK)
-                    {
-                        string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                        return Json(new { success = true, url = url });
-                    }
-                    else
-                    {
-                        return Json(new { success = false, message = response.Message });
-                    }
+                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasCapturas.xls";
+                var response = ExportExcel.GenerarExcel(dt, "Diferencias de Capturas", nombreArchivo);
+
+                if (response.ExecutionOK)
+                {
+                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
+                    return Json(new { success = true, url = url });
                 }
                 else
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
+                    return Json(new { success = false, message = response.Message });
                 }
             }
             catch (Exception ex)
@@ -177,7 +172,6 @@ namespace Blanquita_Inventarios.Site.Controllers
 
             listadoVM.Listado = listado;
 
-            // Guardar en Session en lugar de TempData
             Session["Diferencias_CostoCeroInventarios"] = listaInventarios;
             Session["Diferencias_CostoCeroInventarios_IdConfiguracion"] = userLogin.IdConfiguracion;
             Session["Diferencias_CostoCeroInventarios_Listado"] = listado;
@@ -221,7 +215,6 @@ namespace Blanquita_Inventarios.Site.Controllers
 
             listadoVM.Listado = listado;
 
-            // Guardar en Session
             Session["Diferencias_CostoCeroInventarios"] = listadoInventarios;
             Session["Diferencias_CostoCeroInventarios_Listado"] = listado;
             Session["Diferencias_CostoCeroInventarios_IdConfiguracion"] = listadoVM.FiltroIdConfiguracion;
@@ -234,10 +227,8 @@ namespace Blanquita_Inventarios.Site.Controllers
         {
             try
             {
-                // Recuperar de Session
                 List<Listado_DiferenciasCostos> listado = (List<Listado_DiferenciasCostos>)Session["Diferencias_CostoCeroInventarios_Listado"];
 
-                // Si no hay datos en Session, intentar obtenerlos de la base de datos
                 if (listado == null || listado.Count == 0)
                 {
                     int idConfiguracion = 0;
@@ -288,7 +279,6 @@ namespace Blanquita_Inventarios.Site.Controllers
                     return Json(new { success = false, message = "No hay datos para exportar" });
                 }
 
-                // Crear el DataTable para exportar
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Código");
                 dt.Columns.Add("Descripción del Artículo");
@@ -303,9 +293,8 @@ namespace Blanquita_Inventarios.Site.Controllers
                     dt.Rows.Add(row);
                 }
 
-                // Generar el archivo Excel usando el helper que ya tienes
                 string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_CostosCeroInactivos.xls";
-                var response = ExportExcel.GrabaArchivoExcelSimple(dt, "Costos Cero Inactivos", nombreArchivo);
+                var response = ExportExcel.GenerarExcel(dt, "Costos Cero Inactivos", nombreArchivo);
 
                 if (response.ExecutionOK)
                 {
@@ -403,44 +392,42 @@ namespace Blanquita_Inventarios.Site.Controllers
             {
                 List<Listado_DiferenciasMontosUno> listado = (List<Listado_DiferenciasMontosUno>)Session["DiferenciasMontosUno_Listado"];
 
-                if (listado != null && listado.Count > 0)
+                if (listado == null || listado.Count == 0)
                 {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("WhsCode");
-                    dt.Columns.Add("ItmsGrpName");
-                    dt.Columns.Add("TotalSAP");
-                    dt.Columns.Add("TotalContado");
-                    dt.Columns.Add("TotalDesviacion");
-                    dt.Columns.Add("PorcDif");
+                    return Json(new { success = false, message = "No hay datos para exportar" });
+                }
 
-                    foreach (var item in listado)
-                    {
-                        DataRow row = dt.NewRow();
-                        row[0] = item.WhsCode;
-                        row[1] = item.ItmsGrpName;
-                        row[2] = item.TotalSAP;
-                        row[3] = item.TotalContado;
-                        row[4] = item.TotalDesviacion;
-                        row[5] = item.PorcentajeDif;
-                        dt.Rows.Add(row);
-                    }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("WhsCode");
+                dt.Columns.Add("ItmsGrpName");
+                dt.Columns.Add("TotalSAP");
+                dt.Columns.Add("TotalContado");
+                dt.Columns.Add("TotalDesviacion");
+                dt.Columns.Add("PorcDif");
 
-                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasMontos1.xls";
-                    var response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias de Montos Conteo 1", nombreArchivo);
+                foreach (var item in listado)
+                {
+                    DataRow row = dt.NewRow();
+                    row[0] = item.WhsCode;
+                    row[1] = item.ItmsGrpName;
+                    row[2] = item.TotalSAP;
+                    row[3] = item.TotalContado;
+                    row[4] = item.TotalDesviacion;
+                    row[5] = item.PorcentajeDif;
+                    dt.Rows.Add(row);
+                }
 
-                    if (response.ExecutionOK)
-                    {
-                        string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                        return Json(new { success = true, url = url });
-                    }
-                    else
-                    {
-                        return Json(new { success = false, message = response.Message });
-                    }
+                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasMontos1.xls";
+                var response = ExportExcel.GenerarExcel(dt, "Diferencias de Montos Conteo 1", nombreArchivo);
+
+                if (response.ExecutionOK)
+                {
+                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
+                    return Json(new { success = true, url = url });
                 }
                 else
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
+                    return Json(new { success = false, message = response.Message });
                 }
             }
             catch (Exception ex)
@@ -529,44 +516,42 @@ namespace Blanquita_Inventarios.Site.Controllers
             {
                 List<Listado_DiferenciasMontosUno> listado = (List<Listado_DiferenciasMontosUno>)Session["DiferenciasMontosDos_Listado"];
 
-                if (listado != null && listado.Count > 0)
+                if (listado == null || listado.Count == 0)
                 {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("WhsCode");
-                    dt.Columns.Add("ItmsGrpName");
-                    dt.Columns.Add("TotalSAP");
-                    dt.Columns.Add("TotalContado");
-                    dt.Columns.Add("TotalDesviacion");
-                    dt.Columns.Add("PorcDif");
+                    return Json(new { success = false, message = "No hay datos para exportar" });
+                }
 
-                    foreach (var item in listado)
-                    {
-                        DataRow row = dt.NewRow();
-                        row[0] = item.WhsCode;
-                        row[1] = item.ItmsGrpName;
-                        row[2] = item.TotalSAP;
-                        row[3] = item.TotalContado;
-                        row[4] = item.TotalDesviacion;
-                        row[5] = item.PorcentajeDif;
-                        dt.Rows.Add(row);
-                    }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("WhsCode");
+                dt.Columns.Add("ItmsGrpName");
+                dt.Columns.Add("TotalSAP");
+                dt.Columns.Add("TotalContado");
+                dt.Columns.Add("TotalDesviacion");
+                dt.Columns.Add("PorcDif");
 
-                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasMontos2.xls";
-                    var response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias de Montos Conteo 2", nombreArchivo);
+                foreach (var item in listado)
+                {
+                    DataRow row = dt.NewRow();
+                    row[0] = item.WhsCode;
+                    row[1] = item.ItmsGrpName;
+                    row[2] = item.TotalSAP;
+                    row[3] = item.TotalContado;
+                    row[4] = item.TotalDesviacion;
+                    row[5] = item.PorcentajeDif;
+                    dt.Rows.Add(row);
+                }
 
-                    if (response.ExecutionOK)
-                    {
-                        string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                        return Json(new { success = true, url = url });
-                    }
-                    else
-                    {
-                        return Json(new { success = false, message = response.Message });
-                    }
+                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasMontos2.xls";
+                var response = ExportExcel.GenerarExcel(dt, "Diferencias de Montos Conteo 2", nombreArchivo);
+
+                if (response.ExecutionOK)
+                {
+                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
+                    return Json(new { success = true, url = url });
                 }
                 else
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
+                    return Json(new { success = false, message = response.Message });
                 }
             }
             catch (Exception ex)
@@ -675,52 +660,50 @@ namespace Blanquita_Inventarios.Site.Controllers
             {
                 List<Listado_DiferenciasConteoUno> listado = (List<Listado_DiferenciasConteoUno>)Session["DiferenciasConteoUno_Listado"];
 
-                if (listado != null && listado.Count > 0)
+                if (listado == null || listado.Count == 0)
                 {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("WhsCode");
-                    dt.Columns.Add("ItmsGrpName");
-                    dt.Columns.Add("ItemCode");
-                    dt.Columns.Add("ItemName");
-                    dt.Columns.Add("UOM1");
-                    dt.Columns.Add("Onhand");
-                    dt.Columns.Add("PorProcesar");
-                    dt.Columns.Add("Contado");
-                    dt.Columns.Add("DifPesosNeto");
-                    dt.Columns.Add("Marbetes");
+                    return Json(new { success = false, message = "No hay datos para exportar" });
+                }
 
-                    foreach (var item in listado)
-                    {
-                        DataRow row = dt.NewRow();
-                        row[0] = item.WhsCode;
-                        row[1] = item.ItmsGrpNam;
-                        row[2] = item.ItemCode;
-                        row[3] = item.ItemName;
-                        row[4] = item.Uom;
-                        row[5] = item.Onhand;
-                        row[6] = item.PorProcesar;
-                        row[7] = item.Contado;
-                        row[8] = item.DifPesoNeto;
-                        row[9] = item.Marbetes;
-                        dt.Rows.Add(row);
-                    }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("WhsCode");
+                dt.Columns.Add("ItmsGrpName");
+                dt.Columns.Add("ItemCode");
+                dt.Columns.Add("ItemName");
+                dt.Columns.Add("UOM1");
+                dt.Columns.Add("Onhand");
+                dt.Columns.Add("PorProcesar");
+                dt.Columns.Add("Contado");
+                dt.Columns.Add("DifPesosNeto");
+                dt.Columns.Add("Marbetes");
 
-                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasConteo1.xls";
-                    var response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias Conteo 1", nombreArchivo);
+                foreach (var item in listado)
+                {
+                    DataRow row = dt.NewRow();
+                    row[0] = item.WhsCode;
+                    row[1] = item.ItmsGrpNam;
+                    row[2] = item.ItemCode;
+                    row[3] = item.ItemName;
+                    row[4] = item.Uom;
+                    row[5] = item.Onhand;
+                    row[6] = item.PorProcesar;
+                    row[7] = item.Contado;
+                    row[8] = item.DifPesoNeto;
+                    row[9] = item.Marbetes;
+                    dt.Rows.Add(row);
+                }
 
-                    if (response.ExecutionOK)
-                    {
-                        string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                        return Json(new { success = true, url = url });
-                    }
-                    else
-                    {
-                        return Json(new { success = false, message = response.Message });
-                    }
+                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasConteo1.xls";
+                var response = ExportExcel.GenerarExcel(dt, "Diferencias Conteo 1", nombreArchivo);
+
+                if (response.ExecutionOK)
+                {
+                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
+                    return Json(new { success = true, url = url });
                 }
                 else
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
+                    return Json(new { success = false, message = response.Message });
                 }
             }
             catch (Exception ex)
@@ -1017,58 +1000,56 @@ namespace Blanquita_Inventarios.Site.Controllers
             {
                 List<Listado_DiferenciasAjustes> listado = (List<Listado_DiferenciasAjustes>)Session["DiferenciasAjustes_Listado"];
 
-                if (listado != null && listado.Count > 0)
+                if (listado == null || listado.Count == 0)
                 {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("WhsCode");
-                    dt.Columns.Add("ItmsGrpName");
-                    dt.Columns.Add("ItemCode");
-                    dt.Columns.Add("ItemName");
-                    dt.Columns.Add("UOM1");
-                    dt.Columns.Add("Onhand");
-                    dt.Columns.Add("PorProcesar");
-                    dt.Columns.Add("Contado");
-                    dt.Columns.Add("Contado1");
-                    dt.Columns.Add("Contado2");
-                    dt.Columns.Add("Contado3");
-                    dt.Columns.Add("Contado4");
-                    dt.Columns.Add("DifPesosNeto");
+                    return Json(new { success = false, message = "No hay datos para exportar" });
+                }
 
-                    foreach (var item in listado)
-                    {
-                        DataRow row = dt.NewRow();
-                        row[0] = item.WhsCode;
-                        row[1] = item.ItmsGrpNam;
-                        row[2] = item.ItemCode;
-                        row[3] = item.ItemName;
-                        row[4] = item.Uom1;
-                        row[5] = item.Onhand;
-                        row[6] = item.PorProcesar;
-                        row[7] = item.Contado;
-                        row[8] = item.Contado1;
-                        row[9] = item.Contado2;
-                        row[10] = item.Contado3;
-                        row[11] = item.Contado4;
-                        row[12] = item.DifPesosNeto;
-                        dt.Rows.Add(row);
-                    }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("WhsCode");
+                dt.Columns.Add("ItmsGrpName");
+                dt.Columns.Add("ItemCode");
+                dt.Columns.Add("ItemName");
+                dt.Columns.Add("UOM1");
+                dt.Columns.Add("Onhand");
+                dt.Columns.Add("PorProcesar");
+                dt.Columns.Add("Contado");
+                dt.Columns.Add("Contado1");
+                dt.Columns.Add("Contado2");
+                dt.Columns.Add("Contado3");
+                dt.Columns.Add("Contado4");
+                dt.Columns.Add("DifPesosNeto");
 
-                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasAjustesConteo2.xls";
-                    var response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias Ajustes Conteo 2", nombreArchivo);
+                foreach (var item in listado)
+                {
+                    DataRow row = dt.NewRow();
+                    row[0] = item.WhsCode;
+                    row[1] = item.ItmsGrpNam;
+                    row[2] = item.ItemCode;
+                    row[3] = item.ItemName;
+                    row[4] = item.Uom1;
+                    row[5] = item.Onhand;
+                    row[6] = item.PorProcesar;
+                    row[7] = item.Contado;
+                    row[8] = item.Contado1;
+                    row[9] = item.Contado2;
+                    row[10] = item.Contado3;
+                    row[11] = item.Contado4;
+                    row[12] = item.DifPesosNeto;
+                    dt.Rows.Add(row);
+                }
 
-                    if (response.ExecutionOK)
-                    {
-                        string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                        return Json(new { success = true, url = url });
-                    }
-                    else
-                    {
-                        return Json(new { success = false, message = response.Message });
-                    }
+                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasAjustesConteo2.xls";
+                var response = ExportExcel.GenerarExcel(dt, "Diferencias Ajustes Conteo 2", nombreArchivo);
+
+                if (response.ExecutionOK)
+                {
+                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
+                    return Json(new { success = true, url = url });
                 }
                 else
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
+                    return Json(new { success = false, message = response.Message });
                 }
             }
             catch (Exception ex)

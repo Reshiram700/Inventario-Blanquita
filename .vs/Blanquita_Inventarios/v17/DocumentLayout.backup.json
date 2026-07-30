@@ -3,20 +3,52 @@
   "WorkspaceRootPath": "C:\\Apps VS\\Blanquita_Inventarios\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.site\\helpers\\ajustesprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\helpers\\ajustesprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.site\\helpers\\exportexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\helpers\\exportexcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\controllers\\ajustescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.site\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.site\\helpers\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\helpers\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.site\\controllers\\configuracionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\controllers\\configuracionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\views\\monitordiferencias\\costos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\views\\monitordiferencias\\costos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\controllers\\monitordiferenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\controllers\\monitordiferenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.site\\controllers\\ajustescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\controllers\\ajustescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}|Blanquita_Inventarios.DataAccess\\Blanquita_Inventarios.DataAccess.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.dataaccess\\configuracionesda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}|Blanquita_Inventarios.DataAccess\\Blanquita_Inventarios.DataAccess.csproj|solutionrelative:blanquita_inventarios.dataaccess\\configuracionesda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\views\\monitordiferencias\\capturas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\views\\monitordiferencias\\capturas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\helpers\\ajustesprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\helpers\\ajustesprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B6CA8A4-79B5-4DE9-A557-8A5E3473CE62}|Blanquita_Inventarios.BussinesLayer\\Blanquita_Inventarios.BussinesLayer.csproj|c:\\apps vs\\blanquita_inventarios\\blanquita_inventarios.bussineslayer\\configuracionesbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B6CA8A4-79B5-4DE9-A557-8A5E3473CE62}|Blanquita_Inventarios.BussinesLayer\\Blanquita_Inventarios.BussinesLayer.csproj|solutionrelative:blanquita_inventarios.bussineslayer\\configuracionesbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}|Blanquita_Inventarios.DataAccess\\Blanquita_Inventarios.DataAccess.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.dataaccess\\configuracionesda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9A7C5D8-3B5A-41D2-879D-7798EA4873DE}|Blanquita_Inventarios.DataAccess\\Blanquita_Inventarios.DataAccess.csproj|solutionrelative:blanquita_inventarios.dataaccess\\configuracionesda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C194C4A-AB1B-47DC-903E-0DCF43AA0102}|Blanquita_Inventarios.TestDIAPI\\Blanquita_Inventarios.TestDIAPI.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.testdiapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C194C4A-AB1B-47DC-903E-0DCF43AA0102}|Blanquita_Inventarios.TestDIAPI\\Blanquita_Inventarios.TestDIAPI.csproj|solutionrelative:blanquita_inventarios.testdiapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -25,14 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{005607CA-73EB-4AB9-9115-3FF6FF4C8A13}|Blanquita_Inventarios.Entities\\Blanquita_Inventarios.Entities.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.entities\\generics\\querys_sap_sql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{005607CA-73EB-4AB9-9115-3FF6FF4C8A13}|Blanquita_Inventarios.Entities\\Blanquita_Inventarios.Entities.csproj|solutionrelative:blanquita_inventarios.entities\\generics\\querys_sap_sql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\controllers\\monitordiferenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\controllers\\monitordiferenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\views\\monitordiferencias\\costos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|solutionrelative:blanquita_inventarios.site\\views\\monitordiferencias\\costos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{648571B1-8FF5-4518-8ADD-08827A414AA8}|Blanquita_Inventarios.Site\\Blanquita_Inventarios.Site.csproj|C:\\Apps VS\\Blanquita_Inventarios\\blanquita_inventarios.site\\views\\configuraciones\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -50,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +82,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Config.cs",
+              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Helpers\\Config.cs",
+              "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Helpers\\Config.cs",
+              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Helpers\\Config.cs",
+              "RelativeToolTip": "Blanquita_Inventarios.Site\\Helpers\\Config.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAwFoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-30T19:31:06.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConfiguracionesController.cs",
+              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\ConfiguracionesController.cs",
+              "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Controllers\\ConfiguracionesController.cs",
+              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\ConfiguracionesController.cs",
+              "RelativeToolTip": "Blanquita_Inventarios.Site\\Controllers\\ConfiguracionesController.cs",
+              "ViewState": "AgIAAGQCAAAAAAAAAAAAwCADAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-30T19:30:58.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Web.config",
+              "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Web.config",
+              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Web.config",
+              "RelativeToolTip": "Blanquita_Inventarios.Site\\Web.config",
+              "ViewState": "AgIAADkAAAAAAAAAAAAIwEkAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-07-30T19:26:56.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ExportExcel.cs",
+              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Helpers\\ExportExcel.cs",
+              "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Helpers\\ExportExcel.cs",
+              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Helpers\\ExportExcel.cs",
+              "RelativeToolTip": "Blanquita_Inventarios.Site\\Helpers\\ExportExcel.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAWwBcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-30T18:40:48.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MonitorDiferenciasController.cs",
+              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
+              "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
+              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
+              "RelativeToolTip": "Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
+              "ViewState": "AgIAAJgEAAAAAAAAAAAAwKwEAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-30T15:40:35.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "AjustesProgress.cs",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Helpers\\AjustesProgress.cs",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Helpers\\AjustesProgress.cs",
@@ -71,44 +160,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "AjustesController.cs",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\AjustesController.cs",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Controllers\\AjustesController.cs",
               "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\AjustesController.cs",
               "RelativeToolTip": "Blanquita_Inventarios.Site\\Controllers\\AjustesController.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAIwHQAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAmwGAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-30T16:34:56.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MonitorDiferenciasController.cs",
-              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
-              "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
-              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
-              "RelativeToolTip": "Blanquita_Inventarios.Site\\Controllers\\MonitorDiferenciasController.cs",
-              "ViewState": "AgIAAKIEAAAAAAAAAAAAwL8EAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-30T15:40:35.184Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Costos.cshtml",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Costos.cshtml",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Costos.cshtml",
               "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Costos.cshtml",
               "RelativeToolTip": "Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Costos.cshtml",
-              "ViewState": "AgIAAIkAAAAAAAAAAAD4v50AAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAANgAAAAAAAAAAAAIwPEAAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-30T14:56:47.092Z"
+              "WhenOpened": "2026-07-30T14:56:47.092Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "Querys_SAP_SQL.cs",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Entities\\Generics\\Querys_SAP_SQL.cs",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Entities\\Generics\\Querys_SAP_SQL.cs",
@@ -120,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Views\\Shared\\_Layout.cshtml",
@@ -132,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Views\\Configuraciones\\Index.cshtml",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Views\\Configuraciones\\Index.cshtml",
@@ -144,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "Home.cshtml",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Views\\Home\\Home.cshtml",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Views\\Home\\Home.cshtml",
@@ -156,28 +234,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Capturas.cshtml",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Capturas.cshtml",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Capturas.cshtml",
               "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Capturas.cshtml",
               "RelativeToolTip": "Blanquita_Inventarios.Site\\Views\\MonitorDiferencias\\Capturas.cshtml",
-              "ViewState": "AgIAANEAAAAAAAAAAAAYwPkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANEAAAAAAAAAAAAYwPIAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-28T19:26:25.59Z"
+              "WhenOpened": "2026-07-28T19:26:25.59Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
+              "Title": "ConfiguracionesBL.cs",
+              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.BussinesLayer\\ConfiguracionesBL.cs",
+              "RelativeDocumentMoniker": "Blanquita_Inventarios.BussinesLayer\\ConfiguracionesBL.cs",
+              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.BussinesLayer\\ConfiguracionesBL.cs",
+              "RelativeToolTip": "Blanquita_Inventarios.BussinesLayer\\ConfiguracionesBL.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAmwLIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-30T18:32:46.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.TestDIAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Blanquita_Inventarios.TestDIAPI\\Program.cs",
+              "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.TestDIAPI\\Program.cs",
+              "RelativeToolTip": "Blanquita_Inventarios.TestDIAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-30T16:59:16.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "ConfiguracionesDA.cs",
               "DocumentMoniker": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.DataAccess\\ConfiguracionesDA.cs",
               "RelativeDocumentMoniker": "Blanquita_Inventarios.DataAccess\\ConfiguracionesDA.cs",
               "ToolTip": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.DataAccess\\ConfiguracionesDA.cs",
               "RelativeToolTip": "Blanquita_Inventarios.DataAccess\\ConfiguracionesDA.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-21T23:26:57.658Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-21T23:26:57.658Z"
             }
           ]
         }

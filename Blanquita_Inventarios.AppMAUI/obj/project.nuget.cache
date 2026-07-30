@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uty77n6AfwQ=",
+  "dgSpecHash": "y6v0ZYgQAsU=",
   "success": true,
   "projectFilePath": "C:\\Apps VS\\Blanquita_Inventarios\\Blanquita_Inventarios.AppMAUI\\Blanquita_Inventarios.AppMAUI.csproj",
   "expectedPackageFiles": [
@@ -141,7 +141,11 @@
     "C:\\Users\\Alberto Cruz\\.nuget\\packages\\zxing.net\\0.16.9\\zxing.net.0.16.9.nupkg.sha512",
     "C:\\Users\\Alberto Cruz\\.nuget\\packages\\zxing.net.maui\\0.4.0\\zxing.net.maui.0.4.0.nupkg.sha512",
     "C:\\Users\\Alberto Cruz\\.nuget\\packages\\zxing.net.maui.controls\\0.4.0\\zxing.net.maui.controls.0.4.0.nupkg.sha512",
-    "C:\\Users\\Alberto Cruz\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.56\\microsoft.windows.sdk.net.ref.10.0.19041.56.nupkg.sha512"
+    "C:\\Users\\Alberto Cruz\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\8.0.23\\microsoft.netcore.app.crossgen2.win-x64.8.0.23.nupkg.sha512",
+    "C:\\Users\\Alberto Cruz\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.56\\microsoft.windows.sdk.net.ref.10.0.19041.56.nupkg.sha512",
+    "C:\\Users\\Alberto Cruz\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.23\\microsoft.aspnetcore.app.runtime.win-x64.8.0.23.nupkg.sha512",
+    "C:\\Users\\Alberto Cruz\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.23\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.23.nupkg.sha512",
+    "C:\\Users\\Alberto Cruz\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.23\\microsoft.netcore.app.runtime.win-x64.8.0.23.nupkg.sha512"
   ],
   "logs": []
 }

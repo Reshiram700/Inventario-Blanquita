@@ -31,3 +31,8 @@ D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquit.8CCE2F9A.Up2Date
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquita_Inventarios.DataAccess.dll
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquita_Inventarios.DataAccess.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquita_Inventarios.DataAccess.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquita_Inventarios.DataAccess.csproj.ResolveComReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquita_Inventarios.DataAccess.csproj.CoreCompileInputs.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquita_Inventarios.DataAccess.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Release\Blanquita_Inventarios.DataAccess.pdb

@@ -25,3 +25,7 @@ D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Rele
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Release\Blanquit.4B405DE0.Up2Date
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Release\Blanquita_Inventarios.BussinesLayer.dll
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Release\Blanquita_Inventarios.BussinesLayer.pdb
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Release\Blanquita_Inventarios.BussinesLayer.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Release\Blanquita_Inventarios.BussinesLayer.csproj.CoreCompileInputs.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Release\Blanquita_Inventarios.BussinesLayer.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.BussinesLayer\obj\Release\Blanquita_Inventarios.BussinesLayer.pdb

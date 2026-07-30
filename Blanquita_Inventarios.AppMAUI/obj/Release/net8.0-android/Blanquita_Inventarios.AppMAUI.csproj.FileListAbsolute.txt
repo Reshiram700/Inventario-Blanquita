@@ -510,3 +510,4 @@ C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.
 C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\stamp\_GenerateJavaStubs.stamp
 C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\stamp\_GeneratePackageManagerJava.stamp
 C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\stamp\_ResolveLibraryProjectImports.stamp
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\Blanquita_Inventarios.AppMAUI.sourcelink.json

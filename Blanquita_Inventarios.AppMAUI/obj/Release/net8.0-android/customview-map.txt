@@ -1,7 +1,7 @@
 @string/appbar_scrolling_view_behavior;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\layout\fragment_backstack.xml
 @string/appbar_scrolling_view_behavior;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\layout\navigationlayout.xml
-adaptive-icon;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 adaptive-icon;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario.xml
+adaptive-icon;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 alpha;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\172\jl\res\anim\enterfromleft.xml
 alpha;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\172\jl\res\anim\exittoleft.xml
 alpha;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\anim\nav_default_enter_anim.xml
@@ -17,8 +17,8 @@ androidx.fragment.app.FragmentContainerView;C:\Apps VS\Blanquita_Inventarios\Bla
 attr;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\168\jl\res\values\attrs.xml
 attr;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\171\jl\res\values\attrs.xml
 attr;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\values\attr.xml
-background;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 background;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario.xml
+background;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 cache-path;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\175\jl\res\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
 color;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\values\colors.xml
 color;obj\Release\net8.0-android\res\values\colors.xml
@@ -34,19 +34,19 @@ declare-styleable;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI
 declare-styleable;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\values\attr.xml
 external-cache-path;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\175\jl\res\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
 external-path;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\175\jl\res\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
-foreground;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 foreground;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario.xml
+foreground;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 gradient;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\168\jl\res\drawable\roundedbg.xml
 gradient;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\168\jl\res\drawable\roundedbgdark.xml
 ImageView;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\168\jl\res\layout\loadingimage.xml
 item;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\171\jl\res\values\styles.xml
 item;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\drawable\maui_splash.xml
 item;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\values\styles.xml
-layer-list;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\drawable\maui_splash_image.xml
 layer-list;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\drawable\maui_splash.xml
+layer-list;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\174\jl\res\drawable\maui_splash_image.xml
 microsoft.maui.controls.platform.compatibility.ShellFlyoutLayout;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\172\jl\res\layout\flyoutcontent.xml
-monochrome;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 monochrome;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario.xml
+monochrome;obj\Release\net8.0-android\resizetizer\r\mipmap-anydpi-v26\icon_tomainventario_round.xml
 paths;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\175\jl\res\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
 ProgressBar;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\168\jl\res\layout\loading.xml
 RelativeLayout;C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.AppMAUI\obj\Release\net8.0-android\lp\168\jl\res\layout\loading.xml

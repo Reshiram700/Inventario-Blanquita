@@ -114,3 +114,7 @@ D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Site\bin\zxing.dll
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Site\bin\zxing.presentation.dll
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Site\bin\zxing.xml
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.Site\bin\zxing.presentation.xml
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Site\obj\Release\Blanquita_Inventarios.Site.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Site\obj\Release\Blanquita_Inventarios.Site.csproj.CoreCompileInputs.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Site\obj\Release\Blanquita_Inventarios.Site.dll
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.Site\obj\Release\Blanquita_Inventarios.Site.pdb

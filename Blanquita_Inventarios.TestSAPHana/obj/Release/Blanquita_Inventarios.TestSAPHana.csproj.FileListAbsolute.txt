@@ -1,0 +1,2 @@
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Release\Blanquita_Inventarios.TestSAPHana.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestSAPHana\obj\Release\Blanquita_Inventarios.TestSAPHana.csproj.CoreCompileInputs.cache

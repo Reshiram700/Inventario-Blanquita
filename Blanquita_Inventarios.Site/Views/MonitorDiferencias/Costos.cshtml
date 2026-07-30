@@ -144,20 +144,16 @@
 
     <script>
         // ===== FUNCIÓN PARA EXPORTAR A EXCEL =====
-        function ExportExcel() {
+    function ExportExcel() {
         // Deshabilitar botón y mostrar progreso
         $("#btnExcel").attr('disabled', 'disabled');
         $("#btnExcel").html('<i class="fa fa-spinner fa-spin"></i> Generando...');
         $("#excelProgress").removeClass("hidden");
 
-        // Obtener el ID del inventario seleccionado
-        var idConfiguracion = $("#ddlFiltroInventarios").val();
-
-        // Llamar al controlador para generar el Excel
+        // Llamar al controlador para generar el Excel (sin enviar datos)
         $.ajax({
-            url: '@Url.Action("ExcelCostosCero", "MonitorDiferencias")',  // ← CAMBIADO
+            url: '@Url.Action("ExcelCostosCero", "MonitorDiferencias")',
             type: "POST",
-            data: { idConfiguracion: idConfiguracion },
             success: function (response) {
                 if (response.success) {
                     // Descargar el archivo

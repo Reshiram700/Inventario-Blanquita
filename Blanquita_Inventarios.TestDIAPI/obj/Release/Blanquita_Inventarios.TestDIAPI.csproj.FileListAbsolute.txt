@@ -1,0 +1,3 @@
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Release\Blanquita_Inventarios.TestDIAPI.csproj.AssemblyReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Release\Blanquita_Inventarios.TestDIAPI.csproj.ResolveComReference.cache
+C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.TestDIAPI\obj\Release\Blanquita_Inventarios.TestDIAPI.csproj.CoreCompileInputs.cache

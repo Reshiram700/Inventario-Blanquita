@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Blanquita_Inventarios.AppMAUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+4c28b8d766417e7b452d1b73339117da365cc3a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Blanquita_Inventarios.AppMAUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Blanquita_Inventarios.AppMAUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
