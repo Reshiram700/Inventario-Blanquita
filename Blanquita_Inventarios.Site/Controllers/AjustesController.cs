@@ -5,7 +5,8 @@ using Blanquita_Inventarios.Site.Helpers;
 using Blanquita_Inventarios.Site.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Blanquita_Inventarios.Site.Controllers
@@ -19,8 +20,7 @@ namespace Blanquita_Inventarios.Site.Controllers
                 return RedirectToAction("Index", "Home");
 
             UsuarioSesion userLogin = (UsuarioSesion)Session["UserAdmin"];
-            bool isAdmin = (userLogin.IdPerfil == 3 || userLogin.IdPerfil == 4);
-
+            bool isAdmin = (userLogin.IdPerfil == 3 || userLogin.IdPerfil == 4) ? true : false;
             if (!isAdmin)
                 return RedirectToAction("Home", "Home");
 
@@ -44,98 +44,49 @@ namespace Blanquita_Inventarios.Site.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public JsonResult Index(AjustesVM viewModel)
         {
             DBResponse<int> result = new DBResponse<int>();
 
             UsuarioSesion userLogin = (UsuarioSesion)Session["UserAdmin"];
-            bool isAdmin = (userLogin.IdPerfil == 3 || userLogin.IdPerfil == 4);
-
+            bool isAdmin = (userLogin.IdPerfil == 3 || userLogin.IdPerfil == 4) ? true : false;
             if (!isAdmin)
             {
-                result.ExecutionOK = false;
                 result.Message = "Debido a que no cuenta con permisos no es posible aplicar los Ajustes en el Inventario seleccionado.";
                 return Json(result);
             }
 
-            if (AjustesProgress.EnProceso)
+            try
             {
-                result.ExecutionOK = false;
-                result.Message = "Ya existe un proceso de ajustes ejecutándose.";
-                return Json(result);
+                result = new ConfiguracionesBL().Aply_Ajustes(viewModel.FiltroIdConfiguracion,
+                    new ConexDIAPI
+                    {
+                        Server = Config.DIAPI_Server,
+                        Company = Config.DIAPI_CompanyDB,
+                        UserName = Config.DIAPI_UserName,
+                        Password = Config.DIAPI_Password,
+                        DbUserName = Config.DIAPI_DbUserName,
+                        DbPassword = Config.DIAPI_DbPassword,
+                        UseTrusted = Config.DIAPI_UseTrusted
+                    }, Config.DirectorioLog);               
+
+                if (result.ExecutionOK)
+                {
+                    TempData["MensajeAIndex"] = "Se aplicaron los ajustes correctamente";
+                }
+                else
+                {
+                    result.Message = "No fue posible realizar todos los ajustes debido a.... " + result.Message + ", Revise e intente nuevamente aplicar los ajustes";
+                }
             }
-
-            AjustesProgress.Reset();
-            AjustesProgress.EnProceso = true;
-            AjustesProgress.Inicio = DateTime.Now;
-            AjustesProgress.Etapa = "Preparando proceso...";
-
-            int idConfiguracion = viewModel.FiltroIdConfiguracion;
-
-            ConexDIAPI conexion = new ConexDIAPI
+            catch (Exception ex)
             {
-                Server = Config.DIAPI_Server,
-                Company = Config.DIAPI_CompanyDB,
-                UserName = Config.DIAPI_UserName,
-                Password = Config.DIAPI_Password,
-                DbUserName = Config.DIAPI_DbUserName,
-                DbPassword = Config.DIAPI_DbPassword,
-                UseTrusted = Config.DIAPI_UseTrusted
-            };
-
-            string directorioLog = Config.DirectorioLog;
-
-            Task.Run(() =>
-            {
-                try
-                {
-                    new ConfiguracionesBL().Aply_Ajustes(
-                        idConfiguracion,
-                        conexion,
-                        directorioLog);
-                }
-                catch (Exception ex)
-                {
-                    AjustesProgress.Finalizado = true;
-                    AjustesProgress.Exitoso = false;
-                    AjustesProgress.Mensaje = ex.Message;
-                    AjustesProgress.Etapa = "Error";
-                }
-                finally
-                {
-                    AjustesProgress.EnProceso = false;
-                }
-            });
-
-            result.ExecutionOK = true;
-            result.Message = "Proceso iniciado correctamente.";
-
+                result.Message = ex.Message;
+                if (ex.InnerException != null)
+                    result.Message += " (" + ex.InnerException.Message + ")";
+            }
+                        
             return Json(result);
-        }
-
-        [HttpGet]
-        public JsonResult GetProgress()
-        {
-            TimeSpan tiempo = TimeSpan.Zero;
-
-            if (AjustesProgress.Inicio != DateTime.MinValue)
-                tiempo = DateTime.Now - AjustesProgress.Inicio;
-
-            return Json(new
-            {
-                EnProceso = AjustesProgress.EnProceso,
-                Etapa = AjustesProgress.Etapa,
-                Total = AjustesProgress.Total,
-                Procesados = AjustesProgress.Procesados,
-                Porcentaje = AjustesProgress.Porcentaje,
-                Tiempo = tiempo.ToString(@"hh\\:mm\\:ss"),
-
-                Finalizado = AjustesProgress.Finalizado,
-                Exitoso = AjustesProgress.Exitoso,
-                Mensaje = AjustesProgress.Mensaje
-
-            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

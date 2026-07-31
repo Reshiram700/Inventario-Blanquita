@@ -20,8 +20,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Blanquita_Inventarios.Site.Helpers;
-using System.IO;
 
 namespace Blanquita_Inventarios.DataAccess
 {
@@ -1617,97 +1615,92 @@ namespace Blanquita_Inventarios.DataAccess
             {
                 using (InventariosEntities db = new InventariosEntities())
                 {
+                    DatosBarcode datos = new DatosBarcode();
                     var dbConfiguracion = db.Configuraciones.Find(idConfiguracion);
-                    if (dbConfiguracion == null || dbConfiguracion.Cerrado || dbConfiguracion.Procesado)
+                    if (dbConfiguracion != null)
                     {
-                        response.Message = "El Inventario no está disponible para captura";
-                        return response;
-                    }
-
-                    using (SqlConnection cnnDB = new SqlConnection(Querys_SAP_SQL.Get_SQL_Connection(
-                        dbConfiguracion.ServidorIP, dbConfiguracion.Instancia, dbConfiguracion.Puerto,
-                        dbConfiguracion.BaseDatos, dbConfiguracion.Usuario, dbConfiguracion.Password)))
-                    {
-                        cnnDB.Open();
-
-                        // CONSULTA UNIFICADA con JOIN
-                        string sqlProducto = @"
-                    SELECT 
-                        B.ItemCode, B.UomCode, B.BaseQty,
-                        A.ItemName, A.Price
-                    FROM SAP_Barcodes B
-                    LEFT JOIN SAP_Articulos A ON B.ItemCode = A.ItemCode
-                    WHERE B.BcdCode = @BcdCode";
-
-                        DataTable dtProducto = new DataTable();
-                        using (SqlCommand cmd = new SqlCommand(sqlProducto, cnnDB))
+                        if (dbConfiguracion.Activo == true && dbConfiguracion.Deshabilitado == false && dbConfiguracion.Cerrado == false && dbConfiguracion.Procesado == false)
                         {
-                            cmd.Parameters.AddWithValue("@BcdCode", codigo);
-                            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                            string almacen = dbConfiguracion.Almacen;
+
+                            SqlConnection cnnDB = new SqlConnection(Querys_SAP_SQL.Get_SQL_Connection(
+                                dbConfiguracion.ServidorIP,
+                                dbConfiguracion.Instancia,
+                                dbConfiguracion.Puerto,
+                                dbConfiguracion.BaseDatos,
+                                dbConfiguracion.Usuario,
+                                dbConfiguracion.Password));
+
+                            cnnDB.Open();
+
+                            SqlCommand cmdCodigo = new SqlCommand(Querys_SAP_SQL.Get_InfoBarcode(), cnnDB);
+                            cmdCodigo.Parameters.AddWithValue("@BcdCode", codigo);
+
+                            DataTable dtCodigo = new DataTable();
+                            SqlDataAdapter daCodigo = new SqlDataAdapter(cmdCodigo);
+                            daCodigo.Fill(dtCodigo);
+                            if (dtCodigo.Rows.Count > 0)
                             {
-                                da.Fill(dtProducto);
+                                datos.Codigo = codigo;
+                                datos.ItemCode = dtCodigo.Rows[0][0].ToString();
+                                datos.Uom = dtCodigo.Rows[0][2].ToString();
+                                datos.BaseQty = decimal.Parse(dtCodigo.Rows[0][3].ToString());
+
+                                SqlCommand cmdProducto = new SqlCommand(Querys_SAP_SQL.Get_InfoProducto(), cnnDB);
+                                cmdProducto.Parameters.AddWithValue("@ItemCode", datos.ItemCode);
+
+                                DataTable dtProducto = new DataTable();
+                                SqlDataAdapter daProducto = new SqlDataAdapter(cmdProducto);
+                                daProducto.Fill(dtProducto);
+                                if (dtProducto.Rows.Count > 0)
+                                {
+                                    datos.Descripcion = dtProducto.Rows[0][2].ToString();
+                                    datos.Precio = decimal.Parse(dtProducto.Rows[0][3].ToString());
+                                }
+
+
+                                datos.Cantidad2 = cantidad;
+                                datos.Costo = (datos.Cantidad2 * datos.BaseQty) * datos.Precio;
+                                datos.NombrePDA = usuario;
+
+                                SqlCommand cmdMarbete = new SqlCommand(Querys_SAP_SQL.Get_SQL_IdMarbeteByMarbete(), cnnDB);
+                                cmdMarbete.Parameters.AddWithValue("@Marbete", marbete);
+
+                                DataTable dtMarbete = new DataTable();
+                                SqlDataAdapter daMarbete = new SqlDataAdapter(cmdMarbete);
+                                daMarbete.Fill(dtMarbete);
+                                if (dtMarbete.Rows.Count > 0)
+                                {
+                                    datos.IdMarbete = int.Parse(dtMarbete.Rows[0][0].ToString());
+                                }
+
+                                SqlCommand cmdInsertArticulo = new SqlCommand(Querys_SAP_SQL.Insert_MarbeteArticulos(), cnnDB);
+                                cmdInsertArticulo.Parameters.AddWithValue("@IdMarbete", datos.IdMarbete);
+                                cmdInsertArticulo.Parameters.AddWithValue("@CodigoArticulo", datos.ItemCode);
+                                cmdInsertArticulo.Parameters.AddWithValue("@CodigoBarras", datos.Codigo);
+                                cmdInsertArticulo.Parameters.AddWithValue("@Descripcion", datos.Descripcion);
+                                cmdInsertArticulo.Parameters.AddWithValue("@Grupo", "");
+                                cmdInsertArticulo.Parameters.AddWithValue("@Uom", datos.Uom);
+                                cmdInsertArticulo.Parameters.AddWithValue("@BaseQty", datos.BaseQty);
+                                cmdInsertArticulo.Parameters.AddWithValue("@Precio", datos.Precio);
+                                cmdInsertArticulo.Parameters.AddWithValue("@Costo", datos.Costo);
+                                cmdInsertArticulo.Parameters.AddWithValue("@Cantidad", datos.Cantidad2);
+                                cmdInsertArticulo.Parameters.AddWithValue("@Cantidad2", datos.Cantidad2);
+                                cmdInsertArticulo.Parameters.AddWithValue("@Capturo", datos.NombrePDA);
+                                cmdInsertArticulo.Parameters.AddWithValue("@FechaCaptura", DateTime.Now);
+                                cmdInsertArticulo.ExecuteNonQuery();
                             }
-                        }
 
-                        if (dtProducto.Rows.Count == 0)
+                            if (cnnDB.State == ConnectionState.Open)
+                                cnnDB.Close();
+
+                            response.ExecutionOK = true;
+                            response.Data = 0;
+                        }
+                        else
                         {
-                            response.Message = "No se encontró información del código ingresado";
-                            return response;
+                            response.Message = "No es posible aplicar la modificación debido a que el estatus del Inventario lo impide, reviselo";
                         }
-
-                        DataRow row = dtProducto.Rows[0];
-                        string itemCode = row["ItemCode"].ToString();
-                        string uom = row["UomCode"].ToString();
-                        decimal baseQty = Convert.ToDecimal(row["BaseQty"]);
-                        string descripcion = row["ItemName"].ToString();
-                        decimal precio = Convert.ToDecimal(row["Price"]);
-
-                        // Obtener IdMarbete
-                        int idMarbete = 0;
-                        using (SqlCommand cmd = new SqlCommand(Querys_SAP_SQL.Get_SQL_IdMarbeteByMarbete(), cnnDB))
-                        {
-                            cmd.Parameters.AddWithValue("@Marbete", marbete);
-                            object result = cmd.ExecuteScalar();
-                            if (result != null) idMarbete = Convert.ToInt32(result);
-                        }
-
-                        if (idMarbete == 0)
-                        {
-                            response.Message = "No se encontró el marbete especificado";
-                            return response;
-                        }
-
-                        decimal costo = (cantidad * baseQty) * precio;
-
-                        // INSERTAR en una sola consulta
-                        string sqlInsert = @"
-                    INSERT INTO MarbetesArticulos 
-                        (IdMarbete, CodigoArticulo, CodigoBarras, Descripcion, Grupo, 
-                         Uom, BaseQty, Precio, Costo, Cantidad, Cantidad2, Capturo, FechaCaptura)
-                    VALUES 
-                        (@IdMarbete, @CodigoArticulo, @CodigoBarras, @Descripcion, @Grupo,
-                         @Uom, @BaseQty, @Precio, @Costo, @Cantidad, @Cantidad2, @Capturo, @FechaCaptura)";
-
-                        using (SqlCommand cmd = new SqlCommand(sqlInsert, cnnDB))
-                        {
-                            cmd.Parameters.AddWithValue("@IdMarbete", idMarbete);
-                            cmd.Parameters.AddWithValue("@CodigoArticulo", itemCode);
-                            cmd.Parameters.AddWithValue("@CodigoBarras", codigo);
-                            cmd.Parameters.AddWithValue("@Descripcion", descripcion);
-                            cmd.Parameters.AddWithValue("@Grupo", "");
-                            cmd.Parameters.AddWithValue("@Uom", uom);
-                            cmd.Parameters.AddWithValue("@BaseQty", baseQty);
-                            cmd.Parameters.AddWithValue("@Precio", precio);
-                            cmd.Parameters.AddWithValue("@Costo", costo);
-                            cmd.Parameters.AddWithValue("@Cantidad", cantidad);
-                            cmd.Parameters.AddWithValue("@Cantidad2", cantidad);
-                            cmd.Parameters.AddWithValue("@Capturo", usuario);
-                            cmd.Parameters.AddWithValue("@FechaCaptura", DateTime.Now);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        response.ExecutionOK = true;
-                        response.Data = 0;
                     }
                 }
             }
@@ -1897,11 +1890,12 @@ namespace Blanquita_Inventarios.DataAccess
                     {
                         cnnDB.Open();
 
-                        // Obtener total de marbetes cerrados
+                        // ✅ 1. Obtener total de marbetes cerrados (una sola consulta)
                         int marbetesCerrados = 0;
                         using (SqlCommand cmd = new SqlCommand(Querys_SAP_SQL.Get_SQL_MarbetesCerrados(), cnnDB))
                         {
-                            marbetesCerrados = (int)cmd.ExecuteScalar();
+                            object result = cmd.ExecuteScalar();
+                            marbetesCerrados = (result != DBNull.Value && result != null) ? Convert.ToInt32(result) : 0;
                         }
 
                         int marbetesTotales = db.Get_TotalMarbetesByConfiguracion(idConfiguracion).FirstOrDefault().GetValueOrDefault();
@@ -1914,7 +1908,7 @@ namespace Blanquita_Inventarios.DataAccess
                             return response;
                         }
 
-                        // CONSULTA UNIFICADA - Obtiene todos los datos en una sola consulta
+                        // ✅ 2. CONSULTA UNIFICADA - Obtiene TODOS los datos en UNA sola consulta
                         string sqlUnificado = @"
                     WITH DatosMarbete AS (
                         SELECT 
@@ -1957,27 +1951,33 @@ namespace Blanquita_Inventarios.DataAccess
                             }
                         }
 
-                        // PROCESAR DATOS EN MEMORIA
+                        // ✅ 3. FUNCIÓN DE AYUDA PARA CONVERSIONES SEGURAS
+                        decimal GetDecimal(object value) => (value != DBNull.Value && value != null) ? Convert.ToDecimal(value) : 0m;
+                        int GetInt(object value) => (value != DBNull.Value && value != null) ? Convert.ToInt32(value) : 0;
+                        string GetString(object value) => (value != DBNull.Value && value != null) ? value.ToString() : "";
+
                         List<Resultado_Capturas> resultadoCapturas = new List<Resultado_Capturas>();
                         List<Listado_Procesado> procesadoList = new List<Listado_Procesado>();
 
+                        // ✅ 4. PROCESAR DATOS EN MEMORIA (rápido)
                         foreach (DataRow row in dtUnificado.Rows)
                         {
-                            string codigoArticulo = row["CodigoArticulo"].ToString();
-                            string descripcion = row["Descripcion"].ToString();
-                            string uom = row["UomSAP"]?.ToString() ?? row["Uom"]?.ToString() ?? "";
-                            string itmsGrpNam = row["ItmsGrpNam"]?.ToString() ?? "";
-                            decimal precioSAP = row["PrecioSAP"] != DBNull.Value ? Convert.ToDecimal(row["PrecioSAP"]) : 0;
-                            decimal onHand = row["OnHand"] != DBNull.Value ? Convert.ToDecimal(row["OnHand"]) : 0;
-                            int uomEntry = row["UomEntry"] != DBNull.Value ? Convert.ToInt32(row["UomEntry"]) : 0;
-                            decimal cantidadTotal = row["CantidadTotal"] != DBNull.Value ? Convert.ToDecimal(row["CantidadTotal"]) : 0;
-                            string marbetes = row["Marbetes"]?.ToString() ?? "";
+                            string codigoArticulo2 = GetString(row["CodigoArticulo"]);
+                            string descripcion = GetString(row["Descripcion"]);
+                            string uom = GetString(row["UomSAP"]);
+                            if (string.IsNullOrEmpty(uom)) uom = GetString(row["Uom"]);
+                            string itmsGrpNam = GetString(row["ItmsGrpNam"]);
+                            decimal precioSAP = GetDecimal(row["PrecioSAP"]);
+                            decimal onHand = GetDecimal(row["OnHand"]);
+                            int uomEntry = GetInt(row["UomEntry"]);
+                            decimal cantidadTotal = GetDecimal(row["CantidadTotal"]);
+                            string marbetes = GetString(row["Marbetes"]);
 
                             resultadoCapturas.Add(new Resultado_Capturas
                             {
                                 Folio = 0,
                                 Marbete = 0,
-                                CodigoProducto = codigoArticulo,
+                                CodigoProducto = codigoArticulo2,
                                 Descripcion = descripcion,
                                 Conteo = idConteo == 1 ? "Conteo 1" : "Conteo 2",
                                 Nombre = ""
@@ -1994,7 +1994,7 @@ namespace Blanquita_Inventarios.DataAccess
                             {
                                 WhsCode = dbConfiguracion.Almacen,
                                 ItmsGrpNam = itmsGrpNam,
-                                ItemCode = codigoArticulo,
+                                ItemCode = codigoArticulo2,
                                 ItemName = descripcion,
                                 Cant1 = cantidadTotal,
                                 Cant2 = cantidadTotal,
@@ -2029,7 +2029,7 @@ namespace Blanquita_Inventarios.DataAccess
                             });
                         }
 
-                        // OBTENER ARTÍCULOS NO CONTADOS
+                        // ✅ 5. OBTENER ARTÍCULOS NO CONTADOS (una sola consulta)
                         var itemCodesProcesados = procesadoList.Select(p => p.ItemCode).ToHashSet();
                         string itemCodesStr = string.Join(",", itemCodesProcesados.Select(c => $"'{c}'"));
 
@@ -2052,13 +2052,13 @@ namespace Blanquita_Inventarios.DataAccess
 
                         foreach (DataRow row in dtNoContados.Rows)
                         {
-                            string itemCode = row["ItemCode"].ToString();
-                            string itemName = row["ItemName"].ToString();
-                            string itmsGrpNam = row["ItmsGrpNam"].ToString();
-                            decimal onHand = Convert.ToDecimal(row["OnHand"]);
-                            decimal precio = Convert.ToDecimal(row["Precio"]);
-                            int uomEntry = Convert.ToInt32(row["UomEntry"]);
-                            string uom = row["Uom"].ToString();
+                            string itemCode = GetString(row["ItemCode"]);
+                            string itemName = GetString(row["ItemName"]);
+                            string itmsGrpNam = GetString(row["ItmsGrpNam"]);
+                            decimal onHand = GetDecimal(row["OnHand"]);
+                            decimal precio = GetDecimal(row["Precio"]);
+                            int uomEntry = GetInt(row["UomEntry"]);
+                            string uom = GetString(row["Uom"]);
 
                             resultadoCapturas.Add(new Resultado_Capturas
                             {
@@ -2109,7 +2109,7 @@ namespace Blanquita_Inventarios.DataAccess
                             });
                         }
 
-                        // GUARDAR EN PROCESADO USANDO SQLBULKCOPY
+                        // ✅ 6. GUARDAR CON SQLBULKCOPY (MUCHO MÁS RÁPIDO QUE INSERTS INDIVIDUALES)
                         using (SqlCommand cmd = new SqlCommand("DELETE FROM Procesado WHERE WhsCode = @WhsCode", cnnDB))
                         {
                             cmd.Parameters.AddWithValue("@WhsCode", dbConfiguracion.Almacen);
@@ -2666,232 +2666,248 @@ namespace Blanquita_Inventarios.DataAccess
         {
             var response = new DBResponse<int>();
             string txtLog = DateTime.Now.ToString("yyyyMMddHHmmss") + "_AjustesES.log";
-            string directorioSeguro = string.IsNullOrEmpty(directorioLogs)
-                ? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "Logs")
-                : directorioLogs;
-
             try
             {
-                if (!Directory.Exists(directorioSeguro)) Directory.CreateDirectory(directorioSeguro);
+                GrabaLog(directorioLogs, txtLog, "Iniciando Proceso de Ajustes E/S");
 
                 using (InventariosEntities db = new InventariosEntities())
                 {
                     db.Database.CommandTimeout = 1200;
 
                     var dbConfiguracion = db.Configuraciones.Find(idConfiguracion);
-                    if (dbConfiguracion == null)
+                    if (dbConfiguracion != null)
                     {
-                        response.Message = "No se encontró información del Inventario seleccionado";
-                        return response;
-                    }
-
-                    if (!(dbConfiguracion.Procesado && !dbConfiguracion.Cerrado &&
-                          !dbConfiguracion.Deshabilitado && !dbConfiguracion.AjustesAplicados))
-                    {
-                        response.Message = "El Inventario no está en un estado válido para aplicar ajustes";
-                        return response;
-                    }
-
-                    // Obtener datos de sobrantes y faltantes en una sola consulta
-                    string sqlAjustes = @"
-                SELECT 
-                    ItemCode, Cant2, Onhand, IdUom, Precio,
-                    CASE WHEN Cant2 > Onhand THEN 'Sobrante' ELSE 'Faltante' END AS Tipo
-                FROM Procesado
-                WHERE Cant2 != Onhand AND Precio > 0";
-
-                    DataTable dtAjustes = new DataTable();
-                    using (SqlConnection cnnDB = new SqlConnection(Querys_SAP_SQL.Get_SQL_Connection(
-                        dbConfiguracion.ServidorIP, dbConfiguracion.Instancia, dbConfiguracion.Puerto,
-                        dbConfiguracion.BaseDatos, dbConfiguracion.Usuario, dbConfiguracion.Password)))
-                    {
-                        using (SqlCommand cmd = new SqlCommand(sqlAjustes, cnnDB))
+                        if (dbConfiguracion.Procesado == true && dbConfiguracion.Cerrado == false && dbConfiguracion.Deshabilitado == false && dbConfiguracion.AjustesAplicados == false)
                         {
-                            cmd.CommandTimeout = 1200;
-                            cnnDB.Open();
-                            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                            DataTable dtProcesadoSobrante = Get_Procesado_Sobrante(dbConfiguracion);
+                            DataTable dtProcesadoFaltante = Get_Procesado_Faltante(dbConfiguracion);
+
+                            if (dtProcesadoSobrante.Rows.Count > 0 || dtProcesadoFaltante.Rows.Count > 0)
                             {
-                                da.Fill(dtAjustes);
+
+                                Company oCompany = new Company();
+                                oCompany.Server = conDiApi.Server; // Servidor HANA
+                                oCompany.CompanyDB = conDiApi.Company; // Base de datos de SAP B1
+                                oCompany.UserName = conDiApi.UserName; // Usuario SAP
+                                oCompany.Password = conDiApi.Password; // Contraseña SAP
+                                oCompany.DbUserName = conDiApi.DbUserName; // Usuario HANA
+                                oCompany.DbPassword = conDiApi.DbPassword; // Contraseña HANA
+                                oCompany.DbServerType = BoDataServerTypes.dst_HANADB; // Tipo de base de datos
+                                oCompany.UseTrusted = conDiApi.UseTrusted; // Desactiva autenticación confiable
+
+                                int connectionResult = oCompany.Connect();
+
+                                if (connectionResult != 0)
+                                {
+                                    int errorCode;
+                                    string errorDescription;
+                                    oCompany.GetLastError(out errorCode, out errorDescription);
+                                    response.Message = $"Error al conectar: Código {errorCode} - {errorDescription}";
+                                    return response;
+                                }
+
+                                try
+                                {
+                                    bool todoOK = true;
+                                    string mensajeFinal = "";
+
+                                    // ===== PROCESAR SOBRANTES (ENTRADA) =====
+                                    if (dtProcesadoSobrante.Rows.Count > 0)
+                                    {
+                                        GrabaLog(directorioLogs, txtLog, "Creando Objeto DI API - ENTRADAS");
+
+                                        SAPbobsCOM.Documents draftEntrada = (SAPbobsCOM.Documents)oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oDrafts);
+                                        draftEntrada.DocObjectCode = SAPbobsCOM.BoObjectTypes.oInventoryGenEntry;
+                                        draftEntrada.Comments = $"Ajuste por conteo físico - Entrada ({DateTime.Now:dd/MM/yyyy HH:mm})";
+
+                                        // Pre-calcular índices para máximo rendimiento
+                                        var itemCodeIndex = dtProcesadoSobrante.Columns["ItemCode"].Ordinal;    // Índice 3
+                                        var cant2Index = dtProcesadoSobrante.Columns["Cant2"].Ordinal;          // Índice 6
+                                        var onhandIndex = dtProcesadoSobrante.Columns["Onhand"].Ordinal;        // Índice 12
+                                        var uomIndex = dtProcesadoSobrante.Columns["IdUom"].Ordinal;            // Índice 22
+                                        var precioIndex = dtProcesadoSobrante.Columns["Precio"].Ordinal;        // Índice 23
+
+                                        for (int i = 0; i < dtProcesadoSobrante.Rows.Count; i++)
+                                        {
+                                            var row = dtProcesadoSobrante.Rows[i];
+
+                                            string itemCode = (string)row[itemCodeIndex];
+                                            decimal cant2 = Convert.ToDecimal(row[cant2Index]);
+                                            decimal onhand = Convert.ToDecimal(row[onhandIndex]);
+                                            int uomEntry = Convert.ToInt32(row[uomIndex]);
+                                            decimal precio = Convert.ToDecimal(row[precioIndex]);
+
+                                            // Validación precio ya incluida en SQL, pero por seguridad
+                                            if (precio <= 0)
+                                            {
+                                                todoOK = false;
+                                                response.Message = "No se encontró información del Producto " + itemCode + ", revise los datos del SAP (AvgPrice)";
+                                                break;
+                                            }
+
+                                            decimal diferencia = cant2 - onhand;
+
+                                            // Agregar línea (excepto la primera)
+                                            if (i > 0) draftEntrada.Lines.Add();
+
+                                            draftEntrada.Lines.ItemCode = itemCode;
+                                            draftEntrada.Lines.Quantity = (double)diferencia;
+                                            draftEntrada.Lines.UnitPrice = (double)precio;
+                                            draftEntrada.Lines.UoMEntry = uomEntry;
+                                            draftEntrada.Lines.WarehouseCode = dbConfiguracion.Almacen;
+                                        }
+
+                                        if (todoOK)
+                                        {
+                                            GrabaLog(directorioLogs, txtLog, "Afectando DI API - ENTRADAS");
+                                            int draftEntradaResult = draftEntrada.Add();
+                                            GrabaLog(directorioLogs, txtLog, "Procesando Resultado de Afectacion - ENTRADAS");
+
+                                            if (draftEntradaResult != 0)
+                                            {
+                                                todoOK = false;
+                                                oCompany.GetLastError(out int errCode, out string errMsg);
+                                                GrabaLog(directorioLogs, txtLog, $"Error al crear el borrador de Entrada: {errCode} - {errMsg}");
+                                                response.Message = $"Error al crear el borrador de Entrada: {errCode} - {errMsg}";
+                                            }
+                                            else
+                                            {
+                                                GrabaLog(directorioLogs, txtLog, "Afectación de ENTRADAS correcto");
+                                                string docEntry = oCompany.GetNewObjectKey();
+                                                mensajeFinal += $"Borrador Entrada creado. DocEntry: {docEntry} ({dtProcesadoSobrante.Rows.Count} items). ";
+                                            }
+                                        }
+                                    }
+
+                                    // ===== PROCESAR FALTANTES (SALIDA) =====
+                                    if (todoOK && dtProcesadoFaltante.Rows.Count > 0)
+                                    {
+                                        GrabaLog(directorioLogs, txtLog, "Creando Objeto DI API - SALIDAS");
+
+                                        SAPbobsCOM.Documents draftSalida = (SAPbobsCOM.Documents)oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oDrafts);
+                                        draftSalida.DocObjectCode = SAPbobsCOM.BoObjectTypes.oInventoryGenExit;
+                                        draftSalida.Comments = $"Ajuste por conteo físico - Salida ({DateTime.Now:dd/MM/yyyy HH:mm})";
+
+                                        // Pre-calcular índices para máximo rendimiento
+                                        var itemCodeIndex = dtProcesadoFaltante.Columns["ItemCode"].Ordinal;
+                                        var cant2Index = dtProcesadoFaltante.Columns["Cant2"].Ordinal;
+                                        var onhandIndex = dtProcesadoFaltante.Columns["Onhand"].Ordinal;
+                                        var uomIndex = dtProcesadoFaltante.Columns["IdUom"].Ordinal;
+                                        var precioIndex = dtProcesadoFaltante.Columns["Precio"].Ordinal;
+
+                                        for (int i = 0; i < dtProcesadoFaltante.Rows.Count; i++)
+                                        {
+                                            var row = dtProcesadoFaltante.Rows[i];
+
+                                            string itemCode = (string)row[itemCodeIndex];
+                                            decimal cant2 = Convert.ToDecimal(row[cant2Index]);
+                                            decimal onhand = Convert.ToDecimal(row[onhandIndex]);
+                                            int uomEntry = Convert.ToInt32(row[uomIndex]);
+                                            decimal precio = Convert.ToDecimal(row[precioIndex]);
+
+                                            // Validación precio
+                                            if (precio <= 0)
+                                            {
+                                                todoOK = false;
+                                                response.Message = "No se encontró información del Producto " + itemCode + ", revise los datos del SAP (AvgPrice)";
+                                                break;
+                                            }
+
+                                            decimal diferencia = onhand - cant2; // Para salida                                            
+
+                                            // Agregar línea (excepto la primera)
+                                            if (i > 0) draftSalida.Lines.Add();
+
+                                            draftSalida.Lines.ItemCode = itemCode;
+                                            draftSalida.Lines.Quantity = (double)diferencia;
+                                            draftSalida.Lines.UnitPrice = (double)precio;
+                                            draftSalida.Lines.UoMEntry = uomEntry;
+                                            draftSalida.Lines.WarehouseCode = dbConfiguracion.Almacen;
+                                        }
+
+                                        if (todoOK)
+                                        {
+                                            GrabaLog(directorioLogs, txtLog, "Afectando DI API - SALIDAS");
+                                            int draftSalidaResult = draftSalida.Add();
+                                            GrabaLog(directorioLogs, txtLog, "Procesando Resultado de Afectacion - SALIDAS");
+
+                                            if (draftSalidaResult != 0)
+                                            {
+                                                todoOK = false;
+                                                oCompany.GetLastError(out int errCode, out string errMsg);
+                                                GrabaLog(directorioLogs, txtLog, $"Error al crear el borrador de Salida: {errCode} - {errMsg}");
+                                                response.Message = $"Error al crear el borrador de Salida: {errCode} - {errMsg}";
+                                            }
+                                            else
+                                            {
+                                                GrabaLog(directorioLogs, txtLog, "Afectación de SALIDAS correcto");
+                                                string docEntry = oCompany.GetNewObjectKey();
+                                                mensajeFinal += $"Borrador Salida creado. DocEntry: {docEntry} ({dtProcesadoFaltante.Rows.Count} items).";
+                                            }
+                                        }
+                                    }
+
+                                    // Finalizar proceso
+                                    if (todoOK)
+                                    {
+                                        GrabaLog(directorioLogs, txtLog, "Actualizando estatus del Inventario");
+                                        dbConfiguracion.AjustesAplicados = true;
+                                        dbConfiguracion.FechaAjustes = DateTime.Now;
+                                        db.SaveChanges();
+
+                                        GrabaLog(directorioLogs, txtLog, "Terminando Proceso");
+                                        response.ExecutionOK = true;
+                                        response.Message = mensajeFinal.Trim();
+                                    }
+                                }
+                                finally
+                                {
+                                    oCompany.Disconnect();
+                                }
                             }
-                        }
-                    }
-
-                    if (dtAjustes.Rows.Count == 0)
-                    {
-                        response.Message = "No se encontraron productos para ajustar";
-                        return response;
-                    }
-
-                    GrabaLog(directorioSeguro, txtLog, $"Total de ajustes a procesar: {dtAjustes.Rows.Count}");
-
-                    // Conectar a SAP
-                    Company oCompany = new Company();
-                    oCompany.Server = conDiApi.Server;
-                    oCompany.CompanyDB = conDiApi.Company;
-                    oCompany.UserName = conDiApi.UserName;
-                    oCompany.Password = conDiApi.Password;
-                    oCompany.DbUserName = conDiApi.DbUserName;
-                    oCompany.DbPassword = conDiApi.DbPassword;
-                    oCompany.DbServerType = BoDataServerTypes.dst_HANADB;
-                    oCompany.UseTrusted = conDiApi.UseTrusted;
-
-                    int connectionResult = oCompany.Connect();
-                    if (connectionResult != 0)
-                    {
-                        oCompany.GetLastError(out int errorCode, out string errorDescription);
-                        response.Message = $"Error al conectar a SAP: {errorCode} - {errorDescription}";
-                        return response;
-                    }
-
-                    try
-                    {
-                        var sobrantes = dtAjustes.AsEnumerable().Where(r => r["Tipo"].ToString() == "Sobrante").ToList();
-                        var faltantes = dtAjustes.AsEnumerable().Where(r => r["Tipo"].ToString() == "Faltante").ToList();
-
-                        bool todoOK = true;
-                        List<string> mensajes = new List<string>();
-
-                        if (sobrantes.Any())
-                        {
-                            todoOK = ProcesarAjustes(oCompany, sobrantes, dbConfiguracion.Almacen, "Entrada", ref mensajes);
-                        }
-
-                        if (todoOK && faltantes.Any())
-                        {
-                            todoOK = ProcesarAjustes(oCompany, faltantes, dbConfiguracion.Almacen, "Salida", ref mensajes);
-                        }
-
-                        if (todoOK)
-                        {
-                            dbConfiguracion.AjustesAplicados = true;
-                            dbConfiguracion.FechaAjustes = DateTime.Now;
-                            db.SaveChanges();
-
-                            response.ExecutionOK = true;
-                            response.Message = string.Join(" ", mensajes);
-                            GrabaLog(directorioSeguro, txtLog, "Proceso completado exitosamente");
+                            else
+                            {
+                                response.Message = "No se encontraron Productos a los que aplicar ajustes";
+                            }
                         }
                         else
                         {
-                            response.Message = "Error al aplicar ajustes. Revise el log para más detalles.";
+                            response.Message = "El Inventario se encuentra en un estatus en el que no se pueden aplicar los ajustes";
                         }
                     }
-                    finally
+                    else
                     {
-                        oCompany.Disconnect();
+                        response.Message = "No se encontro información del Inventario seleccionado";
                     }
                 }
             }
             catch (Exception ex)
             {
+                response.ExecutionOK = false;
+
                 response.Message = ex.Message;
-                GrabaLog(directorioSeguro, txtLog, $"Error: {ex.Message}");
+                if (ex.InnerException != null)
+                    response.Message += ex.InnerException.Message;
+
+                GrabaLog(directorioLogs, txtLog, "Error al intentar aplicar los Ajustes E/S");
             }
+
+            GrabaLog(directorioLogs, txtLog, "Saliendo del proceso de Ajustes E/S");
 
             return response;
-        }
-
-        private bool ProcesarAjustes(Company oCompany, List<DataRow> items, string almacen, string tipo, ref List<string> mensajes)
-        {
-            try
-            {
-                BoObjectTypes docType = tipo == "Entrada"
-                    ? BoObjectTypes.oInventoryGenEntry
-                    : BoObjectTypes.oInventoryGenExit;
-
-                Documents draft = (Documents)oCompany.GetBusinessObject(BoObjectTypes.oDrafts);
-                draft.DocObjectCode = docType;
-                draft.Comments = $"Ajuste por conteo físico - {tipo} ({DateTime.Now:dd/MM/yyyy HH:mm})";
-
-                int lineIndex = 0;
-                foreach (DataRow row in items)
-                {
-                    string itemCode = row["ItemCode"].ToString();
-                    decimal cant2 = Convert.ToDecimal(row["Cant2"]);
-                    decimal onhand = Convert.ToDecimal(row["Onhand"]);
-                    int uomEntry = Convert.ToInt32(row["IdUom"]);
-                    decimal precio = Convert.ToDecimal(row["Precio"]);
-
-                    decimal diferencia = tipo == "Entrada" ? cant2 - onhand : onhand - cant2;
-
-                    if (lineIndex > 0) draft.Lines.Add();
-
-                    draft.Lines.ItemCode = itemCode;
-                    draft.Lines.Quantity = (double)diferencia;
-                    draft.Lines.UnitPrice = (double)precio;
-                    draft.Lines.UoMEntry = uomEntry;
-                    draft.Lines.WarehouseCode = almacen;
-
-                    lineIndex++;
-                }
-
-                int result = draft.Add();
-                if (result != 0)
-                {
-                    oCompany.GetLastError(out int errCode, out string errMsg);
-                    mensajes.Add($"Error en {tipo}: {errCode} - {errMsg}");
-                    return false;
-                }
-
-                string docEntry = oCompany.GetNewObjectKey();
-                mensajes.Add($"Borrador {tipo} creado. DocEntry: {docEntry} ({items.Count} items).");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                mensajes.Add($"Error procesando {tipo}: {ex.Message}");
-                return false;
-            }
         }
 
         /// <summary>
         /// Genera un archivo de texto en el servidor y graba el mensaje recibido
         /// </summary>
+        /// <param name="mensaje">Mensaje a grabar</param>
         public static void GrabaLog(string directory, string file, string mensaje)
         {
-            // NUNCA lanzar excepciones - siempre capturar todo
-            try
-            {
-                // Si el directorio está vacío, usar App_Data/Logs
-                if (string.IsNullOrEmpty(directory))
-                {
-                    directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "Logs");
-                }
+            string directoryAndFile = directory + "\\" + file;
 
-                // Si el nombre del archivo está vacío, generar uno
-                if (string.IsNullOrEmpty(file))
-                {
-                    file = DateTime.Now.ToString("yyyyMMdd") + "_Log.txt";
-                }
-
-                // Intentar crear el directorio
-                if (!Directory.Exists(directory))
-                {
-                    Directory.CreateDirectory(directory);
-                }
-
-                string fullPath = Path.Combine(directory, file);
-                string line = DateTime.Now.ToString("HH:mm:ss") + ":::" + mensaje;
-                
-                // Escribir el archivo
-                File.AppendAllText(fullPath, line + Environment.NewLine);
-            }
-            catch
-            {
-                // Fallback: escribir en el directorio temporal de Windows
-                try
-                {
-                    string tempPath = Path.GetTempPath();
-                    string tempFile = Path.Combine(tempPath, "Blanquita_Log_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
-                    string line = DateTime.Now.ToString("HH:mm:ss") + ":::" + mensaje;
-                    File.AppendAllText(tempFile, line + Environment.NewLine);
-                }
-                catch
-                {
-                    // Si todo falla, escribir en Debug (solo para desarrollo)
-                    System.Diagnostics.Debug.WriteLine($"LOG: {mensaje}");
-                }
-            }
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(directoryAndFile, true);
+            sw.WriteLine(DateTime.Now.ToString("HH:mm:ss") + ":::" + mensaje);
+            sw.Close();
         }
 
         private DataTable Get_Procesado_Sobrante(Configuraciones dbConfiguracion)

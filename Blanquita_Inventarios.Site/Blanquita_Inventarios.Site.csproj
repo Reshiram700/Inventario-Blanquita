@@ -161,7 +161,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\AjustesProgress.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\Correo.cs" />
     <Compile Include="Helpers\ExportExcel.cs" />

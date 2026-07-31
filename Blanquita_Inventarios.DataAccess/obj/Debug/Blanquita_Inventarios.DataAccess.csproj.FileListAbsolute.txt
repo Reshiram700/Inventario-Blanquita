@@ -31,6 +31,3 @@ D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Debug\B
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Debug\Blanquit.8CCE2F9A.Up2Date
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Debug\Blanquita_Inventarios.DataAccess.dll
 D:\Desarrollo\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Debug\Blanquita_Inventarios.DataAccess.pdb
-C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Debug\Blanquita_Inventarios.DataAccess.csproj.AssemblyReference.cache
-C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Debug\Blanquita_Inventarios.DataAccess.csproj.ResolveComReference.cache
-C:\Apps VS\Blanquita_Inventarios\Blanquita_Inventarios.DataAccess\obj\Debug\Blanquita_Inventarios.DataAccess.csproj.CoreCompileInputs.cache

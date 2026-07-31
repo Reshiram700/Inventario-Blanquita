@@ -40,8 +40,8 @@ namespace Blanquita_Inventarios.Site.Controllers
             resultadoCapturas.Listado = listado;
             listadoVM.ResultadoCapturas = resultadoCapturas;
 
-            Session["DiferenciasCapturas_Inventarios"] = listaInventarios;
-            Session["DiferenciasCapturas_Conteos"] = listaConteos;
+            TempData["DiferenciasCapturas_Inventarios"] = listaInventarios;
+            TempData["DiferenciasCapturas_Conteos"] = listaConteos;
 
             return View(listadoVM);
         }
@@ -95,7 +95,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             }
 
             resultadoCapturas.Listado = listado;
-            Session["DiferenciasCapturas_Capturas"] = listado;
+            TempData["DiferenciasCapturas_Capturas"] = listado;
 
             return PartialView("Vista_ListadoCapturas", resultadoCapturas);
         }
@@ -103,52 +103,46 @@ namespace Blanquita_Inventarios.Site.Controllers
         [HttpPost]
         public ActionResult ExcelCapturas()
         {
+            var response = new DBResponse<string>();
+
             try
             {
-                List<Listado_DiferenciasCapturas> listado = (List<Listado_DiferenciasCapturas>)Session["DiferenciasCapturas_Capturas"];
+                List<Listado_DiferenciasCapturas> listado = (List<Listado_DiferenciasCapturas>)TempData["DiferenciasCapturas_Capturas"];
+                TempData["DiferenciasCapturas_Capturas"] = listado;
 
-                if (listado == null || listado.Count == 0)
+                if (listado != null && listado.Count > 0)
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
-                }
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Folio");
+                    dt.Columns.Add("Marbete");
+                    dt.Columns.Add("CodigoArticulo");
+                    dt.Columns.Add("DescripcionArticulo");
+                    dt.Columns.Add("ConteoActivo");
+                    dt.Columns.Add("NombreMarbete");
 
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Folio");
-                dt.Columns.Add("Marbete");
-                dt.Columns.Add("CodigoArticulo");
-                dt.Columns.Add("DescripcionArticulo");
-                dt.Columns.Add("ConteoActivo");
-                dt.Columns.Add("NombreMarbete");
+                    foreach (var item in listado)
+                    {
+                        DataRow row = dt.NewRow();
+                        row[0] = item.Folio;
+                        row[1] = item.Marbete;
+                        row[2] = item.CodigoArticulo;
+                        row[3] = item.DescripcionArticulo;
+                        row[4] = item.Conteo;
+                        row[5] = item.NombreMarbete;
+                        dt.Rows.Add(row);
+                    }
 
-                foreach (var item in listado)
-                {
-                    DataRow row = dt.NewRow();
-                    row[0] = item.Folio;
-                    row[1] = item.Marbete;
-                    row[2] = item.CodigoArticulo;
-                    row[3] = item.DescripcionArticulo;
-                    row[4] = item.Conteo;
-                    row[5] = item.NombreMarbete;
-                    dt.Rows.Add(row);
-                }
-
-                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasCapturas.xls";
-                var response = ExportExcel.GenerarExcel(dt, "Diferencias de Capturas", nombreArchivo);
-
-                if (response.ExecutionOK)
-                {
-                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                    return Json(new { success = true, url = url });
-                }
-                else
-                {
-                    return Json(new { success = false, message = response.Message });
+                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasCapturas.xls";
+                    response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias de Capturas", nombreArchivo);
+                    response.ExecutionOK = true;
                 }
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                response.Message = ex.Message;
             }
+
+            return Json(response);
         }
 
         public ActionResult Costos()
@@ -171,13 +165,11 @@ namespace Blanquita_Inventarios.Site.Controllers
             listadoVM.FiltroInventarios = listaInventarios;
 
             listadoVM.Listado = listado;
-
-            Session["Diferencias_CostoCeroInventarios"] = listaInventarios;
-            Session["Diferencias_CostoCeroInventarios_IdConfiguracion"] = userLogin.IdConfiguracion;
-            Session["Diferencias_CostoCeroInventarios_Listado"] = listado;
+            TempData["Diferencias_CostoCeroInventarios"] = listaInventarios;
 
             return View(listadoVM);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,7 +180,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             Diferencias_CostosVM listadoVM = new Diferencias_CostosVM();
             List<Listado_DiferenciasCostos> listado = new List<Listado_DiferenciasCostos>();
 
-            var listadoInventarios = (List<ControlDDL>)Session["Diferencias_CostoCeroInventarios"];
+            var listadoInventarios = (List<ControlDDL>)TempData["Diferencias_CostoCeroInventarios"];
             listadoVM.FiltroInventarios = listadoInventarios;
             listadoVM.FiltroIdConfiguracion = viewModel.FiltroIdConfiguracion;
 
@@ -214,102 +206,13 @@ namespace Blanquita_Inventarios.Site.Controllers
             }
 
             listadoVM.Listado = listado;
+            TempData["Diferencias_CostoCeroInventarios"] = listadoInventarios;
 
-            Session["Diferencias_CostoCeroInventarios"] = listadoInventarios;
-            Session["Diferencias_CostoCeroInventarios_Listado"] = listado;
-            Session["Diferencias_CostoCeroInventarios_IdConfiguracion"] = listadoVM.FiltroIdConfiguracion;
+            // ===== GUARDAR EN TEMPDATA PARA EL EXCEL =====
+            TempData["DiferenciasCostos_Listado"] = listado;
+            // ============================================
 
             return View(listadoVM);
-        }
-
-        [HttpPost]
-        public ActionResult ExcelCostosCero()
-        {
-            try
-            {
-                List<Listado_DiferenciasCostos> listado = (List<Listado_DiferenciasCostos>)Session["Diferencias_CostoCeroInventarios_Listado"];
-
-                if (listado == null || listado.Count == 0)
-                {
-                    int idConfiguracion = 0;
-                    if (Session["Diferencias_CostoCeroInventarios_IdConfiguracion"] != null)
-                    {
-                        idConfiguracion = (int)Session["Diferencias_CostoCeroInventarios_IdConfiguracion"];
-                    }
-                    else
-                    {
-                        UsuarioSesion userLogin = (UsuarioSesion)Session["UserAdmin"];
-                        if (userLogin != null)
-                        {
-                            idConfiguracion = userLogin.IdConfiguracion;
-                        }
-                        else
-                        {
-                            return Json(new { success = false, message = "No se pudo identificar el inventario" });
-                        }
-                    }
-
-                    if (idConfiguracion <= 0)
-                    {
-                        return Json(new { success = false, message = "Seleccione un inventario válido" });
-                    }
-
-                    DBResponse<List<Report_CostoCeroByInventario_Result>> responseBD = new ConfiguracionesBL().Get_CostoCeroInactivos(idConfiguracion);
-                    if (responseBD.ExecutionOK && responseBD.Data != null && responseBD.Data.Count > 0)
-                    {
-                        listado = new List<Listado_DiferenciasCostos>();
-                        foreach (var resultado in responseBD.Data)
-                        {
-                            listado.Add(new Listado_DiferenciasCostos
-                            {
-                                ItemCode = resultado.ItemCode,
-                                Descripcion = resultado.Descripcion,
-                                Estatus = resultado.Estatus
-                            });
-                        }
-                    }
-                    else
-                    {
-                        return Json(new { success = false, message = "No hay datos para exportar" });
-                    }
-                }
-
-                if (listado == null || listado.Count == 0)
-                {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
-                }
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Código");
-                dt.Columns.Add("Descripción del Artículo");
-                dt.Columns.Add("Estatus");
-
-                foreach (var item in listado)
-                {
-                    DataRow row = dt.NewRow();
-                    row[0] = item.ItemCode ?? "";
-                    row[1] = item.Descripcion ?? "";
-                    row[2] = item.Estatus ?? "";
-                    dt.Rows.Add(row);
-                }
-
-                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_CostosCeroInactivos.xls";
-                var response = ExportExcel.GenerarExcel(dt, "Costos Cero Inactivos", nombreArchivo);
-
-                if (response.ExecutionOK)
-                {
-                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                    return Json(new { success = true, url = url });
-                }
-                else
-                {
-                    return Json(new { success = false, message = response.Message });
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = ex.Message });
-            }
         }
 
         public ActionResult MontosUno()
@@ -331,8 +234,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             var listaInventarios = new OtrosBL().Get_ListadoInventarios("- Seleccione -").Data;
             listadoVM.FiltroInventarios = listaInventarios;
 
-            Session["DiferenciasMontosUno_Inventarios"] = listaInventarios;
-            Session["DiferenciasMontosUno_Listado"] = listado;
+            TempData["DiferenciasMontosUno_Inventarios"] = listaInventarios;
 
             listadoVM.Listado = listado;
             listadoVM.TotalSAP = 0;
@@ -343,6 +245,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             return View(listadoVM);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult MontosUno(Diferencias_MontosUnoVM viewModel)
@@ -352,7 +255,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             Diferencias_MontosUnoVM listadoVM = new Diferencias_MontosUnoVM();
             List<Listado_DiferenciasMontosUno> listado = new List<Listado_DiferenciasMontosUno>();
 
-            var listadoInventarios = (List<ControlDDL>)Session["DiferenciasMontosUno_Inventarios"];
+            var listadoInventarios = (List<ControlDDL>)TempData["DiferenciasMontosUno_Inventarios"];
             listadoVM.FiltroInventarios = listadoInventarios;
             listadoVM.FiltroIdConfiguracion = viewModel.FiltroIdConfiguracion;
 
@@ -367,6 +270,7 @@ namespace Blanquita_Inventarios.Site.Controllers
                 {
                     this.ShowNotificacion("error", "", response.Message, "4", "0");
                 }
+
             }
             catch (Exception ex)
             {
@@ -379,61 +283,53 @@ namespace Blanquita_Inventarios.Site.Controllers
             listadoVM.TotalDesviacion = listado.Sum(s => s.TotalDesviacion);
             listadoVM.PorcentajeDif = listadoVM.TotalSAP != 0 ? ((listadoVM.TotalDesviacion / listadoVM.TotalSAP) * 100) : 0;
 
-            Session["DiferenciasMontosUno_Inventarios"] = listadoInventarios;
-            Session["DiferenciasMontosUno_Listado"] = listado;
+            TempData["DiferenciasMontosUno_Inventarios"] = listadoInventarios;
+            TempData["DiferenciasMontosUno_Listado"] = listado;
 
             return View(listadoVM);
         }
 
-        [HttpPost]
         public ActionResult ExcelMontosUno()
         {
+            var response = new DBResponse<string>();
+
             try
             {
-                List<Listado_DiferenciasMontosUno> listado = (List<Listado_DiferenciasMontosUno>)Session["DiferenciasMontosUno_Listado"];
+                List<Listado_DiferenciasMontosUno> listado = (List<Listado_DiferenciasMontosUno>)TempData["DiferenciasMontosUno_Listado"];
+                TempData["DiferenciasMontosUno_Listado"] = listado;
 
-                if (listado == null || listado.Count == 0)
+                if (listado != null && listado.Count > 0)
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
-                }
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("WhsCode");
+                    dt.Columns.Add("ItmsGrpName");
+                    dt.Columns.Add("TotalSAP");
+                    dt.Columns.Add("TotalContado");
+                    dt.Columns.Add("TotalDesviacion");
+                    dt.Columns.Add("PorcDif");
 
-                DataTable dt = new DataTable();
-                dt.Columns.Add("WhsCode");
-                dt.Columns.Add("ItmsGrpName");
-                dt.Columns.Add("TotalSAP");
-                dt.Columns.Add("TotalContado");
-                dt.Columns.Add("TotalDesviacion");
-                dt.Columns.Add("PorcDif");
+                    foreach (var item in listado)
+                    {
+                        DataRow row = dt.NewRow();
+                        row[0] = item.WhsCode;
+                        row[1] = item.ItmsGrpName;
+                        row[2] = item.TotalSAP;
+                        row[3] = item.TotalContado;
+                        row[4] = item.TotalDesviacion;
+                        row[5] = item.PorcentajeDif;
+                        dt.Rows.Add(row);
+                    }
 
-                foreach (var item in listado)
-                {
-                    DataRow row = dt.NewRow();
-                    row[0] = item.WhsCode;
-                    row[1] = item.ItmsGrpName;
-                    row[2] = item.TotalSAP;
-                    row[3] = item.TotalContado;
-                    row[4] = item.TotalDesviacion;
-                    row[5] = item.PorcentajeDif;
-                    dt.Rows.Add(row);
-                }
-
-                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasMontos1.xls";
-                var response = ExportExcel.GenerarExcel(dt, "Diferencias de Montos Conteo 1", nombreArchivo);
-
-                if (response.ExecutionOK)
-                {
-                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                    return Json(new { success = true, url = url });
-                }
-                else
-                {
-                    return Json(new { success = false, message = response.Message });
+                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasMontos1.xls";
+                    response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias de Montos Conteo 1", nombreArchivo);
                 }
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                response.Message = ex.Message;
             }
+
+            return Json(response);
         }
 
         public ActionResult MontosDos()
@@ -455,8 +351,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             var listaInventarios = new OtrosBL().Get_ListadoInventarios("- Seleccione -").Data;
             listadoVM.FiltroInventarios = listaInventarios;
 
-            Session["DiferenciasMontosDos_Inventarios"] = listaInventarios;
-            Session["DiferenciasMontosDos_Listado"] = listado;
+            TempData["DiferenciasMontosDos_Inventarios"] = listaInventarios;
 
             listadoVM.Listado = listado;
             listadoVM.TotalSAP = 0;
@@ -476,7 +371,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             Diferencias_MontosUnoVM listadoVM = new Diferencias_MontosUnoVM();
             List<Listado_DiferenciasMontosUno> listado = new List<Listado_DiferenciasMontosUno>();
 
-            var listadoInventarios = (List<ControlDDL>)Session["DiferenciasMontosDos_Inventarios"];
+            var listadoInventarios = (List<ControlDDL>)TempData["DiferenciasMontosDos_Inventarios"];
             listadoVM.FiltroInventarios = listadoInventarios;
             listadoVM.FiltroIdConfiguracion = viewModel.FiltroIdConfiguracion;
 
@@ -491,6 +386,7 @@ namespace Blanquita_Inventarios.Site.Controllers
                 {
                     this.ShowNotificacion("error", "", response.Message, "4", "0");
                 }
+
             }
             catch (Exception ex)
             {
@@ -503,61 +399,53 @@ namespace Blanquita_Inventarios.Site.Controllers
             listadoVM.TotalDesviacion = listado.Sum(s => s.TotalDesviacion);
             listadoVM.PorcentajeDif = listadoVM.TotalSAP != 0 ? ((listadoVM.TotalDesviacion / listadoVM.TotalSAP) * 100) : 0;
 
-            Session["DiferenciasMontosDos_Listado"] = listado;
-            Session["DiferenciasMontosDos_Inventarios"] = listadoInventarios;
+            TempData["DiferenciasMontosDos_Listado"] = listado;
+            TempData["DiferenciasMontosDos_Inventarios"] = listadoInventarios;
 
             return View(listadoVM);
         }
 
-        [HttpPost]
         public ActionResult ExcelMontosDos()
         {
+            var response = new DBResponse<string>();
+
             try
             {
-                List<Listado_DiferenciasMontosUno> listado = (List<Listado_DiferenciasMontosUno>)Session["DiferenciasMontosDos_Listado"];
+                List<Listado_DiferenciasMontosUno> listado = (List<Listado_DiferenciasMontosUno>)TempData["DiferenciasMontosDos_Listado"];
+                TempData["DiferenciasMontosDos_Listado"] = listado;
 
-                if (listado == null || listado.Count == 0)
+                if (listado != null && listado.Count > 0)
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
-                }
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("WhsCode");
+                    dt.Columns.Add("ItmsGrpName");
+                    dt.Columns.Add("TotalSAP");
+                    dt.Columns.Add("TotalContado");
+                    dt.Columns.Add("TotalDesviacion");
+                    dt.Columns.Add("PorcDif");
 
-                DataTable dt = new DataTable();
-                dt.Columns.Add("WhsCode");
-                dt.Columns.Add("ItmsGrpName");
-                dt.Columns.Add("TotalSAP");
-                dt.Columns.Add("TotalContado");
-                dt.Columns.Add("TotalDesviacion");
-                dt.Columns.Add("PorcDif");
+                    foreach (var item in listado)
+                    {
+                        DataRow row = dt.NewRow();
+                        row[0] = item.WhsCode;
+                        row[1] = item.ItmsGrpName;
+                        row[2] = item.TotalSAP;
+                        row[3] = item.TotalContado;
+                        row[4] = item.TotalDesviacion;
+                        row[5] = item.PorcentajeDif;
+                        dt.Rows.Add(row);
+                    }
 
-                foreach (var item in listado)
-                {
-                    DataRow row = dt.NewRow();
-                    row[0] = item.WhsCode;
-                    row[1] = item.ItmsGrpName;
-                    row[2] = item.TotalSAP;
-                    row[3] = item.TotalContado;
-                    row[4] = item.TotalDesviacion;
-                    row[5] = item.PorcentajeDif;
-                    dt.Rows.Add(row);
-                }
-
-                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasMontos2.xls";
-                var response = ExportExcel.GenerarExcel(dt, "Diferencias de Montos Conteo 2", nombreArchivo);
-
-                if (response.ExecutionOK)
-                {
-                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                    return Json(new { success = true, url = url });
-                }
-                else
-                {
-                    return Json(new { success = false, message = response.Message });
+                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasMontos2.xls";
+                    response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias de Montos Conteo 2", nombreArchivo);
                 }
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                response.Message = ex.Message;
             }
+
+            return Json(response);
         }
 
         public ActionResult ConteoUno()
@@ -588,9 +476,8 @@ namespace Blanquita_Inventarios.Site.Controllers
             listadoVM.FiltroIdZonaReporte = 0;
             listadoVM.FiltroZonasReporte = new List<ControlDDL>();
 
-            Session["DiferenciasConteoUno_Inventarios"] = listaInventarios;
-            Session["DiferenciasConteoUno_Categorias"] = listaCategorias;
-            Session["DiferenciasConteoUno_Listado"] = listado;
+            TempData["DiferenciasConteoUno_Inventarios"] = listaInventarios;
+            TempData["DiferenciasConteoUno_Categorias"] = listaCategorias;
 
             return View(listadoVM);
         }
@@ -605,8 +492,8 @@ namespace Blanquita_Inventarios.Site.Controllers
             List<Listado_DiferenciasConteoUno> listado = new List<Listado_DiferenciasConteoUno>();
 
             listadoVM.FiltroIdConfiguracion = viewModel.FiltroIdConfiguracion;
-            var listaInventarios = (List<ControlDDL>)Session["DiferenciasConteoUno_Inventarios"];
-            var listaCategorias = (List<ControlDDL2>)Session["DiferenciasConteoUno_Categorias"];
+            var listaInventarios = (List<ControlDDL>)TempData["DiferenciasConteoUno_Inventarios"];
+            var listaCategorias = (List<ControlDDL2>)TempData["DiferenciasConteoUno_Categorias"];
 
             listadoVM.FiltroInventarios = listaInventarios;
             listadoVM.FiltroBusca = viewModel.FiltroBusca;
@@ -622,7 +509,7 @@ namespace Blanquita_Inventarios.Site.Controllers
                 {
                     var listaZonas = new OtrosBL().Get_ListadoZonasByConfiguracion(listadoVM.FiltroIdConfiguracion, "- Seleccione -").Data;
                     listadoVM.FiltroZonasReporte = listaZonas;
-                    Session["DiferenciasConteoUno_ZonasConfiguracion"] = listaZonas;
+                    TempData["DiferenciasConteoUno_ZonasConfiguracion"] = listaZonas;
 
                     DBResponse<List<Listado_DiferenciasConteoUno>> response = new ConfiguracionesBL().Get_ConteoUno(listadoVM.FiltroIdConfiguracion, listadoVM.FiltroBusca, listadoVM.FiltroValorItmsGrpNam);
                     if (response.ExecutionOK)
@@ -644,72 +531,64 @@ namespace Blanquita_Inventarios.Site.Controllers
                 this.ShowNotificacion("error", "", ex.Message, "4", "0");
             }
 
-            Session["DiferenciasConteoUno_Inventarios"] = listaInventarios;
-            Session["DiferenciasConteoUno_Categorias"] = listaCategorias;
-            Session["DiferenciasConteoUno_Listado"] = listado;
+            TempData["DiferenciasConteoUno_Inventarios"] = listaInventarios;
+            TempData["DiferenciasConteoUno_Categorias"] = listaCategorias;
+            TempData["DiferenciasConteoUno_Listado"] = listado;
 
             listadoVM.Listado = listado;
 
             return View(listadoVM);
         }
 
-        [HttpPost]
         public ActionResult ExcelConteoUno()
         {
+            var response = new DBResponse<string>();
+
             try
             {
-                List<Listado_DiferenciasConteoUno> listado = (List<Listado_DiferenciasConteoUno>)Session["DiferenciasConteoUno_Listado"];
+                List<Listado_DiferenciasConteoUno> listado = (List<Listado_DiferenciasConteoUno>)TempData["DiferenciasConteoUno_Listado"];
+                TempData["DiferenciasConteoUno_Listado"] = listado;
 
-                if (listado == null || listado.Count == 0)
+                if (listado != null && listado.Count > 0)
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
-                }
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("WhsCode");
+                    dt.Columns.Add("ItmsGrpName");
+                    dt.Columns.Add("ItemCode");
+                    dt.Columns.Add("ItemName");
+                    dt.Columns.Add("UOM1");
+                    dt.Columns.Add("Onhand");
+                    dt.Columns.Add("PorProcesar");
+                    dt.Columns.Add("Contado");
+                    dt.Columns.Add("DifPesosNeto");
+                    dt.Columns.Add("Marbetes");
 
-                DataTable dt = new DataTable();
-                dt.Columns.Add("WhsCode");
-                dt.Columns.Add("ItmsGrpName");
-                dt.Columns.Add("ItemCode");
-                dt.Columns.Add("ItemName");
-                dt.Columns.Add("UOM1");
-                dt.Columns.Add("Onhand");
-                dt.Columns.Add("PorProcesar");
-                dt.Columns.Add("Contado");
-                dt.Columns.Add("DifPesosNeto");
-                dt.Columns.Add("Marbetes");
+                    foreach (var item in listado)
+                    {
+                        DataRow row = dt.NewRow();
+                        row[0] = item.WhsCode;
+                        row[1] = item.ItmsGrpNam;
+                        row[2] = item.ItemCode;
+                        row[3] = item.ItemName;
+                        row[4] = item.Uom;
+                        row[5] = item.Onhand;
+                        row[6] = item.PorProcesar;
+                        row[7] = item.Contado;
+                        row[8] = item.DifPesoNeto;
+                        row[9] = item.Marbetes;
+                        dt.Rows.Add(row);
+                    }
 
-                foreach (var item in listado)
-                {
-                    DataRow row = dt.NewRow();
-                    row[0] = item.WhsCode;
-                    row[1] = item.ItmsGrpNam;
-                    row[2] = item.ItemCode;
-                    row[3] = item.ItemName;
-                    row[4] = item.Uom;
-                    row[5] = item.Onhand;
-                    row[6] = item.PorProcesar;
-                    row[7] = item.Contado;
-                    row[8] = item.DifPesoNeto;
-                    row[9] = item.Marbetes;
-                    dt.Rows.Add(row);
-                }
-
-                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasConteo1.xls";
-                var response = ExportExcel.GenerarExcel(dt, "Diferencias Conteo 1", nombreArchivo);
-
-                if (response.ExecutionOK)
-                {
-                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                    return Json(new { success = true, url = url });
-                }
-                else
-                {
-                    return Json(new { success = false, message = response.Message });
+                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasConteo1.xls";
+                    response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias Conteo 1", nombreArchivo);
                 }
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                response.Message = ex.Message;
             }
+
+            return Json(response);
         }
 
         [HttpPost]
@@ -717,8 +596,8 @@ namespace Blanquita_Inventarios.Site.Controllers
         {
             var response = new DBResponse<int>();
 
-            var listadoBase = (List<Listado_DiferenciasConteoUno>)Session["DiferenciasConteoUno_Listado"];
-            Session["DiferenciasConteoUno_Listado"] = listadoBase;
+            var listadoBase = (List<Listado_DiferenciasConteoUno>)TempData["DiferenciasConteoUno_Listado"];
+            TempData["DiferenciasConteoUno_Listado"] = listadoBase;
 
             try
             {
@@ -727,9 +606,9 @@ namespace Blanquita_Inventarios.Site.Controllers
                 decimal monto = decimal.Parse(form["monto"].ToString());
                 string categoria = form["categoria"].ToString();
 
-                Session["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
-                Session["DiferenciasConteoUno_MontoVarianza"] = monto;
-                Session["DiferenciasConteoUno_Categoria"] = categoria;
+                TempData["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
+                TempData["DiferenciasConteoUno_MontoVarianza"] = monto;
+                TempData["DiferenciasConteoUno_Categoria"] = categoria;
 
                 response.ExecutionOK = true;
             }
@@ -757,10 +636,10 @@ namespace Blanquita_Inventarios.Site.Controllers
             List<Diferencias_Zonas> listadoZonas = new List<Diferencias_Zonas>();
             List<Diferencias_Reporte> listado = new List<Diferencias_Reporte>();
 
-            var listadoBase = (List<Listado_DiferenciasConteoUno>)Session["DiferenciasConteoUno_Listado"];
-            int idConfiguracion = int.Parse(Session["DiferenciasConteoUno_IdConfiguracion"].ToString());
-            decimal montoVarianza = decimal.Parse(Session["DiferenciasConteoUno_MontoVarianza"].ToString());
-            string categoria = Session["DiferenciasConteoUno_Categoria"].ToString();
+            var listadoBase = (List<Listado_DiferenciasConteoUno>)TempData["DiferenciasConteoUno_Listado"];
+            int idConfiguracion = int.Parse(TempData["DiferenciasConteoUno_IdConfiguracion"].ToString());
+            decimal montoVarianza = decimal.Parse(TempData["DiferenciasConteoUno_MontoVarianza"].ToString());
+            string categoria = TempData["DiferenciasConteoUno_Categoria"].ToString();
 
             try
             {
@@ -799,21 +678,22 @@ namespace Blanquita_Inventarios.Site.Controllers
             listadoVM.ListadoZonas = listadoZonas;
             listadoVM.Listado = listado;
 
-            Session["DiferenciasConteoUno_Listado"] = listadoBase;
-            Session["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
-            Session["DiferenciasConteoUno_MontoVarianza"] = montoVarianza;
-            Session["DiferenciasConteoUno_Categoria"] = categoria;
+            TempData["DiferenciasConteoUno_Listado"] = listadoBase;
+            TempData["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
+            TempData["DiferenciasConteoUno_MontoVarianza"] = montoVarianza;
+            TempData["DiferenciasConteoUno_Categoria"] = categoria;
 
             return View(listadoVM);
         }
+
 
         [HttpPost]
         public ActionResult ProcesarFormatoZonas()
         {
             var response = new DBResponse<int>();
 
-            var listadoBase = (List<Listado_DiferenciasConteoUno>)Session["DiferenciasConteoUno_Listado"];
-            Session["DiferenciasConteoUno_Listado"] = listadoBase;
+            var listadoBase = (List<Listado_DiferenciasConteoUno>)TempData["DiferenciasConteoUno_Listado"];
+            TempData["DiferenciasConteoUno_Listado"] = listadoBase;
 
             try
             {
@@ -822,9 +702,9 @@ namespace Blanquita_Inventarios.Site.Controllers
                 decimal monto = decimal.Parse(form["monto"].ToString());
                 int idZona = int.Parse(form["idZona"].ToString());
 
-                Session["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
-                Session["DiferenciasConteoUno_MontoVarianza"] = monto;
-                Session["DiferenciasConteoUno_IdZona"] = idZona;
+                TempData["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
+                TempData["DiferenciasConteoUno_MontoVarianza"] = monto;
+                TempData["DiferenciasConteoUno_IdZona"] = idZona;
 
                 response.ExecutionOK = true;
             }
@@ -835,6 +715,7 @@ namespace Blanquita_Inventarios.Site.Controllers
 
             return Json(response);
         }
+
 
         public ActionResult ReporteZonas()
         {
@@ -852,10 +733,10 @@ namespace Blanquita_Inventarios.Site.Controllers
             List<string> listaCategorias = new List<string>();
             List<Diferencias_Reporte> listado = new List<Diferencias_Reporte>();
 
-            var listadoBase = (List<Listado_DiferenciasConteoUno>)Session["DiferenciasConteoUno_Listado"];
-            int idConfiguracion = int.Parse(Session["DiferenciasConteoUno_IdConfiguracion"].ToString());
-            decimal montoVarianza = decimal.Parse(Session["DiferenciasConteoUno_MontoVarianza"].ToString());
-            int idZona = int.Parse(Session["DiferenciasConteoUno_IdZona"].ToString());
+            var listadoBase = (List<Listado_DiferenciasConteoUno>)TempData["DiferenciasConteoUno_Listado"];
+            int idConfiguracion = int.Parse(TempData["DiferenciasConteoUno_IdConfiguracion"].ToString());
+            decimal montoVarianza = decimal.Parse(TempData["DiferenciasConteoUno_MontoVarianza"].ToString());
+            int idZona = int.Parse(TempData["DiferenciasConteoUno_IdZona"].ToString());
 
             try
             {
@@ -886,10 +767,10 @@ namespace Blanquita_Inventarios.Site.Controllers
             listadoVM.ListaCategorias = listaCategorias;
             listadoVM.Listado = listado;
 
-            Session["DiferenciasConteoUno_Listado"] = listadoBase;
-            Session["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
-            Session["DiferenciasConteoUno_MontoVarianza"] = montoVarianza;
-            Session["DiferenciasConteoUno_IdZona"] = idZona;
+            TempData["DiferenciasConteoUno_Listado"] = listadoBase;
+            TempData["DiferenciasConteoUno_IdConfiguracion"] = idConfiguracion;
+            TempData["DiferenciasConteoUno_MontoVarianza"] = montoVarianza;
+            TempData["DiferenciasConteoUno_IdZona"] = idZona;
 
             return View(listadoVM);
         }
@@ -907,7 +788,7 @@ namespace Blanquita_Inventarios.Site.Controllers
             TempData["messages"] = new Dictionary<string, string[]>();
 
             Diferencias_AjustesVM listadoVM = new Diferencias_AjustesVM();
-            List<Listado_DiferenciasAjustes> listado = new List<Listado_DiferenciasAjustes>();
+            List<Listado_DiferenciasMontosUno> listado = new List<Listado_DiferenciasMontosUno>();
 
             listadoVM.FiltroIdConfiguracion = 0;
             var listaInventarios = new OtrosBL().Get_ListadoInventarios("- Seleccione -").Data;
@@ -918,10 +799,9 @@ namespace Blanquita_Inventarios.Site.Controllers
             var listaCategorias = new OtrosBL().Get_ListadoCategorias("- Seleccione -").Data;
             listadoVM.FiltroItmsGrpNam = listaCategorias;
 
-            Session["DiferenciasAjustes_Inventarios"] = listaInventarios;
-            Session["DiferenciasAjustes_Categorias"] = listaCategorias;
-            Session["DiferenciasAjustes_Ajustes"] = new List<Listado_AjustesConteoDos>();
-            Session["DiferenciasAjustes_Listado"] = listado;
+            TempData["DiferenciasAjustes_Inventarios"] = listaInventarios;
+            TempData["DiferenciasAjustes_Categorias"] = listaCategorias;
+            TempData["DiferenciasAjustes_Ajustes"] = null;
 
             return View(listadoVM);
         }
@@ -937,32 +817,36 @@ namespace Blanquita_Inventarios.Site.Controllers
             List<Listado_AjustesConteoDos> listadoAjustes = new List<Listado_AjustesConteoDos>();
 
             listadoVM.FiltroIdConfiguracion = viewModel.FiltroIdConfiguracion;
-            var listaInventarios = (List<ControlDDL>)Session["DiferenciasAjustes_Inventarios"];
+            var listaInventarios = (List<ControlDDL>)TempData["DiferenciasAjustes_Inventarios"];
 
             listadoVM.FiltroInventarios = listaInventarios;
             listadoVM.FiltroBusca = viewModel.FiltroBusca;
             listadoVM.FiltroValorItmsGrpNam = viewModel.FiltroValorItmsGrpNam;
-            var listaCategorias = (List<ControlDDL2>)Session["DiferenciasAjustes_Categorias"];
+            var listaCategorias = (List<ControlDDL2>)TempData["DiferenciasAjustes_Categorias"];
             listadoVM.FiltroItmsGrpNam = listaCategorias;
 
-            if (Session["DiferenciasAjustes_Listado"] != null)
+
+            if(TempData["DiferenciasAjustes_Listado"] != null)
             {
-                listado = (List<Listado_DiferenciasAjustes>)Session["DiferenciasAjustes_Listado"];
+                listado = (List<Listado_DiferenciasAjustes>)TempData["DiferenciasAjustes_Listado"];
             }
 
             try
             {
                 bool pasaRevision = true;
 
-                if (Session["DiferenciasAjustes_Ajustes"] != null)
+                if (TempData["DiferenciasAjustes_Ajustes"] != null)
                 {
-                    List<Listado_AjustesConteoDos> modificados = (List<Listado_AjustesConteoDos>)Session["DiferenciasAjustes_Ajustes"];
-                    if (modificados.Count > 0)
+                    pasaRevision = false;
+
+                    List<Listado_AjustesConteoDos> modificados = (List<Listado_AjustesConteoDos>)TempData["DiferenciasAjustes_Ajustes"];
+                    if(modificados.Count > 0)
                     {
-                        Session["DiferenciasAjustes_Ajustes"] = modificados;
+                        TempData["DiferenciasAjustes_Ajustes"] = modificados;
                         this.ShowNotificacion("error", "", "Hay cambios en la informacion que no se han guardado, reviselos.", "4", "0");
-                        pasaRevision = false;
                     }
+                    else
+                        pasaRevision = true;
                 }
 
                 if (pasaRevision)
@@ -983,79 +867,71 @@ namespace Blanquita_Inventarios.Site.Controllers
                 this.ShowNotificacion("error", "", ex.Message, "4", "0");
             }
 
-            Session["DiferenciasAjustes_Inventarios"] = listaInventarios;
-            Session["DiferenciasAjustes_Ajustes"] = listadoAjustes;
-            Session["DiferenciasAjustes_Listado"] = listado;
-            Session["DiferenciasAjustes_Categorias"] = listaCategorias;
+            TempData["DiferenciasAjustes_Inventarios"] = listaInventarios;
+            TempData["DiferenciasAjustes_Ajustes"] = listadoAjustes;
+            TempData["DiferenciasAjustes_Listado"] = listado;
+            TempData["DiferenciasAjustes_Categorias"] = listaCategorias;
 
             listadoVM.Listado = listado;
 
             return View(listadoVM);
         }
 
-        [HttpPost]
         public ActionResult ExcelAjustes()
         {
+            var response = new DBResponse<string>();
+
             try
             {
-                List<Listado_DiferenciasAjustes> listado = (List<Listado_DiferenciasAjustes>)Session["DiferenciasAjustes_Listado"];
+                List<Listado_DiferenciasAjustes> listado = (List<Listado_DiferenciasAjustes>)TempData["DiferenciasAjustes_Listado"];
+                TempData["DiferenciasAjustes_Listado"] = listado;
 
-                if (listado == null || listado.Count == 0)
+                if (listado != null && listado.Count > 0)
                 {
-                    return Json(new { success = false, message = "No hay datos para exportar" });
-                }
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("WhsCode");
+                    dt.Columns.Add("ItmsGrpName");
+                    dt.Columns.Add("ItemCode");
+                    dt.Columns.Add("ItemName");
+                    dt.Columns.Add("UOM1");
+                    dt.Columns.Add("Onhand");
+                    dt.Columns.Add("PorProcesar");
+                    dt.Columns.Add("Contado");
+                    dt.Columns.Add("Contado1");
+                    dt.Columns.Add("Contado2");
+                    dt.Columns.Add("Contado3");
+                    dt.Columns.Add("Contado4");
+                    dt.Columns.Add("DifPesosNeto");
 
-                DataTable dt = new DataTable();
-                dt.Columns.Add("WhsCode");
-                dt.Columns.Add("ItmsGrpName");
-                dt.Columns.Add("ItemCode");
-                dt.Columns.Add("ItemName");
-                dt.Columns.Add("UOM1");
-                dt.Columns.Add("Onhand");
-                dt.Columns.Add("PorProcesar");
-                dt.Columns.Add("Contado");
-                dt.Columns.Add("Contado1");
-                dt.Columns.Add("Contado2");
-                dt.Columns.Add("Contado3");
-                dt.Columns.Add("Contado4");
-                dt.Columns.Add("DifPesosNeto");
+                    foreach (var item in listado)
+                    {
+                        DataRow row = dt.NewRow();
+                        row[0] = item.WhsCode;
+                        row[1] = item.ItmsGrpNam;
+                        row[2] = item.ItemCode;
+                        row[3] = item.ItemName;
+                        row[4] = item.Uom1;
+                        row[5] = item.Onhand;
+                        row[6] = item.PorProcesar;
+                        row[7] = item.Contado;
+                        row[8] = item.Contado1;
+                        row[9] = item.Contado2;
+                        row[10] = item.Contado3;
+                        row[11] = item.Contado4;
+                        row[12] = item.DifPesosNeto;
+                        dt.Rows.Add(row);
+                    }
 
-                foreach (var item in listado)
-                {
-                    DataRow row = dt.NewRow();
-                    row[0] = item.WhsCode;
-                    row[1] = item.ItmsGrpNam;
-                    row[2] = item.ItemCode;
-                    row[3] = item.ItemName;
-                    row[4] = item.Uom1;
-                    row[5] = item.Onhand;
-                    row[6] = item.PorProcesar;
-                    row[7] = item.Contado;
-                    row[8] = item.Contado1;
-                    row[9] = item.Contado2;
-                    row[10] = item.Contado3;
-                    row[11] = item.Contado4;
-                    row[12] = item.DifPesosNeto;
-                    dt.Rows.Add(row);
-                }
-
-                string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_DiferenciasAjustesConteo2.xls";
-                var response = ExportExcel.GenerarExcel(dt, "Diferencias Ajustes Conteo 2", nombreArchivo);
-
-                if (response.ExecutionOK)
-                {
-                    string url = Url.Content("~/Documentos/Descargas/" + nombreArchivo);
-                    return Json(new { success = true, url = url });
-                }
-                else
-                {
-                    return Json(new { success = false, message = response.Message });
+                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddhhmmss") + "_DiferenciasAjustesConteo2.xls";
+                    response = ExportExcel.GrabaArchivoExcelSimple(dt, "Diferencias Ajustes Conteo 2", nombreArchivo);
                 }
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                response.Message = ex.Message;
             }
+
+            return Json(response);
         }
 
         [HttpPost]
@@ -1066,8 +942,8 @@ namespace Blanquita_Inventarios.Site.Controllers
 
             try
             {
-                List<Listado_DiferenciasAjustes> listadoBase = (List<Listado_DiferenciasAjustes>)Session["DiferenciasAjustes_Listado"];
-                List<Listado_AjustesConteoDos> listadoAjustes = (List<Listado_AjustesConteoDos>)Session["DiferenciasAjustes_Ajustes"];
+                List<Listado_DiferenciasAjustes> listadoBase = (List<Listado_DiferenciasAjustes>)TempData["DiferenciasAjustes_Listado"];
+                List<Listado_AjustesConteoDos> listadoAjustes = (List<Listado_AjustesConteoDos>)TempData["DiferenciasAjustes_Ajustes"];
 
                 var form = Request.Form;
                 int idConfiguracion = int.Parse(form["idConfiguracion"].ToString());
@@ -1151,8 +1027,8 @@ namespace Blanquita_Inventarios.Site.Controllers
                     listadoAjustes.Add(nuevoItem);
                 }
 
-                Session["DiferenciasAjustes_Listado"] = listadoBase;
-                Session["DiferenciasAjustes_Ajustes"] = listadoAjustes;
+                TempData["DiferenciasAjustes_Listado"] = listadoBase;
+                TempData["DiferenciasAjustes_Ajustes"] = listadoAjustes;
                 response.ExecutionOK = true;
                 response.Data = totalContadoZonas;
             }
@@ -1168,13 +1044,13 @@ namespace Blanquita_Inventarios.Site.Controllers
         public ActionResult Aplicar_AjustesConteo2()
         {
             var response = new DBResponse<int>();
-            List<Listado_DiferenciasAjustes> listado = (List<Listado_DiferenciasAjustes>)Session["DiferenciasAjustes_Listado"];
-            List<Listado_AjustesConteoDos> listadoAjustes = (List<Listado_AjustesConteoDos>)Session["DiferenciasAjustes_Ajustes"];
+            List<Listado_DiferenciasAjustes> listado = (List<Listado_DiferenciasAjustes>)TempData["DiferenciasAjustes_Listado"];
+            List<Listado_AjustesConteoDos> listadoAjustes = (List<Listado_AjustesConteoDos>)TempData["DiferenciasAjustes_Ajustes"];
 
-            var listaCategorias = (List<ControlDDL2>)Session["DiferenciasAjustes_Categorias"];
-            var listaInventarios = (List<ControlDDL>)Session["DiferenciasAjustes_Inventarios"];
-            Session["DiferenciasAjustes_Inventarios"] = listaInventarios;
-            Session["DiferenciasAjustes_Categorias"] = listaCategorias;
+            var listaCategorias = (List<ControlDDL2>)TempData["DiferenciasAjustes_Categorias"];
+            var listaInventarios = (List<ControlDDL>)TempData["DiferenciasAjustes_Inventarios"];
+            TempData["DiferenciasAjustes_Inventarios"] = listaInventarios;
+            TempData["DiferenciasAjustes_Categorias"] = listaCategorias;
 
             try
             {
@@ -1185,13 +1061,66 @@ namespace Blanquita_Inventarios.Site.Controllers
             }
             catch (Exception ex)
             {
-                Session["DiferenciasAjustes_Listado"] = listado;
-                Session["DiferenciasAjustes_Ajustes"] = listadoAjustes;
+                TempData["DiferenciasAjustes_Listado"] = listado;
+                TempData["DiferenciasAjustes_Ajustes"] = listadoAjustes;
 
                 response.Message = ex.Message;
             }
 
             return Json(response);
         }
-    }
+
+        [HttpPost]
+        public ActionResult ExcelCostos(int idConfiguracion)
+        {
+            var response = new DBResponse<string>();
+
+            try
+            {
+                // Obtener los datos directamente de la base de datos
+                var resultado = new ConfiguracionesBL().Get_CostoCeroInactivos(idConfiguracion);
+
+                if (resultado.ExecutionOK && resultado.Data != null && resultado.Data.Count > 0)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ItemCode");
+                    dt.Columns.Add("Descripcion");
+                    dt.Columns.Add("Estatus");
+
+                    foreach (var item in resultado.Data)
+                    {
+                        DataRow row = dt.NewRow();
+                        row[0] = item.ItemCode;
+                        row[1] = item.Descripcion;
+                        row[2] = item.Estatus;
+                        dt.Rows.Add(row);
+                    }
+
+                    string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_CostosCeroInactivos.xls";
+
+                    // ===== LLAMAR AL MÉTODO QUE GUARDA EL EXCEL =====
+                    response = ExportExcel.GrabaArchivoExcelSimple(dt, "Costos Cero Inactivos", nombreArchivo);
+                    // ================================================
+
+                    // Si el método no estableció ExecutionOK, lo hacemos aquí
+                    if (response.Data != null)
+                    {
+                        response.ExecutionOK = true;
+                    }
+                }
+                else
+                {
+                    response.ExecutionOK = false;
+                    response.Message = "No hay datos para exportar.";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.ExecutionOK = false;
+                response.Message = ex.Message;
+            }
+
+            return Json(response);
+        }
+    }  // <-- Esta es la llave de cierre de la clase
 }

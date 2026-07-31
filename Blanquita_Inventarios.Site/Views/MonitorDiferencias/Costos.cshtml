@@ -8,41 +8,6 @@
 <link href="~/Content/css/datatables.min.css" rel="stylesheet" />
 <link href="~/Content/css/datatables.bootstrap.css" rel="stylesheet" />
 
-<style>
-    .submit-progress-bg {
-        background-color: lightgray;
-        opacity: .5;
-    }
-
-    .submit-progress {
-        position: fixed;
-        top: 50%;
-        left: 45%;
-        height: 6em;
-        padding-top: 2.3em;
-        width: 20em;
-        margin-left: -10em;
-        padding-left: 2.1em;
-        background-color: black;
-        color: white;
-        -webkit-border-radius: 0.4em;
-        -moz-border-radius: 0.4em;
-        border-radius: 0.4em;
-        box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
-        -webkit-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
-        -moz-box-shadow: 0.4em 0.4em rgba(0,0,0,0.6);
-    }
-
-    .submit-progress {
-        padding-top: 2em;
-        width: 640px;
-    }
-
-        .submit-progress i {
-            margin-right: 0.5em;
-        }
-</style>
-
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
@@ -73,7 +38,6 @@
                                             Refresh
                                             <i class="fa fa-search"></i>
                                         </button>
-                                        <!-- ===== NUEVO BOTÓN EXCEL ===== -->
                                         <button type="button" id="btnExcel" class="btn green-jungle margin-bottom-5" onclick="ExportExcel()">
                                             Excel
                                             <i class="fa fa-file-excel-o"></i>
@@ -97,23 +61,38 @@
                                             </div>
                                         </div>
 
-                                        <table id="tablaCostosCero" class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos">
+                                        <table class="table table-bordered mb-0 table-sm dataTable-simple tabla-datos" id="tablaCostos">
                                             <thead>
                                                 <tr class="bg-light headerCustom">
-                                                    <th>Código</th>
-                                                    <th>Descripción del Artículo</th>
-                                                    <th>Estatus</th>
+                                                    <th>
+                                                        <input name="control" value="ItemCode"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Descripción del Artículo"
+                                                               class="btn headerCustom" />
+                                                    </th>
+                                                    <th>
+                                                        <input name="control" value="Estatus"
+                                                               class="btn headerCustom" />
+                                                    </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbodyCostosCero">
+                                            <tbody>
                                                 @if (Model.Listado != null && Model.Listado.Count > 0)
                                                 {
                                                     foreach (var item in Model.Listado)
                                                     {
                                                         <tr>
-                                                            <td>@Html.DisplayFor(modelItem => item.ItemCode)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.Estatus)</td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.ItemCode)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Descripcion)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Estatus)
+                                                            </td>
                                                         </tr>
                                                     }
                                                 }
@@ -130,12 +109,6 @@
     </div>
 </div>
 
-<!-- ===== INDICADOR DE CARGA PARA EXCEL ===== -->
-<div id="excelProgress" class="submit-progress hidden">
-    <i class="fa fa-2x fa-spinner fa-spin"></i>
-    <label>Generando archivo Excel...</label>
-</div>
-
 @section scripts
 {
     <script src="~/Content/js/datatables.js"></script>
@@ -143,86 +116,40 @@
     <script src="~/Content/js/datatables.bootstrap.js"></script>
 
     <script>
-        // ===== FUNCIÓN PARA EXPORTAR A EXCEL =====
-    function ExportExcel() {
-        // Deshabilitar botón y mostrar progreso
-        $("#btnExcel").attr('disabled', 'disabled');
-        $("#btnExcel").html('<i class="fa fa-spinner fa-spin"></i> Generando...');
-        $("#excelProgress").removeClass("hidden");
+        function ExportExcel() {
+            var idConfiguracion = $("#ddlFiltroInventarios").val();
 
-        // Llamar al controlador para generar el Excel (sin enviar datos)
-        $.ajax({
-            url: '@Url.Action("ExcelCostosCero", "MonitorDiferencias")',
-            type: "POST",
-            success: function (response) {
-                if (response.success) {
-                    // Descargar el archivo
-                    window.location.href = response.url;
-                    ShowNotificacion("success", "Información", "El archivo se ha generado correctamente.", "4", "0");
-                } else {
-                    ShowNotificacion("error", "Error", response.message, "4", "0");
-                }
-            },
-            error: function (xhr, status, error) {
-                ShowNotificacion("error", "Error", "No se pudo generar el archivo: " + error, "4", "0");
-            },
-            complete: function () {
-                // Restaurar botón
-                $("#btnExcel").removeAttr('disabled');
-                $("#btnExcel").html('Excel <i class="fa fa-file-excel-o"></i>');
-                $("#excelProgress").addClass("hidden");
-            }
-        });
-    }
-
-        // ===== FUNCIÓN ALTERNATIVA: Exportar directamente desde la tabla (más rápida) =====
-        function ExportExcelDirecto() {
-            // Obtener los datos de la tabla
-            var datos = [];
-            var headers = [];
-
-            // Obtener encabezados
-            $('#tablaCostosCero thead th').each(function() {
-                headers.push($(this).text().trim());
-            });
-
-            // Obtener datos
-            $('#tbodyCostosCero tr').each(function() {
-                var row = $(this);
-                var fila = {};
-                row.find('td').each(function(index) {
-                    fila[headers[index]] = $(this).text().trim();
-                });
-                datos.push(fila);
-            });
-
-            if (datos.length === 0) {
-                ShowNotificacion("warning", "Advertencia", "No hay datos para exportar", "4", "0");
+            if (idConfiguracion == "" || idConfiguracion == "0") {
+                ShowNotificacion("warning", "Advertencia", "Seleccione un inventario primero.", "4", "0");
                 return;
             }
 
-            // Crear CSV
-            var csv = headers.join(',') + '\n';
-            datos.forEach(function(row) {
-                var valores = headers.map(function(h) {
-                    return '"' + (row[h] || '').replace(/"/g, '""') + '"';
-                });
-                csv += valores.join(',') + '\n';
+            var data = new FormData();
+            data.append("idConfiguracion", idConfiguracion);
+
+            var url = '@Url.Action("ExcelCostos", "MonitorDiferencias")';
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response.ExecutionOK == true) {
+                        window.location.href = "../Documentos/Descargas/" + response.Data;
+                        ShowNotificacion("success", "Información", "Archivo generado correctamente.", "4", "0");
+                    }
+                    else {
+                        ShowNotificacion("error", "Error", response.Message, "4", "0");
+                    }
+                },
+                error: function (err) {
+                    ShowNotificacion("error", "Error", err.statusText, "4", "0");
+                }
             });
-
-            // Descargar CSV
-            var blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-            var link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'Costos_Cero_Inactivos_' + new Date().toISOString().slice(0,10) + '.csv';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            ShowNotificacion("success", "Información", "Archivo CSV generado correctamente.", "4", "0");
         }
 
-        // ===== INICIALIZAR DATATABLE =====
         $(document).ready(function () {
             $('.tabla-datos tr td').dblclick(function () {
                 var control = ($(this).parent().find('td:last > .btn-detalles'));

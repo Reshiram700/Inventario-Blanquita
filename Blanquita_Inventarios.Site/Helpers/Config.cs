@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -25,34 +24,9 @@ namespace Blanquita_Inventarios.Site.Helpers
         public static readonly string DirectorioPlantillas = DirectorioAplicacion + "\\Plantillas";
 
         /// <summary>
-        /// Ruta completa del directorio fisico donde se almacenaran los archivos de LOGS
+        /// Ruta completa del directorio fisico donde se almacenaran los archivos de plantillas
         /// </summary>
-        /// <summary>
-        /// Ruta completa del directorio fisico donde se almacenaran los archivos de LOGS
-        /// </summary>
-        public static string DirectorioLog
-        {
-            get
-            {
-                // Usar App_Data/Logs - siempre tiene permisos de escritura
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "Logs");
-                
-                try
-                {
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                }
-                catch
-                {
-                    // Si falla, usar Temp
-                    path = Path.GetTempPath();
-                }
-                
-                return path;
-            }
-        }
+        public static readonly string DirectorioLog = DirectorioDocumentos + "\\Logs";
 
         /// <summary>
         /// Url del Sitio web
